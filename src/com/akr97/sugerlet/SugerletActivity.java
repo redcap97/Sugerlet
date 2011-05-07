@@ -1,5 +1,7 @@
 package com.akr97.sugerlet;
 
+import java.util.*;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.database.Cursor;
 
-import android.util.Log;
-import android.net.*;
-import android.provider.ContactsContract.*;
+import com.akr97.sugerlet.model.*;
 
 public class SugerletActivity extends Activity {
     /** Called when the activity is first created. */
@@ -21,9 +20,16 @@ public class SugerletActivity extends Activity {
         setContentView(R.layout.main);
         
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        adapter.add("red");
-        adapter.add("green");
-        adapter.add("blue");
+        Vector<ContactSummaryModel> contacts = ContactSummaryModel.getAll(this);
+        for(ContactSummaryModel contact : contacts){
+        	adapter.add(contact.displayName);
+        	if(contact.hasPhoneNumber){
+        		Vector<PhoneModel> phones = PhoneModel.get(this, contact.id);
+        		for(PhoneModel phone : phones){
+        			adapter.add(phone.number);
+        		}
+        	}
+        }
         
         ListView listView = (ListView)findViewById(R.id.mainListView);
         listView.setAdapter(adapter);
@@ -37,14 +43,5 @@ public class SugerletActivity extends Activity {
         		Toast.makeText(SugerletActivity.this, item, Toast.LENGTH_LONG).show();
         	}
         });
-        
-        Cursor c = getContentResolver().query(Contacts.CONTENT_URI, new String[]{Contacts.DISPLAY_NAME}, null, null, null);
-        try {
-            c.moveToFirst();
-            String displayName = c.getString(0);
-            Toast.makeText(this, displayName, Toast.LENGTH_LONG).show();
-        } finally {
-            c.close();
-        }
     }
 }
