@@ -2,10 +2,11 @@ package com.akr97.sugerlet.model;
 
 import java.util.Vector;
 
-import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.util.Log;
 
 public class PhoneModel {
 	public int id;
@@ -32,23 +33,38 @@ public class PhoneModel {
 		this.label = label;
 	}
 	
-	static public Vector<PhoneModel> get(Activity act, int contactId){
+	@Override
+	public String toString(){
+		return String.format("id: %d, number: %s, type: %d, label: %s", 
+				this.id, this.number, this.type, this.label);
+	}
+	
+	static public Vector<PhoneModel> get(Context ctx, int contactId){
 		Vector<PhoneModel> results = new Vector<PhoneModel>();
-	   	Cursor c = act.getContentResolver().query(Data.CONTENT_URI,
-	   			PROJECTION, RESTRICTION,
-	   			new String[] {String.valueOf(contactId)}, null);
-	   	
+		
+		Log.d(TAG, "Start to collect phones.");
+	   	Cursor c = getCursor(ctx, contactId);
 	   	if(c.moveToFirst()){
 	   		 do {
-	   			 int id = c.getInt(0);
-	   			 String number = c.getString(1);
-	   			 int type = c.getInt(2);
-	   			 String label = c.getString(3);
-	   			 
-	   			 results.add(new PhoneModel(id, number, type, label));
+	   			 results.add(gainObjectFromCursor(c));
 	   		 }while(c.moveToNext());	   		
 	   	}
 	   	 
 		return results;
+	}
+	
+	static public Cursor getCursor(Context ctx, int contactId){
+		return ctx.getContentResolver().query(Data.CONTENT_URI,
+				PROJECTION, RESTRICTION,
+	   			new String[] {String.valueOf(contactId)}, null);
+	}
+	
+	static public PhoneModel gainObjectFromCursor(Cursor c){
+		int id = c.getInt(0);
+   		String number = c.getString(1);
+   		int type = c.getInt(2);
+   		String label = c.getString(3);
+   			 
+   		return new PhoneModel(id, number, type, label);
 	}
 }
