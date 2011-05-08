@@ -49,7 +49,8 @@ public class PhoneModel {
 	   			 results.add(gainObjectFromCursor(c));
 	   		 }while(c.moveToNext());	   		
 	   	}
-	   	 
+	   	c.close();
+	   	
 		return results;
 	}
 	

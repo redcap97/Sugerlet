@@ -4,10 +4,13 @@ import java.util.*;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.QuickContactBadge;
 import android.content.Context;
+
+import android.provider.ContactsContract.*;
 
 import com.akr97.sugerlet.model.*;
 
@@ -38,17 +41,23 @@ public class ContactListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ContactSummaryModel contact = (ContactSummaryModel)getItem(position);
-		LinearLayout layout = new LinearLayout(this.context);
-		layout.setOrientation(LinearLayout.VERTICAL);
 		
-		TextView tvName = new TextView(this.context);
-		tvName.setText(contact.displayName);
-		layout.addView(tvName);
+		if(convertView == null){
+			LayoutInflater inflater = LayoutInflater.from(this.context);
+			convertView = inflater.inflate(R.layout.item_contact_summary, null);
+
+			TextView tvName = (TextView)convertView.findViewById(R.id.textView1);
+			tvName.setText(contact.displayName);
+			
+			TextView tvPhoneNumber = (TextView)convertView.findViewById(R.id.textView2);
+			Vector<PhoneModel> phones = PhoneModel.get(this.context, contact.id);
+			tvPhoneNumber.setText(phones.get(0).number);
+			
+			QuickContactBadge badge = (QuickContactBadge)convertView.findViewById(R.id.quickContactBadge1);
+			badge.assignContactUri(Contacts.getLookupUri(contact.id, contact.lookupKey));
+			badge.setMode(QuickContact.MODE_SMALL); 
+		}
 		
-		TextView tvId = new TextView(this.context);
-		tvId.setText(String.valueOf(contact.id));
-		layout.addView(tvId);
-		
-		return layout;
+		return convertView;
 	}
 }

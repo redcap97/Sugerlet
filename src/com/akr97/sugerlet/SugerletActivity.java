@@ -1,14 +1,11 @@
 package com.akr97.sugerlet;
 
-import java.util.*;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 

@@ -12,25 +12,28 @@ public class ContactSummaryModel {
     public int id;
     public String displayName;
     public boolean hasPhoneNumber;
+    public String lookupKey;
     
     static final String TAG = "com.akr97.sugerlet.model.ContactSummaryModel";
 	
 	static final String[] PROJECTION = new String[]{
         	Contacts._ID,
         	Contacts.DISPLAY_NAME,
-        	Contacts.HAS_PHONE_NUMBER
+        	Contacts.HAS_PHONE_NUMBER,
+        	Contacts.LOOKUP_KEY
     };
 	
-	public ContactSummaryModel(int id, String displayName, boolean hasPhoneNumber){
+	public ContactSummaryModel(int id, String displayName, boolean hasPhoneNumber, String lookupKey){
 		this.id = id;
 		this.displayName = displayName;
 		this.hasPhoneNumber = hasPhoneNumber;
+		this.lookupKey = lookupKey;
 	}
 	
 	@Override
 	public String toString(){
-		return String.format("id: %d, displayName: %s, hasPhoneNumber: %b", 
-				this.id, this.displayName, this.hasPhoneNumber);
+		return String.format("id: %d, displayName: %s, hasPhoneNumber: %b, lookupKey: %s", 
+				this.id, this.displayName, this.hasPhoneNumber, this.lookupKey);
 	}
 	
 	static public Vector<ContactSummaryModel> getAll(Context ctx){
@@ -56,7 +59,8 @@ public class ContactSummaryModel {
 		int id = c.getInt(0);
    		String displayName = c.getString(1);
     	boolean hasPhoneNumber = (c.getInt(2) == 1);
+    	String lookupKey = c.getString(3);
     		
-    	return new ContactSummaryModel(id, displayName, hasPhoneNumber);
+    	return new ContactSummaryModel(id, displayName, hasPhoneNumber, lookupKey);
 	}
 }
