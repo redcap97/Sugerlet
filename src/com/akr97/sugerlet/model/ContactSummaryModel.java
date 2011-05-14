@@ -1,6 +1,5 @@
 package com.akr97.sugerlet.model;
 
-
 import java.util.Vector;
 
 import android.content.Context;
@@ -9,7 +8,7 @@ import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
 public class ContactSummaryModel {
-    public int id;
+    public long id;
     public String displayName;
     public boolean hasPhoneNumber;
     public String lookupKey;
@@ -23,7 +22,7 @@ public class ContactSummaryModel {
         	Contacts.LOOKUP_KEY
     };
 	
-	public ContactSummaryModel(int id, String displayName, boolean hasPhoneNumber, String lookupKey){
+	public ContactSummaryModel(long id, String displayName, boolean hasPhoneNumber, String lookupKey){
 		this.id = id;
 		this.displayName = displayName;
 		this.hasPhoneNumber = hasPhoneNumber;
@@ -56,7 +55,7 @@ public class ContactSummaryModel {
 	}
 	
 	static public ContactSummaryModel gainObjectFromCursor(Cursor c){
-		int id = c.getInt(0);
+		long id = c.getLong(0);
    		String displayName = c.getString(1);
     	boolean hasPhoneNumber = (c.getInt(2) == 1);
     	String lookupKey = c.getString(3);

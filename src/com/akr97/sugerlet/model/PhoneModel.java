@@ -9,7 +9,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
 public class PhoneModel {
-	public int id;
+	public long id;
 	public String number;
 	public int type;
 	public String label;
@@ -26,7 +26,7 @@ public class PhoneModel {
 	static final String RESTRICTION = Data.RAW_CONTACT_ID + "=?" + " AND " 
 		+ Data.MIMETYPE + "='" + Phone.CONTENT_ITEM_TYPE + "'";
 	
-	public PhoneModel(int id, String number, int type, String label){
+	public PhoneModel(long id, String number, int type, String label){
 		this.id = id;
 		this.number = number;
 		this.type = type;
@@ -39,7 +39,7 @@ public class PhoneModel {
 				this.id, this.number, this.type, this.label);
 	}
 	
-	static public Vector<PhoneModel> get(Context ctx, int contactId){
+	static public Vector<PhoneModel> get(Context ctx, long contactId){
 		Vector<PhoneModel> results = new Vector<PhoneModel>();
 		
 		Log.d(TAG, "Start to collect phones.");
@@ -54,14 +54,14 @@ public class PhoneModel {
 		return results;
 	}
 	
-	static public Cursor getCursor(Context ctx, int contactId){
+	static public Cursor getCursor(Context ctx, long contactId){
 		return ctx.getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION, RESTRICTION,
 	   			new String[] {String.valueOf(contactId)}, null);
 	}
 	
 	static public PhoneModel gainObjectFromCursor(Cursor c){
-		int id = c.getInt(0);
+		long id = c.getLong(0);
    		String number = c.getString(1);
    		int type = c.getInt(2);
    		String label = c.getString(3);
