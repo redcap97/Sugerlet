@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Groups;
 import android.util.Log;
+import com.akr97.sugerlet.*;
 
 public class GroupModel {
 	public long id;
@@ -44,26 +45,55 @@ public class GroupModel {
 				this.accountName, this.accountType);
 	}
 	
-	static public Vector<GroupModel> getAll(Context ctx){
-		Vector<GroupModel> results = new Vector<GroupModel>();
+	static public Vector<GroupModel> get(Context ctx){
+		Vector<GroupModel> groups;
+		AccountChanger accountChanger = AccountChangerFactory.create(ctx);
+		if(accountChanger.hasFilter()){
+			groups = new Vector<GroupModel>();
+			for(AccountChanger.State s : accountChanger){
+				if(s.isEnabled()){
+					groups.addAll(getByAccount(ctx, s.getName(), s.getType()));
+				}
+			}
+		}else{
+			groups = getAll(ctx);
+		}
 		
-		Log.i(TAG, "Start to collect contacts.");
-        Cursor c = getCursor(ctx);
-      	if(c.moveToFirst()){
-       		do {
-        		results.add(gainObjectFromCursor(c));
-        	}while(c.moveToNext());
-        }
-      	c.close();
-        
-        return results;
+		return groups;
 	}
 	
+	static public Vector<GroupModel> getAll(Context ctx){
+        Cursor c = getCursor(ctx);
+        return readRowsFromCursor(c);
+	}
+
+	static public Vector<GroupModel> getByAccount(Context ctx, String accountName, String accountType){
+		Cursor c = getCursor(ctx, accountName, accountType);
+		return readRowsFromCursor(c);
+	}
+
 	static public Cursor getCursor(Context ctx){
 		return ctx.getContentResolver().query(Groups.CONTENT_URI, PROJECTION, null, null, null);
 	}
 	
-	static public GroupModel gainObjectFromCursor(Cursor c){
+	static public Cursor getCursor(Context ctx, String accountName, String accountType){
+		return ctx.getContentResolver().query(Groups.CONTENT_URI,
+				PROJECTION, Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?", 
+				new String[]{ accountName, accountType }, Groups._ID);
+	}
+
+	static public Vector<GroupModel> readRowsFromCursor(Cursor c){
+		Vector<GroupModel> results = new Vector<GroupModel>();
+		
+		if(c.moveToFirst()){
+			do {
+				results.add(extractObjectFromCursor(c));
+			}while(c.moveToNext());
+		}
+		return results;
+	}
+	
+	static public GroupModel extractObjectFromCursor(Cursor c){
        	long id = c.getLong(0);
     	String title = c.getString(1);
     	String notes = c.getString(2);

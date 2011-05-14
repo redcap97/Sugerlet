@@ -46,7 +46,7 @@ public class PhoneModel {
 	   	Cursor c = getCursor(ctx, contactId);
 	   	if(c.moveToFirst()){
 	   		 do {
-	   			 results.add(gainObjectFromCursor(c));
+	   			 results.add(extractObjectFromCursor(c));
 	   		 }while(c.moveToNext());	   		
 	   	}
 	   	c.close();
@@ -60,12 +60,12 @@ public class PhoneModel {
 	   			new String[] {String.valueOf(contactId)}, null);
 	}
 	
-	static public PhoneModel gainObjectFromCursor(Cursor c){
+	static public PhoneModel extractObjectFromCursor(Cursor c){
 		long id = c.getLong(0);
    		String number = c.getString(1);
    		int type = c.getInt(2);
    		String label = c.getString(3);
-   			 
+
    		return new PhoneModel(id, number, type, label);
 	}
 }

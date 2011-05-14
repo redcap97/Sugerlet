@@ -2,4 +2,8 @@
 <resources>
     <string name="hello">Hello World, SugerletActivity!</string>
     <string name="app_name">Sugerlet</string>
+    <string name="key_of_group_id">GroupId</string>
+    <string name="no_group">グループなし</string>
+    <string name="key_of_group_title">GroupTitle</string>
+    <string name="group">グループ</string>
 </resources>

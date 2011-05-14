@@ -9,7 +9,6 @@ public class AccountChangerFactory {
 		if(accountChanger == null){
 			accountChanger = new AccountChanger(ctx);
 		}
-		
 		return accountChanger;
 	}
 }

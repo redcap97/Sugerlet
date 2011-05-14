@@ -42,7 +42,7 @@ public class ContactSummaryModel {
         Cursor c = getCursor(ctx);
       	if(c.moveToFirst()){
        		do {
-        		results.add(gainObjectFromCursor(c));
+        		results.add(extractObjectFromCursor(c));
         	}while(c.moveToNext());
         }
       	c.close();
@@ -54,7 +54,7 @@ public class ContactSummaryModel {
 		return ctx.getContentResolver().query(Contacts.CONTENT_URI, PROJECTION, null, null, null);
 	}
 	
-	static public ContactSummaryModel gainObjectFromCursor(Cursor c){
+	static public ContactSummaryModel extractObjectFromCursor(Cursor c){
 		long id = c.getLong(0);
    		String displayName = c.getString(1);
     	boolean hasPhoneNumber = (c.getInt(2) == 1);
