@@ -34,10 +34,12 @@ public class SugerletActivity extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         adapter.add(getString(R.string.no_group));
         
+        /*
         AccountStateManager changer = AccountStateManagerFactory.create(this);
         for(AccountStateManager.State s : changer){
         	if(s.getName().equals("redcap97@gmail.com")){ s.disable(); }
         }
+        */
 
         this.groups = GroupModel.get(this);
         for(GroupModel group : groups){

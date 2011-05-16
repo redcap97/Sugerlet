@@ -1,19 +1,21 @@
 package com.akr97.sugerlet;
 
 import java.util.Vector;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.content.Intent;
 import android.util.Log;
 import com.akr97.sugerlet.model.*;
 
-public class ContactListActivity extends ListActivity {
+public class ContactListActivity extends Activity {
 	public static final long NO_GROUP_ID = 0L;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
 
 		Parameter group = new Parameter();
 		setTitle(getString(R.string.group) + ": " + group.title);
@@ -24,8 +26,9 @@ public class ContactListActivity extends ListActivity {
 		}else{
 			structuredNames = StructuredNameModel.get(this, group.id);
 		}
-		
-		setListAdapter(new ContactListAdapter(this, structuredNames));
+
+		ListView listView = (ListView)findViewById(R.id.contactList);
+		listView.setAdapter(new ContactListAdapter(this, structuredNames));
 	}
 	
 	class Parameter{
