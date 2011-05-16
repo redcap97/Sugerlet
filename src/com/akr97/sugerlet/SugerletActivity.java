@@ -34,8 +34,8 @@ public class SugerletActivity extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         adapter.add(getString(R.string.no_group));
         
-        AccountChanger changer = AccountChangerFactory.create(this);
-        for(AccountChanger.State s : changer){
+        AccountStateManager changer = AccountStateManagerFactory.create(this);
+        for(AccountStateManager.State s : changer){
         	if(s.getName().equals("redcap97@gmail.com")){ s.disable(); }
         }
 
@@ -51,13 +51,16 @@ public class SugerletActivity extends Activity {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View view,
         			int position, long id){
-        		if(position > 0){
-        			GroupModel group = groups.get(position-1);        			
-        			Intent intent = new Intent(parent.getContext(), ContactListActivity.class);
+    			Intent intent = new Intent(parent.getContext(), ContactListActivity.class);
+        		if(position == 0){
+        			intent.putExtra(getString(R.string.key_of_group_id), ContactListActivity.NO_GROUP_ID);
+        			intent.putExtra(getString(R.string.key_of_group_title), getString(R.string.no_group));       			
+        		}else{
+        			GroupModel group = groups.get(position-1);
         			intent.putExtra(getString(R.string.key_of_group_id), group.id);
         			intent.putExtra(getString(R.string.key_of_group_title), group.title);
-        			startActivity(intent);
         		}
+       			startActivity(intent);
         	}
         });
     }

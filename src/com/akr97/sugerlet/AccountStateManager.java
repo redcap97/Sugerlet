@@ -7,12 +7,12 @@ import android.accounts.AccountManager;
 import android.accounts.Account;
 //import android.util.Log;
 
-public class AccountChanger implements Iterable<AccountChanger.State> {
+public class AccountStateManager implements Iterable<AccountStateManager.State> {
 	private Vector<State> states = new Vector<State>();
 	
 	static final String TAG = "com.akr97.sugerlet.AccountChanger";
 	
-	public AccountChanger(Context ctx){
+	public AccountStateManager(Context ctx){
         Account[] accounts = AccountManager.get(ctx).getAccounts();
         for(Account account : accounts){
         	this.states.add(new State(account.name, account.type));

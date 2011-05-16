@@ -47,10 +47,10 @@ public class GroupModel {
 	
 	static public Vector<GroupModel> get(Context ctx){
 		Vector<GroupModel> groups;
-		AccountChanger accountChanger = AccountChangerFactory.create(ctx);
+		AccountStateManager accountChanger = AccountStateManagerFactory.create(ctx);
 		if(accountChanger.hasFilter()){
 			groups = new Vector<GroupModel>();
-			for(AccountChanger.State s : accountChanger){
+			for(AccountStateManager.State s : accountChanger){
 				if(s.isEnabled()){
 					groups.addAll(getByAccount(ctx, s.getName(), s.getType()));
 				}
@@ -71,6 +71,14 @@ public class GroupModel {
 		Cursor c = getCursor(ctx, accountName, accountType);
 		return readRowsFromCursor(c);
 	}
+	
+	static public GroupModel getById(Context ctx, long id){
+		Cursor c = getCursor(ctx, id);
+		if(c.moveToFirst()){
+			return extractObjectFromCursor(c);
+		}
+		return null;
+	}
 
 	static public Cursor getCursor(Context ctx){
 		return ctx.getContentResolver().query(Groups.CONTENT_URI, PROJECTION, null, null, null);
@@ -80,6 +88,12 @@ public class GroupModel {
 		return ctx.getContentResolver().query(Groups.CONTENT_URI,
 				PROJECTION, Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?", 
 				new String[]{ accountName, accountType }, Groups._ID);
+	}
+	
+	static public Cursor getCursor(Context ctx, long groupId){
+		return ctx.getContentResolver().query(Groups.CONTENT_URI,
+				PROJECTION, Groups._ID + "=?", 
+				new String[]{ String.valueOf(groupId) }, null);
 	}
 
 	static public Vector<GroupModel> readRowsFromCursor(Cursor c){
