@@ -53,17 +53,7 @@ public class StructuredNameModel {
 	public String getPhoneticName(){
 		return getJapaneseStyleName(phoneticFamilyName, phoneticGivenName);
 	}
-	
-	private static String getJapaneseStyleName(String familyName, String givenName){
-		if(givenName == null){
-			return StringUtil.toNonNullString(familyName);
-		}else if(familyName == null){
-			return StringUtil.toNonNullString(givenName);
-		}else{
-			return familyName + " " + givenName;
-		}
-	}
-	
+
 	public static Vector<StructuredNameModel> get(Context ctx, long groupId){
 		GroupModel group = GroupModel.getById(ctx, groupId);
 		
@@ -158,5 +148,15 @@ public class StructuredNameModel {
 		
 		return new StructuredNameModel(rawContactId, displayName, givenName, familyName,
 				phoneticGivenName, phoneticFamilyName);
+	}
+	
+	private static String getJapaneseStyleName(String familyName, String givenName){
+		if(givenName == null){
+			return StringUtil.toNonNullString(familyName);
+		}else if(familyName == null){
+			return StringUtil.toNonNullString(givenName);
+		}else{
+			return familyName + " " + givenName;
+		}
 	}
 }

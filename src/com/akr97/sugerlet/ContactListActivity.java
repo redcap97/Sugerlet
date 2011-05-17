@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.content.Intent;
 import android.util.Log;
 import com.akr97.sugerlet.model.*;
@@ -21,18 +20,19 @@ public class ContactListActivity extends Activity {
 		Parameter group = new Parameter();
 		setTitle(getString(R.string.group) + ": " + group.title);
 		
-		Vector<StructuredNameModel> structuredNames;
-		if(group.id == NO_GROUP_ID){
-			structuredNames = StructuredNameModel.getFromNoGroup(this);
-		}else{
-			structuredNames = StructuredNameModel.get(this, group.id);
-		}
-
 		ListView listView = (ListView)findViewById(R.id.contactList);
-		listView.setAdapter(new ContactListAdapter(this, structuredNames));
+		listView.setAdapter(new ContactListAdapter(this, getStructuredNames(group.id)));
 		
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
+	}
+	
+	Vector<StructuredNameModel> getStructuredNames(long groupId){
+		if(groupId == NO_GROUP_ID){
+			return StructuredNameModel.getFromNoGroup(this);
+		}else{
+			return StructuredNameModel.get(this, groupId);
+		}
 	}
 	
 	class Parameter{
