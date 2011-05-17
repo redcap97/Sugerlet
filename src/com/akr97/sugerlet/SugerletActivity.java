@@ -48,6 +48,8 @@ public class SugerletActivity extends Activity {
         
         ListView listView = (ListView)findViewById(R.id.contactList);
         listView.setAdapter(adapter);
+        View emptyView = findViewById(R.id.emptyView);
+        listView.setEmptyView(emptyView);
         
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         	@Override
