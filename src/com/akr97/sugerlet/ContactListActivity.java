@@ -31,7 +31,7 @@ public class ContactListActivity extends Activity {
 		if(groupId == NO_GROUP_ID){
 			return StructuredNameModel.getFromNoGroup(this);
 		}else{
-			return StructuredNameModel.get(this, groupId);
+			return StructuredNameModel.getFromGroup(this, groupId);
 		}
 	}
 	

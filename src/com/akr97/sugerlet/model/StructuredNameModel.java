@@ -54,7 +54,7 @@ public class StructuredNameModel {
 		return getJapaneseStyleName(phoneticFamilyName, phoneticGivenName);
 	}
 
-	public static Vector<StructuredNameModel> get(Context ctx, long groupId){
+	public static Vector<StructuredNameModel> getFromGroup(Context ctx, long groupId){
 		GroupModel group = GroupModel.getById(ctx, groupId);
 		
         Cursor c1 = ctx.getContentResolver().query(Data.CONTENT_URI,
