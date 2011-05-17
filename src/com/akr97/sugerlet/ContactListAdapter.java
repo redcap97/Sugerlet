@@ -1,16 +1,14 @@
 package com.akr97.sugerlet;
 
 import java.util.*;
-//import android.util.Log;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.QuickContactBadge;
 import android.content.Context;
-
-import android.provider.ContactsContract.*;
+import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 

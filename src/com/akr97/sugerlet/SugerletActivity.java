@@ -1,7 +1,7 @@
 package com.akr97.sugerlet;
 
 import java.util.Vector;
-import android.util.Log;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,15 +9,7 @@ import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-/*
-import android.database.*;
-import android.provider.*;
-import android.provider.ContactsContract.*;
-import android.provider.ContactsContract.CommonDataKinds.*;
-import android.accounts.*;
-*/
+import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 

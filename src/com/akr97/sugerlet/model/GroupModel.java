@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Groups;
 import android.util.Log;
+
 import com.akr97.sugerlet.*;
 
 public class GroupModel {

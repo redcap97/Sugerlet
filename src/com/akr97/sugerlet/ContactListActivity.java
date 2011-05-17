@@ -1,12 +1,14 @@
 package com.akr97.sugerlet;
 
 import java.util.Vector;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.content.Intent;
 import android.util.Log;
+
 import com.akr97.sugerlet.model.*;
 
 public class ContactListActivity extends Activity {

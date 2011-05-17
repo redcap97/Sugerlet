@@ -1,16 +1,15 @@
 package com.akr97.sugerlet.model;
 
 import java.util.Vector;
+
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.CursorJoiner;
-import android.util.Log;
+//import android.util.Log;
 
 import com.akr97.sugerlet.AccountStateManager;
 import com.akr97.sugerlet.AccountStateManagerFactory;

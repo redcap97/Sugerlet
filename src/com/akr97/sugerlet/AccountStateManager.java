@@ -5,7 +5,7 @@ import java.util.Vector;
 import android.content.Context;
 import android.accounts.AccountManager;
 import android.accounts.Account;
-//import android.util.Log;
+import android.util.Log;
 
 public class AccountStateManager implements Iterable<AccountStateManager.State> {
 	private Vector<State> states = new Vector<State>();
