@@ -3,9 +3,6 @@ package com.akr97.sugerlet.util;
 import java.util.Iterator;
 import android.database.Cursor;
 
-/**
- * CursorJoinerクラスがもつ、Int型のキー同士でJoinさせる際の問題点を修正したクラス
- */
 public final class CursorJoinerWithIntKey implements Iterator<CursorJoinerWithIntKey.Result>, Iterable<CursorJoinerWithIntKey.Result> {
 
     private Cursor mCursorLeft;
