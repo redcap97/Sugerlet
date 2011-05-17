@@ -135,6 +135,27 @@ public class StructuredNameModel {
 				results.addAll(getFromNoGroup(ctx, state.getName(), state.getType()));
 			}
 		}
+		results.addAll(getFromNoAccount(ctx));
+		return results;
+	}
+	
+	public static Vector<StructuredNameModel> getFromNoAccount(Context ctx){
+		Vector<StructuredNameModel> results = new Vector<StructuredNameModel>();
+		
+		Cursor c = ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI, 
+				PROJECTION,
+				RawContactsEntity.MIMETYPE + "=? AND " +
+				RawContacts.ACCOUNT_NAME + " IS NULL AND " +
+				RawContacts.ACCOUNT_TYPE + " IS NULL",	
+				new String[]{ StructuredName.CONTENT_ITEM_TYPE }, 
+				RawContacts._ID);
+		
+		if(c.moveToFirst()){
+			do {
+				results.add(extractObjectFromCursor(c));
+			}while(c.moveToNext());
+		}
+		
 		return results;
 	}
 	
