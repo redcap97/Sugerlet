@@ -5,9 +5,11 @@ import java.util.Vector;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.akr97.sugerlet.model.*;
 
@@ -27,6 +29,15 @@ public class ContactListActivity extends Activity {
 		
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
+		
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        	@Override
+        	public void onItemClick(AdapterView<?> parent, View view,
+        			int position, long id){
+        		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
+        		startActivity(intent);
+        	}
+        });
 	}
 	
 	Vector<StructuredNameModel> getStructuredNames(long groupId){
