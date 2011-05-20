@@ -7,4 +7,5 @@
     <string name="key_of_group_title">GroupTitle</string>
     <string name="group">グループ</string>
     <string name="message_no_contact">連絡先はありません</string>
+    <string name="key_of_raw_contact_id">RawContactId</string>
 </resources>

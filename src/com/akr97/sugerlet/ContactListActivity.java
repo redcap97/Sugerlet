@@ -15,6 +15,7 @@ import com.akr97.sugerlet.model.*;
 
 public class ContactListActivity extends Activity {
 	public static final long NO_GROUP_ID = 0L;
+	private Vector<StructuredNameModel> structureNames;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,8 @@ public class ContactListActivity extends Activity {
 		setTitle(getString(R.string.group) + ": " + group.title);
 		
 		ListView listView = (ListView)findViewById(R.id.contactList);
-		listView.setAdapter(new ContactListAdapter(this, getStructuredNames(group.id)));
+		this.structureNames = getStructuredNames(group.id);
+		listView.setAdapter(new ContactListAdapter(this, structureNames));
 		
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
@@ -34,7 +36,10 @@ public class ContactListActivity extends Activity {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View view,
         			int position, long id){
+        		StructuredNameModel structuredName = structureNames.get(position);
+        		
         		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
+    			intent.putExtra(getString(R.string.key_of_raw_contact_id), structuredName.rawContactId);
         		startActivity(intent);
         	}
         });
