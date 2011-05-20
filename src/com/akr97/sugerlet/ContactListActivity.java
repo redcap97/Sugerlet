@@ -22,11 +22,11 @@ public class ContactListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		Parameter group = new Parameter();
-		setTitle(getString(R.string.group) + ": " + group.title);
+		Parameter params = new Parameter();
+		setTitle(getString(R.string.group) + ": " + params.groupTitle);
 		
 		ListView listView = (ListView)findViewById(R.id.contactList);
-		this.structureNames = getStructuredNames(group.id);
+		this.structureNames = getStructuredNames(params.groupId);
 		listView.setAdapter(new ContactListAdapter(this, structureNames));
 		
 		View emptyView = findViewById(R.id.emptyView);
@@ -56,20 +56,16 @@ public class ContactListActivity extends Activity {
 	class Parameter{
 		private Intent intent;
 		
-		public long id;
-		public String title;
+		public long groupId;
+		public String groupTitle;
 		
 		public Parameter(){
 			this.intent = getIntent();
-			setup();
+			this.groupId = getGroupId();
+			this.groupTitle = getGroupTitle();
 		}
 		
-		public void setup(){
-			this.id = getGroupId();
-			this.title = getGroupTitle();
-		}
-		
-		public long getGroupId(){
+		private long getGroupId(){
 			long groupId = intent.getLongExtra(getString(R.string.key_of_group_id), -1);
 			if(groupId == -1L){
 				throw new RuntimeException("GroupId is not found.");
@@ -77,7 +73,7 @@ public class ContactListActivity extends Activity {
 			return groupId;
 		}
 		
-		public String getGroupTitle(){
+		private String getGroupTitle(){
 			String groupTitle = intent.getStringExtra(getString(R.string.key_of_group_title));
 			if(groupTitle == null){
 				throw new RuntimeException("GroupTitle is not found.");
