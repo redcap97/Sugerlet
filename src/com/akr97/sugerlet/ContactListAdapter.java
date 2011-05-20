@@ -47,10 +47,10 @@ public class ContactListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.item_contact_summary, null);
 		}
 		
-		TextView tvName = (TextView)convertView.findViewById(R.id.textView1);
+		TextView tvName = (TextView)convertView.findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
 		
-		TextView tvPhoneticName = (TextView)convertView.findViewById(R.id.textView2);
+		TextView tvPhoneticName = (TextView)convertView.findViewById(R.id.phoneticName);
 		tvPhoneticName.setText(structuredName.getPhoneticName());
 		
 		return convertView;

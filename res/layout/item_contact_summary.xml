@@ -4,7 +4,7 @@
   android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
     <ImageView android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/ic_contact_picture" android:layout_marginBottom="6dip" android:layout_marginTop="6dip" android:adjustViewBounds="true" android:layout_marginLeft="4dip" android:layout_marginRight="14dip"></ImageView>
     <TableLayout android:layout_width="fill_parent" android:id="@+id/tableLayout2" android:layout_height="wrap_content">
-        <TextView android:layout_width="wrap_content" android:id="@+id/textView1" android:text="TextView" android:layout_height="wrap_content" android:textSize="24dip"></TextView>
-        <TextView android:layout_width="wrap_content" android:id="@+id/textView2" android:text="" android:textSize="16dip" android:layout_height="wrap_content"></TextView>
+        <TextView android:layout_width="wrap_content" android:text="Name" android:layout_height="wrap_content" android:textSize="24dip" android:id="@+id/name"></TextView>
+        <TextView android:layout_width="wrap_content" android:text="PhoneticName" android:textSize="16dip" android:layout_height="wrap_content" android:id="@+id/phoneticName"></TextView>
     </TableLayout>
 </LinearLayout>
