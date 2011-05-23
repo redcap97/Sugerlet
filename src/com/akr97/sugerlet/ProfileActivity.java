@@ -1,7 +1,5 @@
 package com.akr97.sugerlet;
 
-import com.akr97.sugerlet.model.GroupModel;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.akr97.sugerlet.model.*;
 
 public class ProfileActivity extends Activity {
 	@Override
@@ -19,8 +20,13 @@ public class ProfileActivity extends Activity {
 		
 		Parameter params = new Parameter();
 		
-		TextView tv = (TextView)findViewById(R.id.textView1);
-		tv.setText(String.valueOf(params.rawContactId));
+		StructuredNameModel structuredName = StructuredNameModel.getByRawContactsId(this, params.rawContactId);
+		
+		TextView tvName = (TextView)findViewById(R.id.name);
+		tvName.setText(structuredName.getName());
+		
+		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
+		tvPhoneticName.setText(structuredName.getPhoneticName());
 	}
 	
 	class Parameter{

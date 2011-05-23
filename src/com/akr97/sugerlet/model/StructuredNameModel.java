@@ -52,6 +52,22 @@ public class StructuredNameModel {
 	public String getPhoneticName(){
 		return getJapaneseStyleName(phoneticFamilyName, phoneticGivenName);
 	}
+	
+	public static StructuredNameModel getByRawContactsId(Context ctx, long id){
+		Cursor c = ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
+				PROJECTION,
+				RawContactsEntity.MIMETYPE + "=? AND "
+					+ RawContactsEntity._ID + "=?",
+				new String[]{
+					StructuredName.CONTENT_ITEM_TYPE,
+					String.valueOf(id)},
+				RawContactsEntity._ID);
+		
+		if(c.moveToFirst()){
+			return extractObjectFromCursor(c);
+		}
+		return null;
+	}
 
 	public static Vector<StructuredNameModel> getFromGroup(Context ctx, long groupId){
 		GroupModel group = GroupModel.getById(ctx, groupId);
