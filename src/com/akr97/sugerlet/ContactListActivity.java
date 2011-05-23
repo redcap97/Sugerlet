@@ -47,7 +47,7 @@ public class ContactListActivity extends Activity {
 	
 	Vector<StructuredNameModel> getStructuredNames(long groupId){
 		if(groupId == NO_GROUP_ID){
-			return StructuredNameModel.getFromNoGroup(this);
+			return StructuredNameModel.getNoGroup(this);
 		}else{
 			return StructuredNameModel.getFromGroup(this, groupId);
 		}

@@ -19,7 +19,6 @@ public class ProfileActivity extends Activity {
 		setContentView(R.layout.profile);
 		
 		Parameter params = new Parameter();
-		
 		StructuredNameModel structuredName = StructuredNameModel.getByRawContactsId(this, params.rawContactId);
 		
 		TextView tvName = (TextView)findViewById(R.id.name);
