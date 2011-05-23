@@ -65,18 +65,18 @@ public class GroupModel {
 	
 	static public Vector<GroupModel> getAll(Context ctx){
         Cursor c = getCursor(ctx);
-        return readRowsFromCursor(c);
+        return readRows(c);
 	}
 
 	static public Vector<GroupModel> getByAccount(Context ctx, String accountName, String accountType){
 		Cursor c = getCursor(ctx, accountName, accountType);
-		return readRowsFromCursor(c);
+		return readRows(c);
 	}
 	
 	static public GroupModel getById(Context ctx, long id){
 		Cursor c = getCursor(ctx, id);
 		if(c.moveToFirst()){
-			return extractObjectFromCursor(c);
+			return extractObject(c);
 		}
 		return null;
 	}
@@ -97,18 +97,18 @@ public class GroupModel {
 				new String[]{ String.valueOf(groupId) }, null);
 	}
 
-	static public Vector<GroupModel> readRowsFromCursor(Cursor c){
+	static public Vector<GroupModel> readRows(Cursor c){
 		Vector<GroupModel> results = new Vector<GroupModel>();
 		
 		if(c.moveToFirst()){
 			do {
-				results.add(extractObjectFromCursor(c));
+				results.add(extractObject(c));
 			}while(c.moveToNext());
 		}
 		return results;
 	}
 	
-	static public GroupModel extractObjectFromCursor(Cursor c){
+	static public GroupModel extractObject(Cursor c){
        	long id = c.getLong(0);
     	String title = c.getString(1);
     	String notes = c.getString(2);
