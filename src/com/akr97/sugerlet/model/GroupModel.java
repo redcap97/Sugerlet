@@ -76,7 +76,7 @@ public class GroupModel {
 	static public GroupModel getById(Context ctx, long id){
 		Cursor c = getCursor(ctx, id);
 		if(c.moveToFirst()){
-			return extractObject(c);
+			return extract(c);
 		}
 		return null;
 	}
@@ -102,13 +102,13 @@ public class GroupModel {
 		
 		if(c.moveToFirst()){
 			do {
-				results.add(extractObject(c));
+				results.add(extract(c));
 			}while(c.moveToNext());
 		}
 		return results;
 	}
 	
-	static public GroupModel extractObject(Cursor c){
+	static public GroupModel extract(Cursor c){
        	long id = c.getLong(0);
     	String title = c.getString(1);
     	String notes = c.getString(2);

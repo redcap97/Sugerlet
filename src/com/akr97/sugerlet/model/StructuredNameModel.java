@@ -57,7 +57,7 @@ public class StructuredNameModel {
 		Cursor c = getCursorByRawContactId(ctx, id);
 		
 		if(c.moveToFirst()){
-			return extractObject(c);
+			return extract(c);
 		}
 		return null;
 	}
@@ -74,7 +74,7 @@ public class StructuredNameModel {
         for(CursorJoinerWithIntKey.Result r : cursorJoiner){
         	switch(r){
         	case BOTH:
-        		results.add(extractObject(c2));
+        		results.add(extract(c2));
         	}
         }
         return results;
@@ -91,7 +91,7 @@ public class StructuredNameModel {
 		for(CursorJoinerWithIntKey.Result r : cursorJoiner){
 			switch(r){
 			case LEFT:
-				results.add(extractObject(c2));
+				results.add(extract(c2));
 			}
 		}
 		return results;
@@ -118,13 +118,13 @@ public class StructuredNameModel {
 		
 		if(c.moveToFirst()){
 			do {
-				results.add(extractObject(c));
+				results.add(extract(c));
 			}while(c.moveToNext());
 		}
 		return results;
 	}
 	
-	public static StructuredNameModel extractObject(Cursor c){
+	public static StructuredNameModel extract(Cursor c){
 		long rawContactId = c.getLong(0);
 		String displayName = c.getString(1);
 		String givenName = c.getString(2);

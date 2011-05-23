@@ -46,7 +46,7 @@ public class PhoneModel {
 	   	Cursor c = getCursor(ctx, contactId);
 	   	if(c.moveToFirst()){
 	   		 do {
-	   			 results.add(extractObjectFromCursor(c));
+	   			 results.add(extract(c));
 	   		 }while(c.moveToNext());	   		
 	   	}
 	   	c.close();
@@ -60,7 +60,7 @@ public class PhoneModel {
 	   			new String[] {String.valueOf(contactId)}, null);
 	}
 	
-	static public PhoneModel extractObjectFromCursor(Cursor c){
+	static public PhoneModel extract(Cursor c){
 		long id = c.getLong(0);
    		String number = c.getString(1);
    		int type = c.getInt(2);
