@@ -42,24 +42,35 @@ public class ContactListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		StructuredNameData structuredName = (StructuredNameData)getItem(position);
+		ViewHolder holder;
 		
 		if(convertView == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
 			convertView = inflater.inflate(R.layout.item_contact_summary, null);
+			
+			holder = new ViewHolder();
+			holder.icon = (ImageView)convertView.findViewById(R.id.imageView1);
+			holder.name = (TextView)convertView.findViewById(R.id.name);
+			holder.phoneticName = (TextView)convertView.findViewById(R.id.phoneticName);
+			
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder)convertView.getTag();
 		}
 		
 		PhotoModel photoModel = new PhotoModel(context);
 		PhotoData photo = photoModel.getByRawContactId(structuredName.rawContactId);
 		
-		ImageView iv = (ImageView)convertView.findViewById(R.id.imageView1);
-		iv.setImageBitmap(photo.getBitmap());
-		
-		TextView tvName = (TextView)convertView.findViewById(R.id.name);
-		tvName.setText(structuredName.getName());
-		
-		TextView tvPhoneticName = (TextView)convertView.findViewById(R.id.phoneticName);
-		tvPhoneticName.setText(structuredName.getPhoneticName());
+		holder.icon.setImageBitmap(photo.getBitmap());
+		holder.name.setText(structuredName.getName());
+		holder.phoneticName.setText(structuredName.getPhoneticName());
 		
 		return convertView;
+	}
+	
+	static class ViewHolder {
+	    TextView name;
+	    TextView phoneticName;
+	    ImageView icon;
 	}
 }
