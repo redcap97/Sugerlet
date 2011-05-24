@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.content.Context;
 //import android.util.Log;
 
@@ -49,6 +50,9 @@ public class ContactListAdapter extends BaseAdapter {
 		
 		PhotoModel photoModel = new PhotoModel(context);
 		PhotoData photo = photoModel.getByRawContactId(structuredName.rawContactId);
+		
+		ImageView iv = (ImageView)convertView.findViewById(R.id.imageView1);
+		iv.setImageBitmap(photo.getBitmap());
 		
 		TextView tvName = (TextView)convertView.findViewById(R.id.name);
 		tvName.setText(structuredName.getName());

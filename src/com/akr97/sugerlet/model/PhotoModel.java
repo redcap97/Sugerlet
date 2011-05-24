@@ -9,7 +9,6 @@ public class PhotoModel extends ModelBase<PhotoData> {
 	private Context ctx;
 	
 	static final String[] PROJECTION = new String[]{
-		Photo._ID,
 		Photo.PHOTO
 	};
 	
@@ -19,14 +18,17 @@ public class PhotoModel extends ModelBase<PhotoData> {
 	
 	@Override
 	public PhotoData extract(Cursor c){
-		long id = c.getLong(0);
-		byte[] bytes = c.getBlob(1);
+		byte[] bytes = c.getBlob(0);
 		
-		return new PhotoData(id, bytes);
+		return new PhotoData(bytes);
 	}
 	
 	public PhotoData getByRawContactId(long rawContactId){
-		return readRow(getCursor(rawContactId));
+		PhotoData result = readRow(getCursor(rawContactId));
+		if(result == null){
+			return new MissingPhotoData(ctx);
+		}
+		return result;
 	}
 	
 	public Cursor getCursor(long rawContactId){
