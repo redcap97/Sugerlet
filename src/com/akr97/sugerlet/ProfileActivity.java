@@ -3,12 +3,9 @@ package com.akr97.sugerlet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akr97.sugerlet.model.*;
 
@@ -19,8 +16,8 @@ public class ProfileActivity extends Activity {
 		setContentView(R.layout.profile);
 		
 		Parameter params = new Parameter();
-		StructuredNameModel model = new StructuredNameModel(this);
-		StructuredNameData structuredName = model.getByRawContactsId(params.rawContactId);
+		StructuredNameModel structuredNameModel = new StructuredNameModel(this);
+		StructuredNameData structuredName = structuredNameModel.getByRawContactsId(params.rawContactId);
 		
 		TextView tvName = (TextView)findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
