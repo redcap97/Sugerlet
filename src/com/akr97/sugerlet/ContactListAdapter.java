@@ -47,6 +47,9 @@ public class ContactListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.item_contact_summary, null);
 		}
 		
+		PhotoModel photoModel = new PhotoModel(context);
+		PhotoData photo = photoModel.getByRawContactId(structuredName.rawContactId);
+		
 		TextView tvName = (TextView)convertView.findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
 		
