@@ -19,13 +19,24 @@ public class ProfileActivity extends Activity {
 		setContentView(R.layout.profile);
 		
 		Parameter params = new Parameter();
-		StructuredNameModel structuredName = StructuredNameModel.getByRawContactsId(this, params.rawContactId);
+		StructuredNameModel model = new StructuredNameModel(this);
+		StructuredNameData structuredName = model.getByRawContactsId(params.rawContactId);
 		
 		TextView tvName = (TextView)findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
 		
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
 		tvPhoneticName.setText(structuredName.getPhoneticName());
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+		
+		ListView listView = (ListView)findViewById(R.id.list);
+        listView.setAdapter(adapter);
+        
+        PhoneModel phoneModel = new PhoneModel(this);
+        for(PhoneData r : phoneModel.get(params.rawContactId)){
+        	adapter.add(r.number);
+        }
 	}
 	
 	class Parameter{

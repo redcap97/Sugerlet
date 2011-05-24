@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
+//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
 public class ContactListActivity extends Activity {
 	public static final long NO_GROUP_ID = 0L;
-	private Vector<StructuredNameModel> structureNames;
+	private Vector<StructuredNameData> structureNames;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class ContactListActivity extends Activity {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View view,
         			int position, long id){
-        		StructuredNameModel structuredName = structureNames.get(position);
+        		StructuredNameData structuredName = structureNames.get(position);
         		
         		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
     			intent.putExtra(getString(R.string.key_of_raw_contact_id), structuredName.rawContactId);
@@ -45,11 +44,12 @@ public class ContactListActivity extends Activity {
         });
 	}
 	
-	Vector<StructuredNameModel> getStructuredNames(long groupId){
+	Vector<StructuredNameData> getStructuredNames(long groupId){
+		StructuredNameModel model = new StructuredNameModel(this);
 		if(groupId == NO_GROUP_ID){
-			return StructuredNameModel.getNoGroup(this);
+			return model.getNoGroup();
 		}else{
-			return StructuredNameModel.getFromGroup(this, groupId);
+			return model.getFromGroup(groupId);
 		}
 	}
 	

@@ -8,11 +8,8 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
-public class PhoneModel {
-	public long id;
-	public String number;
-	public int type;
-	public String label;
+public class PhoneModel extends ModelBase<PhoneData> {
+	private Context ctx;
 	
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
@@ -23,49 +20,32 @@ public class PhoneModel {
 		Phone.LABEL
 	};
 	
-	static final String RESTRICTION = Data.RAW_CONTACT_ID + "=?" + " AND " 
-		+ Data.MIMETYPE + "='" + Phone.CONTENT_ITEM_TYPE + "'";
-	
-	public PhoneModel(long id, String number, int type, String label){
-		this.id = id;
-		this.number = number;
-		this.type = type;
-		this.label = label;
+	public PhoneModel(Context ctx){
+		this.ctx = ctx;
 	}
 	
-	@Override
-	public String toString(){
-		return String.format("id: %d, number: %s, type: %d, label: %s", 
-				this.id, this.number, this.type, this.label);
-	}
-	
-	static public Vector<PhoneModel> get(Context ctx, long contactId){
-		Vector<PhoneModel> results = new Vector<PhoneModel>();
-		
-		Log.d(TAG, "Start to collect phones.");
-	   	Cursor c = getCursor(ctx, contactId);
-	   	if(c.moveToFirst()){
-	   		 do {
-	   			 results.add(extract(c));
-	   		 }while(c.moveToNext());	   		
-	   	}
-	   	c.close();
-	   	
-		return results;
-	}
-	
-	static public Cursor getCursor(Context ctx, long contactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
-				PROJECTION, RESTRICTION,
-	   			new String[] {String.valueOf(contactId)}, null);
-	}
-	
-	static public PhoneModel extract(Cursor c){
+	public PhoneData extract(Cursor c){
 		long id = c.getLong(0);
    		String number = c.getString(1);
    		int type = c.getInt(2);
    		String label = c.getString(3);
 
-   		return new PhoneModel(id, number, type, label);
+   		return new PhoneData(id, number, type, label);
+	}
+	
+	public Vector<PhoneData> get(long rawContactId){
+		Log.d(TAG, "Start to collect phones.");
+		return readRows(getCursor(rawContactId));
+	}
+	
+	public Cursor getCursor(long rawContactId){
+		return ctx.getContentResolver().query(Data.CONTENT_URI,
+				PROJECTION,
+				Data.RAW_CONTACT_ID + "=? AND " 
+					+ Data.MIMETYPE + "=?",
+	   			new String[] {
+					String.valueOf(rawContactId),
+					Phone.CONTENT_ITEM_TYPE},
+				Data._ID);
 	}
 }

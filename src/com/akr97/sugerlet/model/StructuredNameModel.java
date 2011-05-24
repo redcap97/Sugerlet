@@ -14,15 +14,9 @@ import android.database.Cursor;
 import com.akr97.sugerlet.AccountStateManager;
 import com.akr97.sugerlet.AccountStateManagerFactory;
 import com.akr97.sugerlet.util.CursorJoinerWithIntKey;
-import com.akr97.sugerlet.util.StringUtil;
 
-public class StructuredNameModel {
-	public long rawContactId;
-	public String displayName;
-	public String givenName;
-	public String familyName;
-	public String phoneticGivenName;
-	public String phoneticFamilyName;
+public class StructuredNameModel extends ModelBase<StructuredNameData> {
+	private Context ctx;
 	
     static final String TAG = "com.akr97.sugerlet.model.StructuredNameModel";
 	
@@ -34,43 +28,39 @@ public class StructuredNameModel {
 		StructuredName.PHONETIC_GIVEN_NAME,
 		StructuredName.PHONETIC_FAMILY_NAME
 	};
-	
-	public StructuredNameModel(long rawContactId, String displayName, String givenName, String familyName,
-			String phoneticGivenName, String phoneticFamilyName){
-		this.rawContactId = rawContactId;
-		this.displayName = displayName;
-		this.givenName = givenName;
-		this.familyName = familyName;
-		this.phoneticGivenName = phoneticGivenName;
-		this.phoneticFamilyName = phoneticFamilyName;
+
+	public StructuredNameModel(Context ctx){
+		this.ctx = ctx;
 	}
 	
-	public String getName(){
-		return getJapaneseStyleName(familyName, givenName);
-	}
-	
-	public String getPhoneticName(){
-		return getJapaneseStyleName(phoneticFamilyName, phoneticGivenName);
-	}
-	
-	public static StructuredNameModel getByRawContactsId(Context ctx, long id){
-		Cursor c = getCursorByRawContactId(ctx, id);
+	@Override
+	public StructuredNameData extract(Cursor c){
+		long rawContactId = c.getLong(0);
+		String displayName = c.getString(1);
+		String givenName = c.getString(2);
+		String familyName = c.getString(3);
+		String phoneticGivenName = c.getString(4);
+		String phoneticFamilyName = c.getString(5);
 		
-		if(c.moveToFirst()){
-			return extract(c);
-		}
-		return null;
+		return new StructuredNameData(rawContactId, displayName, givenName, familyName,
+				phoneticGivenName, phoneticFamilyName);
+	}
+	
+	public StructuredNameData getByRawContactsId(long id){
+		return readRow(getCursorByRawContactId(id));
 	}
 
-	public static Vector<StructuredNameModel> getFromGroup(Context ctx, long groupId){
-		GroupModel group = GroupModel.getById(ctx, groupId);
-        Cursor c1 = getCursorBelongToGroup(ctx, groupId);
-        Cursor c2 = getCursorBelongToAccount(ctx, group.accountName, group.accountType);
+	public Vector<StructuredNameData> getFromGroup(long groupId){
+		GroupModel model = new GroupModel(ctx);
+		GroupData group = model.getById(groupId);
+		
+        Cursor c1 = getCursorBelongToGroup(groupId);
+        Cursor c2 = getCursorBelongToAccount(group.accountName, group.accountType);
 
         CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
         		c1, new String[]{ Data.RAW_CONTACT_ID });
 
-        Vector<StructuredNameModel> results = new Vector<StructuredNameModel>();
+        Vector<StructuredNameData> results = new Vector<StructuredNameData>();
         for(CursorJoinerWithIntKey.Result r : cursorJoiner){
         	switch(r){
         	case BOTH:
@@ -80,14 +70,14 @@ public class StructuredNameModel {
         return results;
 	}
 	
-	public static Vector<StructuredNameModel> getNoGroup(Context ctx, String accountName, String accountType){
-		Cursor c1 = getCursorBelongToGroup(ctx, accountName, accountType);
-		Cursor c2 = getCursorBelongToAccount(ctx, accountName, accountType);
+	public Vector<StructuredNameData> getNoGroup(String accountName, String accountType){
+		Cursor c1 = getCursorBelongToGroup(accountName, accountType);
+		Cursor c2 = getCursorBelongToAccount(accountName, accountType);
 		
 		CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ RawContactsEntity._ID });
 		
-		Vector<StructuredNameModel> results = new Vector<StructuredNameModel>();
+		Vector<StructuredNameData> results = new Vector<StructuredNameData>();
 		for(CursorJoinerWithIntKey.Result r : cursorJoiner){
 			switch(r){
 			case LEFT:
@@ -97,46 +87,23 @@ public class StructuredNameModel {
 		return results;
 	}
 	
-	public static Vector<StructuredNameModel> getNoGroup(Context ctx){
-		Vector<StructuredNameModel> results = new Vector<StructuredNameModel>();
+	public Vector<StructuredNameData> getNoGroup(){
+		Vector<StructuredNameData> results = new Vector<StructuredNameData>();
 		AccountStateManager changer = AccountStateManagerFactory.create(ctx);
 		for(AccountStateManager.State state : changer){
 			if(state.isEnabled()){
-				results.addAll(getNoGroup(ctx, state.getName(), state.getType()));
+				results.addAll(getNoGroup(state.getName(), state.getType()));
 			}
 		}
-		results.addAll(getNoAccount(ctx));
+		results.addAll(getNoAccount());
 		return results;
 	}
 	
-	public static Vector<StructuredNameModel> getNoAccount(Context ctx){
-		return readRows(getCursorBelongToNoAccount(ctx));
+	public Vector<StructuredNameData> getNoAccount(){
+		return readRows(getCursorBelongToNoAccount());
 	}
 	
-	public static Vector<StructuredNameModel> readRows(Cursor c){
-		Vector<StructuredNameModel> results = new Vector<StructuredNameModel>();
-		
-		if(c.moveToFirst()){
-			do {
-				results.add(extract(c));
-			}while(c.moveToNext());
-		}
-		return results;
-	}
-	
-	public static StructuredNameModel extract(Cursor c){
-		long rawContactId = c.getLong(0);
-		String displayName = c.getString(1);
-		String givenName = c.getString(2);
-		String familyName = c.getString(3);
-		String phoneticGivenName = c.getString(4);
-		String phoneticFamilyName = c.getString(5);
-		
-		return new StructuredNameModel(rawContactId, displayName, givenName, familyName,
-				phoneticGivenName, phoneticFamilyName);
-	}
-	
-	private static Cursor getCursorBelongToAccount(Context ctx, String accountName, String accountType){
+	private Cursor getCursorBelongToAccount(String accountName, String accountType){
         return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI, 
                 PROJECTION,
                 RawContactsEntity.MIMETYPE + "=? AND " 
@@ -149,7 +116,7 @@ public class StructuredNameModel {
                 RawContactsEntity._ID);
 	}
 	
-	private static Cursor getCursorBelongToNoAccount(Context ctx){
+	private Cursor getCursorBelongToNoAccount(){
 		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND " +
@@ -161,7 +128,7 @@ public class StructuredNameModel {
 	
 
 	
-	private static Cursor getCursorBelongToGroup(Context ctx, String accountName, String accountType){
+	private Cursor getCursorBelongToGroup(String accountName, String accountType){
 		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				new String[]{ RawContactsEntity._ID },
 				RawContactsEntity.MIMETYPE + "=? AND " +
@@ -174,7 +141,7 @@ public class StructuredNameModel {
 				RawContactsEntity._ID);
 	}
 	
-	private static Cursor getCursorBelongToGroup(Context ctx, long groupId){
+	private Cursor getCursorBelongToGroup(long groupId){
 		return ctx.getContentResolver().query(Data.CONTENT_URI,
                 new String[]{ Data.RAW_CONTACT_ID },
                 Data.MIMETYPE + "=? AND " +
@@ -185,7 +152,7 @@ public class StructuredNameModel {
                 Data.RAW_CONTACT_ID);
 	}
 	
-	private static Cursor getCursorByRawContactId(Context ctx, long rawContactId){
+	private Cursor getCursorByRawContactId(long rawContactId){
 		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND "
@@ -194,15 +161,5 @@ public class StructuredNameModel {
 					StructuredName.CONTENT_ITEM_TYPE,
 					String.valueOf(rawContactId)},
 				RawContactsEntity._ID);
-	}
-	
-	private static String getJapaneseStyleName(String familyName, String givenName){
-		if(givenName == null){
-			return StringUtil.toNonNullString(familyName);
-		}else if(familyName == null){
-			return StringUtil.toNonNullString(givenName);
-		}else{
-			return familyName + " " + givenName;
-		}
 	}
 }
