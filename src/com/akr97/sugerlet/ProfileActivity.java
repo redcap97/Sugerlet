@@ -55,7 +55,7 @@ public class ProfileActivity extends Activity {
     		items.add(new ProfileHeaderItem(this, getString(R.string.header_of_phone)));
     		
         	for(PhoneData phone : phones){
-        		items.add(new ProfileDataItem(this, phone.number));
+        		items.add(new ProfileContentItem(this, phone.number));
         	}
         }
         return items;
@@ -70,7 +70,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_email)));
 			
 			for(EmailData email : emails){
-				items.add(new ProfileDataItem(this, email.address));
+				items.add(new ProfileContentItem(this, email.address));
 			}
 		}
 		return items;
@@ -86,7 +86,7 @@ public class ProfileActivity extends Activity {
 			
 			for(ImData im : ims){
 				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
-				items.add(new ProfileDataItem(this, content));
+				items.add(new ProfileContentItem(this, content));
 			}
 		}
 		return items;
@@ -101,7 +101,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_postal)));
 			
 			for(StructuredPostalData postal : postals){
-				items.add(new ProfileDataItem(this, postal.formattedAddress));
+				items.add(new ProfileContentItem(this, postal.formattedAddress));
 			}
 		}
 		return items;

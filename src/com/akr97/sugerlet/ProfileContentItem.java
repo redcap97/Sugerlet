@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class ProfileDataItem extends ProfileListItem {
+public class ProfileContentItem extends ProfileListItem {
 	private String content;
 	
-	public ProfileDataItem(Context context, String content) {
-		super(context, Type.DATA);
+	public ProfileContentItem(Context context, String content) {
+		super(context, Type.CONTENT);
 		this.content = content;
 	}
 	
