@@ -40,7 +40,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getPhoneList(rawContactId));
 		items.addAll(getEmailList(rawContactId));
 		items.addAll(getImList(rawContactId));
-		items.addAll(getStructuredPostal(rawContactId));
+		items.addAll(getStructuredPostalList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
@@ -92,13 +92,13 @@ public class ProfileActivity extends Activity {
 		return items;
 	}
 	
-	Vector<ProfileListItem> getStructuredPostal(long rawContactId){
+	Vector<ProfileListItem> getStructuredPostalList(long rawContactId){
 		StructuredPostalModel structuredPostalModel = new StructuredPostalModel(this);
 		Vector<StructuredPostalData> postals = structuredPostalModel.get(rawContactId);
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!postals.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_email)));
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_postal)));
 			
 			for(StructuredPostalData postal : postals){
 				items.add(new ProfileDataItem(this, postal.formattedAddress));

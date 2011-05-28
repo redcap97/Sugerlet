@@ -11,4 +11,5 @@
     <string name="header_of_phone">電話番号</string>
     <string name="header_of_email">Eメールアドレス</string>
     <string name="header_of_im">インスタントメッセンジャー</string>
+    <string name="header_of_postal">住所</string>
 </resources>
