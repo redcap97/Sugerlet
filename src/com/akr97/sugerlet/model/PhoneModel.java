@@ -38,6 +38,10 @@ public class PhoneModel extends ModelBase<PhoneData> {
 		return readRows(getCursor(rawContactId));
 	}
 	
+	public String getTypeLabel(PhoneData phone){
+		return Phone.getTypeLabel(ctx.getResources(), phone.type, phone.label).toString();
+	}
+	
 	public Cursor getCursor(long rawContactId){
 		return ctx.getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,

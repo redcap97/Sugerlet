@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
 public class ProfileActivity extends Activity {
+	static final String TAG = "com.akr97.sugerlet.model.ProfileActivity";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,10 +30,19 @@ public class ProfileActivity extends Activity {
 		tvPhoneticName.setText(structuredName.getPhoneticName());
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		items.addAll(getPhoneList(params.rawContactId));
+		items.addAll(getEmailList(params.rawContactId));
 		
+		ListView listView = (ListView)findViewById(R.id.list);
+        listView.setAdapter(new ProfileListAdapter(items));
+	}
+	
+	Vector<ProfileListItem> getPhoneList(long rawContactId){
         PhoneModel phoneModel = new PhoneModel(this);
-        Vector<PhoneData> phones = phoneModel.get(params.rawContactId);
+        Vector<PhoneData> phones = phoneModel.get(rawContactId);
         
+        
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
         if(!phones.isEmpty()){
     		items.add(new ProfileHeaderItem(this, getString(R.string.header_of_phone)));
     		
@@ -38,9 +50,22 @@ public class ProfileActivity extends Activity {
         		items.add(new ProfileDataItem(this, phone.number));
         	}
         }
+        return items;
+	}
+	
+	Vector<ProfileListItem> getEmailList(long rawContactId){
+		EmailModel emailModel = new EmailModel(this);
+		Vector<EmailData> emails = emailModel.get(rawContactId);
 		
-		ListView listView = (ListView)findViewById(R.id.list);
-        listView.setAdapter(new ProfileListAdapter(items));
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		if(!emails.isEmpty()){
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_email)));
+			
+			for(EmailData email : emails){
+				items.add(new ProfileDataItem(this, email.address));
+			}
+		}
+		return items;
 	}
 	
 	class Parameter{
