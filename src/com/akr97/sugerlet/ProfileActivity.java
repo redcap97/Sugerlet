@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
-//import android.util.Log;
+import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
@@ -32,6 +32,7 @@ public class ProfileActivity extends Activity {
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		items.addAll(getPhoneList(params.rawContactId));
 		items.addAll(getEmailList(params.rawContactId));
+		items.addAll(getImList(params.rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
@@ -63,6 +64,22 @@ public class ProfileActivity extends Activity {
 			
 			for(EmailData email : emails){
 				items.add(new ProfileDataItem(this, email.address));
+			}
+		}
+		return items;
+	}
+	
+	Vector<ProfileListItem> getImList(long rawContactId){
+		ImModel imModel = new ImModel(this);
+		Vector<ImData> ims = imModel.get(rawContactId);
+		
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		if(!ims.isEmpty()){
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_im)));
+			
+			for(ImData im : ims){
+				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
+				items.add(new ProfileDataItem(this, content));
 			}
 		}
 		return items;

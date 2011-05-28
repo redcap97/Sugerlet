@@ -11,7 +11,7 @@ public class EmailModel extends ModelBase<EmailData> {
 	private Context ctx;
 	
 	static final String[] PROJECTION = new String[]{
-		Email.DATA1, //ADDRESS
+		Email.DATA,
 		Email.TYPE,
 		Email.LABEL
     };
