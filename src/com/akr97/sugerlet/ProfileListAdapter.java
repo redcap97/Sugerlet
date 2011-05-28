@@ -4,21 +4,13 @@ import java.util.*;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.content.Context;
-import android.util.Log;
-
-import com.akr97.sugerlet.model.*;
+//import android.util.Log;
 
 public class ProfileListAdapter extends BaseAdapter {
-	private Context context;
 	private Vector<ProfileListItem> items;
 	
-	public ProfileListAdapter(Context context, Vector<ProfileListItem> items){
-		this.context = context;
+	public ProfileListAdapter(Vector<ProfileListItem> items){
 		this.items = items;
 	}
 
