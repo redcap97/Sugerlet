@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.util.Log;
+//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
@@ -20,19 +20,26 @@ public class ProfileActivity extends Activity {
 		setContentView(R.layout.profile);
 		
 		Parameter params = new Parameter();
+		setupHeader(params.rawContactId);
+		setupProfileList(params.rawContactId);
+	}
+	
+	public void setupHeader(long rawContactId){
 		StructuredNameModel structuredNameModel = new StructuredNameModel(this);
-		StructuredNameData structuredName = structuredNameModel.getByRawContactsId(params.rawContactId);
+		StructuredNameData structuredName = structuredNameModel.getByRawContactsId(rawContactId);
 		
 		TextView tvName = (TextView)findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
 		
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
 		tvPhoneticName.setText(structuredName.getPhoneticName());
-		
+	}
+	
+	public void setupProfileList(long rawContactId){
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
-		items.addAll(getPhoneList(params.rawContactId));
-		items.addAll(getEmailList(params.rawContactId));
-		items.addAll(getImList(params.rawContactId));
+		items.addAll(getPhoneList(rawContactId));
+		items.addAll(getEmailList(rawContactId));
+		items.addAll(getImList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
