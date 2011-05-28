@@ -5,22 +5,22 @@ import java.util.Vector;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
-public class EmailModel extends ModelBase<EmailData> {
+public class GroupMembershipModel extends ModelBase<GroupData> {
 	private Context ctx;
+	private GroupModel groupModel;
 	
 	static final String[] PROJECTION = new String[]{
-		Email.DATA,
-		Email.TYPE,
-		Email.LABEL
+		GroupMembership.GROUP_ROW_ID
     };
 	
-	public EmailModel(Context ctx){
+	public GroupMembershipModel(Context ctx){
 		this.ctx = ctx;
+		this.groupModel = new GroupModel(ctx);
 	}
 	
-	public Vector<EmailData> get(long rawContactId){
+	public Vector<GroupData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 	
@@ -31,16 +31,13 @@ public class EmailModel extends ModelBase<EmailData> {
 					+ Data.MIMETYPE + "=?",
 				new String[]{
 					String.valueOf(rawContactId),
-					Email.CONTENT_ITEM_TYPE },
-				Email._ID);
+					GroupMembership.CONTENT_ITEM_TYPE },
+				GroupMembership._ID);
 	}
-	
+
 	@Override
-	public EmailData extract(Cursor c) {
-		String address = c.getString(0);
-		int type = c.getInt(1);
-		String label = c.getString(2);
-		
-		return new EmailData(address, type, label);
+	public GroupData extract(Cursor c) {
+		long groupRowId = c.getLong(0);
+		return groupModel.getById(groupRowId);
 	}
 }

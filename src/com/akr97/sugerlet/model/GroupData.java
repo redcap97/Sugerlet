@@ -20,7 +20,7 @@ public class GroupData {
 	
 	@Override
 	public String toString(){
-		return String.format("id: %d, title: %s, notes: %s, systemId: %s"
+		return String.format("id: %d, title: %s, notes: %s, systemId: %s,"
 					+ " accountName: %s, accountType: %s", 
 				this.id, this.title, this.notes, this.systemId,
 				this.accountName, this.accountType);

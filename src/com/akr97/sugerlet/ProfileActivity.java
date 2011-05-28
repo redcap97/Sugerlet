@@ -5,6 +5,7 @@ import java.util.Vector;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 //import android.util.Log;
@@ -41,6 +42,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getEmailList(rawContactId));
 		items.addAll(getImList(rawContactId));
 		items.addAll(getStructuredPostalList(rawContactId));
+		items.addAll(getGroupList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
@@ -105,6 +107,21 @@ public class ProfileActivity extends Activity {
 			}
 		}
 		return items;
+	}
+	
+	Vector<ProfileListItem> getGroupList(long rawContactId){
+        GroupMembershipModel groupModel = new GroupMembershipModel(this);
+        Vector<GroupData> groups = groupModel.get(rawContactId);
+        
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		if(!groups.isEmpty()){
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_group)));
+			
+			for(GroupData group : groups){
+				items.add(new ProfileContentItem(this, group.title));
+			}
+		}
+        return items;
 	}
 	
 	class Parameter{
