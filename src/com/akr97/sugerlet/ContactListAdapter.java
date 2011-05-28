@@ -46,7 +46,7 @@ public class ContactListAdapter extends BaseAdapter {
 		
 		if(convertView == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
-			convertView = inflater.inflate(R.layout.item_contact_summary, null);
+			convertView = inflater.inflate(R.layout.contact_list_item, null);
 			
 			holder = new ViewHolder();
 			holder.icon = (ImageView)convertView.findViewById(R.id.imageView1);

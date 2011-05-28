@@ -19,7 +19,6 @@ public class PhotoModel extends ModelBase<PhotoData> {
 	@Override
 	public PhotoData extract(Cursor c){
 		byte[] bytes = c.getBlob(0);
-		
 		return new PhotoData(bytes);
 	}
 	

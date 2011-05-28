@@ -1,5 +1,7 @@
 package com.akr97.sugerlet;
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,15 +27,21 @@ public class ProfileActivity extends Activity {
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
 		tvPhoneticName.setText(structuredName.getPhoneticName());
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		
+        PhoneModel phoneModel = new PhoneModel(this);
+        Vector<PhoneData> phones = phoneModel.get(params.rawContactId);
+        
+        if(!phones.isEmpty()){
+    		items.add(new ProfileHeaderItem(this, getString(R.string.header_of_phone)));
+    		
+        	for(PhoneData phone : phones){
+        		items.add(new ProfileDataItem(this, phone.number));
+        	}
+        }
 		
 		ListView listView = (ListView)findViewById(R.id.list);
-        listView.setAdapter(adapter);
-        
-        PhoneModel phoneModel = new PhoneModel(this);
-        for(PhoneData r : phoneModel.get(params.rawContactId)){
-        	adapter.add(r.number);
-        }
+        listView.setAdapter(new ProfileListAdapter(this, items));
 	}
 	
 	class Parameter{
