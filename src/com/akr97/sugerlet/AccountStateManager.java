@@ -33,7 +33,7 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		return false;
 	}
 	
-	public class StateIterator implements Iterator<State>{
+	public static class StateIterator implements Iterator<State>{
 		private int pos = 0;
 		private Vector<State> states;
 		
@@ -59,7 +59,7 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		}
 	}
 	
-	public class State {
+	public static class State {
 		private String name;
 		private String type;
 		private boolean enabled = true;
