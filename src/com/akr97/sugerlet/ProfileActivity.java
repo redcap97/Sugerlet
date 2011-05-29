@@ -42,6 +42,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getImList(rawContactId));
 		items.addAll(getStructuredPostalList(rawContactId));
 		items.addAll(getGroupList(rawContactId));
+		items.addAll(getNicknameList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
@@ -121,6 +122,21 @@ public class ProfileActivity extends Activity {
 			}
 		}
         return items;
+	}
+	
+	Vector<ProfileListItem> getNicknameList(long rawContactId){
+		NicknameModel nicknameModel = new NicknameModel(this);
+		Vector<NicknameData> nicknames = nicknameModel.get(rawContactId);
+		
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		if(!nicknames.isEmpty()){
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_nickname)));
+			
+			for(NicknameData nickname : nicknames){
+				items.add(new ProfileContentItem(this, nickname.name));
+			}
+		}
+		return items;
 	}
 	
 	class Parameter{
