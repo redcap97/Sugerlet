@@ -13,6 +13,13 @@ public class ProfileListAdapter extends BaseAdapter {
 	public ProfileListAdapter(Vector<ProfileListItem> items){
 		this.items = items;
 	}
+	
+	@Override
+	public boolean isEnabled(int position){
+		ProfileListItem item = (ProfileListItem)getItem(position);
+		return !item.isHeader();
+	}
+	
 
 	@Override
 	public int getCount() {

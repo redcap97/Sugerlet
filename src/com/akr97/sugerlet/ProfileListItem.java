@@ -21,5 +21,9 @@ public abstract class ProfileListItem {
 		return type;
 	}
 	
+	public boolean isHeader(){
+		return type == Type.HEADER;
+	}
+	
 	public abstract View getView(View convertView);
 }
