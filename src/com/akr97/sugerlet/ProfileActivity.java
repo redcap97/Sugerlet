@@ -32,7 +32,7 @@ public class ProfileActivity extends Activity {
 		tvName.setText(structuredName.getName());
 		
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
-		tvPhoneticName.setText(structuredName.getPhoneticName());
+		tvPhoneticName.setText(structuredName.getPhoneticName(getString(R.string.nothing)));
 	}
 	
 	public void setupProfileList(long rawContactId){

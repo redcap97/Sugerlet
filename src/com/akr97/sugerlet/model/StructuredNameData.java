@@ -28,6 +28,16 @@ public class StructuredNameData {
 		return getJapaneseStyleName(phoneticFamilyName, phoneticGivenName);
 	}
 	
+	public String getPhoneticName(String defaultValue){
+		String phoneticName = getPhoneticName();
+		
+		if(phoneticName.length() != 0){
+			return phoneticName;
+		}else{
+			return defaultValue;
+		}
+	}
+	
 	public String getJapaneseStyleName(String familyName, String givenName){
 		if(givenName == null){
 			return StringUtil.toNonNullString(familyName);
