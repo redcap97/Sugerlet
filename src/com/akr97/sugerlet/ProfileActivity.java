@@ -43,6 +43,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getStructuredPostalList(rawContactId));
 		items.addAll(getGroupList(rawContactId));
 		items.addAll(getNicknameList(rawContactId));
+		items.addAll(getWebsiteList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
@@ -134,6 +135,21 @@ public class ProfileActivity extends Activity {
 			
 			for(NicknameData nickname : nicknames){
 				items.add(new ProfileContentItem(this, nickname.name));
+			}
+		}
+		return items;
+	}
+	
+	Vector<ProfileListItem> getWebsiteList(long rawContactId){
+		WebsiteModel websiteModel = new WebsiteModel(this);
+		Vector<WebsiteData> websites = websiteModel.get(rawContactId);
+		
+		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		if(!websites.isEmpty()){
+			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_website)));
+			
+			for(WebsiteData website : websites){
+				items.add(new ProfileContentItem(this, website.url));
 			}
 		}
 		return items;

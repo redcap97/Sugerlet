@@ -14,4 +14,5 @@
     <string name="header_of_postal">住所</string>
     <string name="header_of_group">グループ</string>
     <string name="header_of_nickname">ニックネーム</string>
+    <string name="header_of_website">ウェブサイト</string>
 </resources>
