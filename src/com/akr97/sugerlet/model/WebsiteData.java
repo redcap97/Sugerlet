@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.model;
 
+import android.net.Uri;
+
 public class WebsiteData {
 	public String url;
 	public int type;
@@ -9,6 +11,10 @@ public class WebsiteData {
 		this.url = url;
 		this.type = type;
 		this.label = label;
+	}
+	
+	public Uri getUri(){
+		return Uri.parse(url);
 	}
 	
 	@Override

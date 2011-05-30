@@ -12,6 +12,7 @@ public abstract class ProfileListItem {
 		CONTENT,
 		PHONE,
 		EMAIL,
+		WEBSITE,
 	}
 	
 	public ProfileListItem(Context context, Type type){

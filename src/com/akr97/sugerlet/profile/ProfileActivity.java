@@ -152,7 +152,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_website)));
 			
 			for(WebsiteData website : websites){
-				items.add(new ProfileContentItem(this, website.url));
+				items.add(new ProfileWebsiteItem(this, website));
 			}
 		}
 		return items;
