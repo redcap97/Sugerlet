@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.model;
 
+import android.net.Uri;
+
 public class EmailData {
 	public String address;
 	public int type;
@@ -9,6 +11,10 @@ public class EmailData {
 		this.address = address;
 		this.type = type;
 		this.label = label;
+	}
+	
+	public Uri getMailtoUri(){
+		return Uri.parse("mailto:" + address);
 	}
 	
 	@Override

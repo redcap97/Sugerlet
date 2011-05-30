@@ -76,7 +76,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_email)));
 			
 			for(EmailData email : emails){
-				items.add(new ProfileContentItem(this, email.address));
+				items.add(new ProfileEmailItem(this, email));
 			}
 		}
 		return items;

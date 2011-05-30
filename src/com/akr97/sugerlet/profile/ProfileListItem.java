@@ -10,7 +10,8 @@ public abstract class ProfileListItem {
 	public enum Type {
 		HEADER,
 		CONTENT,
-		PHONE
+		PHONE,
+		EMAIL,
 	}
 	
 	public ProfileListItem(Context context, Type type){
