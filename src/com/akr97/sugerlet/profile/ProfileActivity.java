@@ -61,7 +61,7 @@ public class ProfileActivity extends Activity {
     		items.add(new ProfileHeaderItem(this, getString(R.string.header_of_phone)));
     		
         	for(PhoneData phone : phones){
-        		items.add(new ProfileContentItem(this, phone.number));
+        		items.add(new ProfilePhoneItem(this, phone));
         	}
         }
         return items;
@@ -177,7 +177,7 @@ public class ProfileActivity extends Activity {
 		}
 	}
 	
-	class ItemClickListener implements AdapterView.OnItemClickListener {
+	static class ItemClickListener implements AdapterView.OnItemClickListener {
 		private Vector<ProfileListItem> items;
 		
 		public ItemClickListener(Vector<ProfileListItem> items){
