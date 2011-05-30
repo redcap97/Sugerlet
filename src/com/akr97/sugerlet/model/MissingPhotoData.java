@@ -9,6 +9,8 @@ import android.content.Context;
 public class MissingPhotoData extends PhotoData {
 	private Context ctx;
 	
+	static Bitmap cache = null;
+	
 	public MissingPhotoData(Context ctx) {
 		super(null);
 		this.ctx = ctx;
@@ -16,6 +18,9 @@ public class MissingPhotoData extends PhotoData {
 	
 	@Override
 	public Bitmap getBitmap(){
-		return BitmapFactory.decodeResource(ctx.getResources(), R.drawable.ic_contact_picture);
+		if(cache == null){
+			cache = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.ic_contact_picture);
+		}	
+		return cache; 
 	}
 }
