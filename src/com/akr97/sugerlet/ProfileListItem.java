@@ -26,4 +26,7 @@ public abstract class ProfileListItem {
 	}
 	
 	public abstract View getView(View convertView);
+	
+	public void onClick(View view){
+	}
 }

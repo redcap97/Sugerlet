@@ -23,4 +23,9 @@ public class ProfileContentItem extends ProfileListItem {
 		
 		return convertView;
 	}
+	
+	@Override
+	public void onClick(View view){
+		android.widget.Toast.makeText(context, content, 20).show();
+	}
 }

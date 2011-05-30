@@ -5,6 +5,8 @@ import java.util.Vector;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 //import android.util.Log;
@@ -47,6 +49,7 @@ public class ProfileActivity extends Activity {
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ProfileListAdapter(items));
+        listView.setOnItemClickListener(new ItemClickListener(items));
 	}
 	
 	Vector<ProfileListItem> getPhoneList(long rawContactId){
@@ -171,6 +174,22 @@ public class ProfileActivity extends Activity {
 				throw new RuntimeException("RawContactId is not found.");
 			}
 			return groupId;
+		}
+	}
+	
+	class ItemClickListener implements AdapterView.OnItemClickListener {
+		private Vector<ProfileListItem> items;
+		
+		public ItemClickListener(Vector<ProfileListItem> items){
+			this.items = items;
+		}
+		
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			
+			ProfileListItem item = items.get(position);
+			item.onClick(view);
 		}
 	}
 }
