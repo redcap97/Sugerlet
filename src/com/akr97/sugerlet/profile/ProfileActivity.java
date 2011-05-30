@@ -1,4 +1,4 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.profile;
 
 import java.util.Vector;
 
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-//import android.util.Log;
 
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
 
 public class ProfileActivity extends Activity {

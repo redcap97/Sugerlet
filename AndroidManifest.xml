@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ContactListActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".profile.ProfileActivity"></activity>
 
     </application>
 </manifest>

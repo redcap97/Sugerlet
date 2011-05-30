@@ -1,10 +1,11 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.profile;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-//import android.util.Log;
+
+import com.akr97.sugerlet.*;
 
 public class ProfileHeaderItem extends ProfileListItem {
 	private String title;

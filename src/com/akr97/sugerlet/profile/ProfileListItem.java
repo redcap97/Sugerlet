@@ -1,4 +1,4 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.profile;
 
 import android.content.Context;
 import android.view.View;

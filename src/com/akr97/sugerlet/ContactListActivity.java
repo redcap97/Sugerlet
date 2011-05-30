@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
-//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
 	public static final long NO_GROUP_ID = 0L;
