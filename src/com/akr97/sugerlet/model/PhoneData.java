@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.model;
 
+import android.net.Uri;
+
 public class PhoneData {
 	public long id;
 	public String number;
@@ -11,6 +13,10 @@ public class PhoneData {
 		this.number = number;
 		this.type = type;
 		this.label = label;
+	}
+	
+	public Uri getTelephoneUri(){
+		return Uri.parse("tel:" + number);
 	}
 	
 	@Override

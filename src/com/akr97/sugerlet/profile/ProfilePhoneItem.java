@@ -2,7 +2,6 @@ package com.akr97.sugerlet.profile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ public class ProfilePhoneItem extends ProfileListItem {
 	
 	@Override
 	public void onClick(View view){
-		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone.number));
+		Intent intent = new Intent(Intent.ACTION_CALL, phone.getTelephoneUri());
 		context.startActivity(intent);
 	}
 }
