@@ -5,7 +5,6 @@ import java.util.Vector;
 import android.content.Context;
 import android.accounts.AccountManager;
 import android.accounts.Account;
-//import android.util.Log;
 
 public class AccountStateManager implements Iterable<AccountStateManager.State> {
 	private Vector<State> states = new Vector<State>();
@@ -59,22 +58,20 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		}
 	}
 	
-	public static class State {
-		private String name;
-		private String type;
+	public static class State {		
+		private Account account;
 		private boolean enabled = true;
 		
 		public State(String name, String type){
-			this.name = name;
-			this.type = type;
+			this.account = new Account(name, type);
 		}
 		
 		public String getName(){
-			return name;
+			return account.name;
 		}
 		
 		public String getType(){
-			return type;
+			return account.type;
 		}
 		
 		public boolean isEnabled(){
@@ -96,7 +93,7 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		@Override
 		public String toString(){
 			return String.format("name: %s, type: %s, enabled: %b",
-					this.name, this.type, this.enabled);
+					account.name, account.type, enabled);
 		}
 	}
 }

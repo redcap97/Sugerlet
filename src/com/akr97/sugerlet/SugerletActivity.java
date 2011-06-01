@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.akr97.sugerlet.model.*;
-import com.akr97.sugerlet.profile.ProfileActivity;
 
 public class SugerletActivity extends Activity {
 	final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
