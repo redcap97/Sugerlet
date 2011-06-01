@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.profile.ProfileActivity;
 
 public class SugerletActivity extends Activity {
 	final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
@@ -81,13 +82,23 @@ public class SugerletActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
     	switch(item.getItemId()){
     	case MENU_SETTING_ACCOUNT:
+    		doSettingAccount();
     		return true;
     	case MENU_ABOUT:
-            Intent intent = new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
-            startActivity(intent);
+    		doAbout();
     		return true;
     	}
     	
     	return super.onOptionsItemSelected(item);
+    }
+    
+    private void doAbout(){
+        Intent intent = new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
+        startActivity(intent);
+    }
+    
+    private void doSettingAccount(){
+		Intent intent = new Intent(this, SettingAccountActivity.class);
+		startActivity(intent);
     }
 }
