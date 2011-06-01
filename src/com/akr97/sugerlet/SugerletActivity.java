@@ -3,17 +3,25 @@ package com.akr97.sugerlet;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
-//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
 public class SugerletActivity extends Activity {
+	final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
+	final int MENU_ABOUT = (Menu.FIRST + 2);
+	
+	final String SUGERLET_URL = "http://akr97.com/capsule/";
+	final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
+		
 	final static String TAG = "com.akr97.com.sugerlet.SugerActivity";
 	private Vector<GroupData> groups;
 	
@@ -60,5 +68,26 @@ public class SugerletActivity extends Activity {
        			startActivity(intent);
         	}
         });
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	menu.add(Menu.NONE, MENU_SETTING_ACCOUNT, Menu.NONE, getString(R.string.menu_setting_account));
+    	menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.menu_about));
+    	return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	switch(item.getItemId()){
+    	case MENU_SETTING_ACCOUNT:
+    		return true;
+    	case MENU_ABOUT:
+            Intent intent = new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
+            startActivity(intent);
+    		return true;
+    	}
+    	
+    	return super.onOptionsItemSelected(item);
     }
 }
