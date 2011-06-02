@@ -23,7 +23,15 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		return new StateIterator(this.states);
 	}
 	
-	public boolean hasFilter(){
+	public State getState(int position){
+		return states.get(position);
+	}
+	
+	public int getAccountSize(){
+		return states.size();
+	}
+	
+	public boolean hasFilters(){
 		for(State s : this.states){
 			if(s.isDisabled()){
 				return true;

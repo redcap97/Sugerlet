@@ -41,7 +41,7 @@ public class GroupModel extends ModelBase<GroupData> {
 	public Vector<GroupData> get(){
 		Vector<GroupData> groups;
 		AccountStateManager accountChanger = AccountStateManagerFactory.create(ctx);
-		if(accountChanger.hasFilter()){
+		if(accountChanger.hasFilters()){
 			groups = new Vector<GroupData>();
 			for(AccountStateManager.State s : accountChanger){
 				if(s.isEnabled()){
