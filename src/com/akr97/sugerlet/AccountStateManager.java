@@ -32,17 +32,9 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		return new StateIterator(states);
 	}
 	
-	public State getState(int position){
-		return states.get(position);
-	}
-	
-	public int getAccountSize(){
-		return states.size();
-	}
-	
 	public boolean hasFilters(){
 		for(State s : states){
-			if(s.isDisabled()){
+			if(!s.isEnabled()){
 				return true;
 			}
 		}
@@ -56,6 +48,15 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 			}
 		}
 		return false;
+	}
+	
+	public void update(State state){
+		for(State s : states){
+			if(state.getName().equals(s.getName()) && state.getType().equals(s.getType())){
+				s.setEnabled(state.isEnabled());
+				return;
+			}
+		}
 	}
 	
 	public static class StateIterator implements Iterator<State>{
@@ -86,10 +87,16 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 	
 	public static class State {		
 		private Account account;
-		private boolean enabled = true;
+		private boolean enabled;
 		
 		public State(String name, String type){
 			this.account = new Account(name, type);
+			this.enabled = true;
+		}
+		
+		public State(State state){
+			this.account = new Account(state.getName(), state.getType());
+			this.enabled = state.isEnabled();
 		}
 		
 		public String getName(){
@@ -104,16 +111,8 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 			return enabled;
 		}
 		
-		public boolean isDisabled(){
-			return !isEnabled();
-		}
-		
-		public void enable(){
-			enabled = true;
-		}
-		
-		public void disable(){
-			enabled = false;
+		public void setEnabled(boolean enabled){
+			this.enabled = enabled;
 		}
 		
 		@Override

@@ -18,4 +18,6 @@
     <string name="header_of_website">ウェブサイト</string>
     <string name="menu_setting_account">アカウントの設定</string>
     <string name="menu_about">Sugerletについて</string>
+    <string name="menu_save">保存</string>
+    <string name="menu_reset">リセット</string>
 </resources>
