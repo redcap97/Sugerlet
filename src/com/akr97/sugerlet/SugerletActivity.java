@@ -16,11 +16,11 @@ import android.widget.ListView;
 import com.akr97.sugerlet.model.*;
 
 public class SugerletActivity extends Activity {
-	final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
-	final int MENU_ABOUT = (Menu.FIRST + 2);
+	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
+	static final int MENU_ABOUT = (Menu.FIRST + 2);
 	
-	final String SUGERLET_URL = "http://akr97.com/capsule/";
-	final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
+	static final String SUGERLET_URL = "http://akr97.com/capsule/";
+	static final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
 		
 	final static String TAG = "com.akr97.com.sugerlet.SugerActivity";
 	private Vector<GroupData> groups;
