@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class IntentListAdapter extends BaseAdapter {
-	private Vector<IntentListItem> items;
+public class LauncherListAdapter extends BaseAdapter {
+	private Vector<LauncherListItem> items;
 	
-	public IntentListAdapter(Vector<IntentListItem> items){
+	public LauncherListAdapter(Vector<LauncherListItem> items){
 		this.items = items;
 	}
 	
@@ -30,7 +30,7 @@ public class IntentListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		IntentListItem item = (IntentListItem)items.get(position);
+		LauncherListItem item = (LauncherListItem)items.get(position);
 		return item.getView(convertView);
 	}
 }

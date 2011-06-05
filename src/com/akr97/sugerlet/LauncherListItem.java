@@ -3,16 +3,16 @@ package com.akr97.sugerlet;
 import android.content.Context;
 import android.view.View;
 
-public abstract class IntentListItem {
+public abstract class LauncherListItem {
 	protected final Context context;
 	protected final Type type;
 	
 	public enum Type {
 		HEADER,
-		LAUNCHER
+		INTENT
 	}
 	
-	public IntentListItem(Context context, Type type){
+	public LauncherListItem(Context context, Type type){
 		this.context = context;
 		this.type = type;
 	}

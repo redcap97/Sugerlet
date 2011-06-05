@@ -50,24 +50,24 @@ public class SugerletActivity extends Activity {
     }
     
     private void setupLauncherList(){
-        Vector<IntentListItem> items = new Vector<IntentListItem>();
-        items.add(new IntentHeaderItem(this, 
+        Vector<LauncherListItem> items = new Vector<LauncherListItem>();
+        items.add(new LauncherHeaderItem(this, 
         		getString(R.string.header_of_menu)));
-        items.add(new IntentLauncherItem(this,
+        items.add(new LauncherIntentItem(this,
         		getString(R.string.menu_group_list),
         		getGroupListIntent()));
         
-        items.add(new IntentHeaderItem(this,
+        items.add(new LauncherHeaderItem(this,
         		getString(R.string.header_of_setting)));
-        items.add(new IntentLauncherItem(this,
+        items.add(new LauncherIntentItem(this,
         		getString(R.string.menu_setting_account),
         		getSettingAccountIntent()));
-        items.add(new IntentLauncherItem(this,
+        items.add(new LauncherIntentItem(this,
         		getString(R.string.menu_about),
         		getAboutIntent()));
         
         ListView listView = (ListView)findViewById(R.id.contactList);
-        listView.setAdapter(new IntentListAdapter(items));
+        listView.setAdapter(new LauncherListAdapter(items));
         View emptyView = findViewById(R.id.emptyView);
         listView.setEmptyView(emptyView);
         listView.setOnItemClickListener(new ItemClickListener(items));
@@ -94,16 +94,16 @@ public class SugerletActivity extends Activity {
     }
     
 	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private Vector<IntentListItem> items;
+		private Vector<LauncherListItem> items;
 		
-		public ItemClickListener(Vector<IntentListItem> items){
+		public ItemClickListener(Vector<LauncherListItem> items){
 			this.items = items;
 		}
 		
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view,
 				int position, long id) {
-			IntentListItem item = items.get(position);
+			LauncherListItem item = items.get(position);
 			item.onClick(view);
 		}
 	}
