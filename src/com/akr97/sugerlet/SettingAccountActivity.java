@@ -10,7 +10,7 @@ public class SettingAccountActivity extends Activity {
 	static final int MENU_SAVE = (Menu.FIRST + 1);
 	static final int MENU_RESET = (Menu.FIRST + 2);
 	
-	private SettingAccountAdapter listAdapter;
+	private SettingAccountListAdapter listAdapter;
 	private ListView listView;
 	
     @Override
@@ -18,7 +18,7 @@ public class SettingAccountActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_account);
         
-        listAdapter = new SettingAccountAdapter(this);
+        listAdapter = new SettingAccountListAdapter(this);
 		listView = (ListView)findViewById(R.id.list);
 		listView.setAdapter(listAdapter);
     }

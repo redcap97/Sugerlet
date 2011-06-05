@@ -19,6 +19,7 @@
         <activity android:name=".ContactListActivity"></activity>
         <activity android:name=".profile.ProfileActivity"></activity>
         <activity android:name=".SettingAccountActivity"></activity>
+        <activity android:name=".GroupListActivity"></activity>
 
     </application>
 </manifest>

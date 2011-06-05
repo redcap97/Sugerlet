@@ -12,11 +12,11 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class SettingAccountAdapter extends BaseAdapter {
+public class SettingAccountListAdapter extends BaseAdapter {
 	private Context context;
 	private Vector<AccountStateManager.State> states = new Vector<AccountStateManager.State>();
 	
-	public SettingAccountAdapter(Context context){
+	public SettingAccountListAdapter(Context context){
 		this.context = context;
 		reset();
 	}
