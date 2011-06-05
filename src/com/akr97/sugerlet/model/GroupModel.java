@@ -9,8 +9,6 @@ import android.provider.ContactsContract.Groups;
 import com.akr97.sugerlet.*;
 
 public class GroupModel extends ModelBase<GroupData> {
-	private Context ctx;
-	
 	static final String TAG = "com.akr97.sugerlet.GroupModel";
 	
 	static final String[] PROJECTION = new String[]{
@@ -23,7 +21,7 @@ public class GroupModel extends ModelBase<GroupData> {
     };
 	
 	public GroupModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	@Override
@@ -40,7 +38,7 @@ public class GroupModel extends ModelBase<GroupData> {
 	
 	public Vector<GroupData> get(){
 		Vector<GroupData> groups;
-		AccountStateManager accountChanger = AccountStateManagerFactory.create(ctx);
+		AccountStateManager accountChanger = AccountStateManagerFactory.create(getContext());
 		if(accountChanger.hasFilters()){
 			groups = new Vector<GroupData>();
 			for(AccountStateManager.State s : accountChanger){
@@ -68,17 +66,17 @@ public class GroupModel extends ModelBase<GroupData> {
 	}
 
 	public Cursor getCursor(){
-		return ctx.getContentResolver().query(Groups.CONTENT_URI, PROJECTION, null, null, null);
+		return getContentResolver().query(Groups.CONTENT_URI, PROJECTION, null, null, null);
 	}
 	
 	public Cursor getCursor(String accountName, String accountType){
-		return ctx.getContentResolver().query(Groups.CONTENT_URI,
+		return getContentResolver().query(Groups.CONTENT_URI,
 				PROJECTION, Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?", 
 				new String[]{ accountName, accountType }, Groups._ID);
 	}
 	
 	public Cursor getCursor(long groupId){
-		return ctx.getContentResolver().query(Groups.CONTENT_URI,
+		return getContentResolver().query(Groups.CONTENT_URI,
 				PROJECTION, Groups._ID + "=?", 
 				new String[]{ String.valueOf(groupId) }, null);
 	}

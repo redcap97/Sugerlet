@@ -8,8 +8,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 
 public class ImModel extends ModelBase<ImData> {
-	private Context ctx;
-	
     static final String TAG = "com.akr97.sugerlet.model.ImModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -21,7 +19,7 @@ public class ImModel extends ModelBase<ImData> {
 	};
 	
 	public ImModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 
 	@Override
@@ -36,11 +34,11 @@ public class ImModel extends ModelBase<ImData> {
 	}
 	
 	public String getTypeLabel(ImData im){
-		return Im.getTypeLabel(ctx.getResources(), im.type, im.label).toString();
+		return Im.getTypeLabel(getResources(), im.type, im.label).toString();
 	}
 	
 	public String getProtocolLabel(ImData im){
-		return Im.getProtocolLabel(ctx.getResources(), im.protocol, im.customProtocol).toString();
+		return Im.getProtocolLabel(getResources(), im.protocol, im.customProtocol).toString();
 	}
 	
 	public Vector<ImData> get(long rawContactId){
@@ -48,7 +46,7 @@ public class ImModel extends ModelBase<ImData> {
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

@@ -8,9 +8,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 
 public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
-	
-	private Context ctx;
-	
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -27,7 +24,7 @@ public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
 	};
 	
 	public StructuredPostalModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public Vector<StructuredPostalData> get(long rawContactId){
@@ -35,7 +32,7 @@ public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
 	}
 
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

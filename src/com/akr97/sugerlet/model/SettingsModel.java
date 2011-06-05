@@ -7,8 +7,6 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Settings;
 
 public class SettingsModel extends ModelBase<SettingsData> {
-	private Context ctx;
-	
 	static final String[] PROJECTION = new String[]{
 		Settings.ACCOUNT_NAME,
 		Settings.ACCOUNT_TYPE,
@@ -16,7 +14,7 @@ public class SettingsModel extends ModelBase<SettingsData> {
 	};
 	
 	public SettingsModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public Vector<SettingsData> getAll(){
@@ -24,7 +22,7 @@ public class SettingsModel extends ModelBase<SettingsData> {
 	}
 	
 	public Cursor getCursor(){
-		return ctx.getContentResolver().query(
+		return getContentResolver().query(
 				Settings.CONTENT_URI,
 				PROJECTION, 
 				null, null, null);

@@ -16,8 +16,6 @@ import com.akr97.sugerlet.AccountStateManagerFactory;
 import com.akr97.sugerlet.util.CursorJoinerWithIntKey;
 
 public class StructuredNameModel extends ModelBase<StructuredNameData> {
-	private Context ctx;
-	
     static final String TAG = "com.akr97.sugerlet.model.StructuredNameModel";
 	
 	static final String[] PROJECTION = new String[] {
@@ -30,7 +28,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	};
 
 	public StructuredNameModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	@Override
@@ -51,7 +49,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 
 	public Vector<StructuredNameData> getFromGroup(long groupId){
-		GroupModel model = new GroupModel(ctx);
+		GroupModel model = new GroupModel(getContext());
 		GroupData group = model.getById(groupId);
 		
         Cursor c1 = getCursorBelongToGroup(groupId);
@@ -89,7 +87,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	
 	public Vector<StructuredNameData> getNoGroup(){
 		Vector<StructuredNameData> results = new Vector<StructuredNameData>();
-		AccountStateManager changer = AccountStateManagerFactory.create(ctx);
+		AccountStateManager changer = AccountStateManagerFactory.create(getContext());
 		for(AccountStateManager.State state : changer){
 			if(state.isEnabled()){
 				results.addAll(getNoGroup(state.getName(), state.getType()));
@@ -104,7 +102,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 	
 	private Cursor getCursorBelongToAccount(String accountName, String accountType){
-        return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI, 
+        return getContentResolver().query(RawContactsEntity.CONTENT_URI, 
                 PROJECTION,
                 RawContactsEntity.MIMETYPE + "=? AND " 
                 	+ RawContacts.ACCOUNT_NAME + "=? AND " 
@@ -117,7 +115,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 	
 	private Cursor getCursorBelongToNoAccount(){
-		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
+		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + " IS NULL AND " +
@@ -129,7 +127,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 
 	
 	private Cursor getCursorBelongToGroup(String accountName, String accountType){
-		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
+		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				new String[]{ RawContactsEntity._ID },
 				RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + "=? AND " +
@@ -142,7 +140,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 	
 	private Cursor getCursorBelongToGroup(long groupId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
                 new String[]{ Data.RAW_CONTACT_ID },
                 Data.MIMETYPE + "=? AND " +
                 	GroupMembership.GROUP_ROW_ID + "=?", 
@@ -153,7 +151,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 	
 	private Cursor getCursorByRawContactId(long rawContactId){
-		return ctx.getContentResolver().query(RawContactsEntity.CONTENT_URI,
+		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND "
 					+ RawContactsEntity._ID + "=?",

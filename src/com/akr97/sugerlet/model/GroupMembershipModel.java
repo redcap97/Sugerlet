@@ -8,7 +8,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
 public class GroupMembershipModel extends ModelBase<GroupData> {
-	private Context ctx;
 	private GroupModel groupModel;
 	
 	static final String[] PROJECTION = new String[]{
@@ -16,7 +15,7 @@ public class GroupMembershipModel extends ModelBase<GroupData> {
     };
 	
 	public GroupMembershipModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 		this.groupModel = new GroupModel(ctx);
 	}
 	
@@ -25,7 +24,7 @@ public class GroupMembershipModel extends ModelBase<GroupData> {
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

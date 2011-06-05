@@ -8,8 +8,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 
 public class NicknameModel extends ModelBase<NicknameData> {
-	private Context ctx;
-	
 	static final String[] PROJECTION = new String[]{
 		Nickname.NAME,
 		Nickname.TYPE,
@@ -17,7 +15,7 @@ public class NicknameModel extends ModelBase<NicknameData> {
     };
 	
 	public NicknameModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public Vector<NicknameData> get(long rawContactId){
@@ -25,7 +23,7 @@ public class NicknameModel extends ModelBase<NicknameData> {
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

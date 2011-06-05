@@ -9,8 +9,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
 public class PhoneModel extends ModelBase<PhoneData> {
-	private Context ctx;
-	
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -21,7 +19,7 @@ public class PhoneModel extends ModelBase<PhoneData> {
 	};
 	
 	public PhoneModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public PhoneData extract(Cursor c){
@@ -39,11 +37,11 @@ public class PhoneModel extends ModelBase<PhoneData> {
 	}
 	
 	public String getTypeLabel(PhoneData phone){
-		return Phone.getTypeLabel(ctx.getResources(), phone.type, phone.label).toString();
+		return Phone.getTypeLabel(getResources(), phone.type, phone.label).toString();
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

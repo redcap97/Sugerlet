@@ -6,14 +6,12 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
 
 public class PhotoModel extends ModelBase<PhotoData> {
-	private Context ctx;
-	
 	static final String[] PROJECTION = new String[]{
 		Photo.PHOTO
 	};
 	
 	public PhotoModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	@Override
@@ -25,13 +23,13 @@ public class PhotoModel extends ModelBase<PhotoData> {
 	public PhotoData getByRawContactId(long rawContactId){
 		PhotoData result = readRow(getCursor(rawContactId));
 		if(result == null){
-			return new MissingPhotoData(ctx);
+			return new MissingPhotoData(getContext());
 		}
 		return result;
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "= ? AND " +
 					Data.MIMETYPE + "=?",

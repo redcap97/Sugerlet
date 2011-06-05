@@ -7,9 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
-public class EmailModel extends ModelBase<EmailData> {
-	private Context ctx;
-	
+public class EmailModel extends ModelBase<EmailData> {	
 	static final String[] PROJECTION = new String[]{
 		Email.DATA,
 		Email.TYPE,
@@ -17,7 +15,7 @@ public class EmailModel extends ModelBase<EmailData> {
     };
 	
 	public EmailModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public Vector<EmailData> get(long rawContactId){
@@ -25,7 +23,7 @@ public class EmailModel extends ModelBase<EmailData> {
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",

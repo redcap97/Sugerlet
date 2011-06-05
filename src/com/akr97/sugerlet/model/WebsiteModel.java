@@ -8,8 +8,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 
 public class WebsiteModel extends ModelBase<WebsiteData> {
-	private Context ctx;
-	
 	static final String[] PROJECTION = new String[]{
 		Website.URL,
 		Website.TYPE,
@@ -17,7 +15,7 @@ public class WebsiteModel extends ModelBase<WebsiteData> {
     };
 	
 	public WebsiteModel(Context ctx){
-		this.ctx = ctx;
+		super(ctx);
 	}
 	
 	public Vector<WebsiteData> get(long rawContactId){
@@ -25,7 +23,7 @@ public class WebsiteModel extends ModelBase<WebsiteData> {
 	}
 	
 	public Cursor getCursor(long rawContactId){
-		return ctx.getContentResolver().query(Data.CONTENT_URI,
+		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",
