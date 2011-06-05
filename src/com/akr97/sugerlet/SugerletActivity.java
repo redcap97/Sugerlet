@@ -16,6 +16,8 @@ import android.widget.ListView;
 import com.akr97.sugerlet.model.*;
 
 public class SugerletActivity extends Activity {
+	private Vector<GroupData> groups;
+	
 	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
 	static final int MENU_ABOUT = (Menu.FIRST + 2);
 	
@@ -23,7 +25,6 @@ public class SugerletActivity extends Activity {
 	static final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
 		
 	final static String TAG = "com.akr97.com.sugerlet.SugerActivity";
-	private Vector<GroupData> groups;
 	
     /** Called when the activity is first created. */
     @Override
@@ -74,13 +75,12 @@ public class SugerletActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
     	switch(item.getItemId()){
     	case MENU_SETTING_ACCOUNT:
-    		launchAbout();
-    		return true;
-    	case MENU_ABOUT:
     		launchSettingAccount();
     		return true;
+    	case MENU_ABOUT:
+    		launchAbout();
+    		return true;
     	}
-    	
     	return super.onOptionsItemSelected(item);
     }
     

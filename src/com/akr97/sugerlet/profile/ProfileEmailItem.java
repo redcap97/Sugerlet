@@ -19,7 +19,7 @@ public class ProfileEmailItem extends ProfileListItem {
 
 	@Override
 	public View getView(View convertView) {
-		LayoutInflater inflater = LayoutInflater.from(this.context);
+		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.profile_data_item, null);
 	
 		TextView name = (TextView)convertView.findViewById(R.id.textView);

@@ -13,8 +13,9 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
-	public static final long NO_GROUP_ID = 0L;
 	private Vector<StructuredNameData> structureNames;
+	
+	public static final long NO_GROUP_ID = 0L;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -5,7 +5,6 @@ import java.util.*;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-//import android.util.Log;
 
 public class ProfileListAdapter extends BaseAdapter {
 	private Vector<ProfileListItem> items;
