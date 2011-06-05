@@ -3,9 +3,9 @@ package com.akr97.sugerlet.model;
 import android.net.Uri;
 
 public class EmailData {
-	public String address;
-	public int type;
-	public String label;
+	public final String address;
+	public final int type;
+	public final String label;
 	
 	public EmailData(String address, int type, String label){
 		this.address = address;

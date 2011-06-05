@@ -1,11 +1,11 @@
 package com.akr97.sugerlet.model;
 
 public class ImData {
-	public String data;
-	public int type;
-	public String label;
-	public int protocol;
-	public String customProtocol;
+	public final String data;
+	public final int type;
+	public final String label;
+	public final int protocol;
+	public final String customProtocol;
 	
 	public ImData(String data, int type, String label, 
 			int protocol, String customProtocol){

@@ -3,12 +3,12 @@ package com.akr97.sugerlet.model;
 import com.akr97.sugerlet.util.StringUtil;
 
 public class StructuredNameData {
-	public long rawContactId;
-	public String displayName;
-	public String givenName;
-	public String familyName;
-	public String phoneticGivenName;
-	public String phoneticFamilyName;
+	public final long rawContactId;
+	public final String displayName;
+	public final String givenName;
+	public final String familyName;
+	public final String phoneticGivenName;
+	public final String phoneticFamilyName;
 	
 	public StructuredNameData(long rawContactId, String displayName, String givenName, String familyName,
 			String phoneticGivenName, String phoneticFamilyName){

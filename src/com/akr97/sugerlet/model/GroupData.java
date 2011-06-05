@@ -1,12 +1,12 @@
 package com.akr97.sugerlet.model;
 
 public class GroupData {
-	public long id;
-	public String title;
-	public String notes;
-	public String systemId;
-	public String accountName;
-	public String accountType;
+	public final long id;
+	public final String title;
+	public final String notes;
+	public final String systemId;
+	public final String accountName;
+	public final String accountType;
 	
 	public GroupData(long id, String title, String notes, String systemId, 
 			String accountName, String accountType){

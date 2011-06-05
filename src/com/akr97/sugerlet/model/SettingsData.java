@@ -1,9 +1,9 @@
 package com.akr97.sugerlet.model;
 
 public class SettingsData {
-	public String accountName;
-	public String accountType;
-	public int ungroupedVisible;
+	public final String accountName;
+	public final String accountType;
+	public final int ungroupedVisible;
 	
 	public SettingsData(String accountName, String accountType, int ungroupedVisible){
 		this.accountName = accountName;

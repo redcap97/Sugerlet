@@ -3,9 +3,9 @@ package com.akr97.sugerlet.model;
 import android.net.Uri;
 
 public class WebsiteData {
-	public String url;
-	public int type;
-	public String label;
+	public final String url;
+	public final int type;
+	public final String label;
 	
 	public WebsiteData(String url, int type, String label){
 		this.url = url;

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class PhotoData {
-	public byte[] bytes;
+	public final byte[] bytes;
 	
 	public PhotoData(byte[] bytes){
 		this.bytes = bytes;

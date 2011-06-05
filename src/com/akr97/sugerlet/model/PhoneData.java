@@ -3,10 +3,10 @@ package com.akr97.sugerlet.model;
 import android.net.Uri;
 
 public class PhoneData {
-	public long id;
-	public String number;
-	public int type;
-	public String label;
+	public final long id;
+	public final String number;
+	public final int type;
+	public final String label;
 	
 	public PhoneData(long id, String number, int type, String label){
 		this.id = id;

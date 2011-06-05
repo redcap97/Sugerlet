@@ -1,16 +1,16 @@
 package com.akr97.sugerlet.model;
 
 public class StructuredPostalData {
-	public String formattedAddress;
-	public int type;
-	public String label;
-	public String street;
-	public String pobox;
-	public String neighborhood;
-	public String city;
-	public String region;
-	public String postcode;
-	public String country;
+	public final String formattedAddress;
+	public final int type;
+	public final String label;
+	public final String street;
+	public final String pobox;
+	public final String neighborhood;
+	public final String city;
+	public final String region;
+	public final String postcode;
+	public final String country;
 	
 	public StructuredPostalData(String formattedAddress, int type, String label, 
 			String street, String pobox, String neighborhood, String city, 
