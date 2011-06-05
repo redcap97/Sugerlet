@@ -74,22 +74,22 @@ public class SugerletActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
     	switch(item.getItemId()){
     	case MENU_SETTING_ACCOUNT:
-    		doSettingAccount();
+    		launchAbout();
     		return true;
     	case MENU_ABOUT:
-    		doAbout();
+    		launchSettingAccount();
     		return true;
     	}
     	
     	return super.onOptionsItemSelected(item);
     }
     
-    private void doAbout(){
+    private void launchAbout(){
         Intent intent = new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
         startActivity(intent);
     }
     
-    private void doSettingAccount(){
+    private void launchSettingAccount(){
 		Intent intent = new Intent(this, SettingAccountActivity.class);
 		startActivity(intent);
     }
