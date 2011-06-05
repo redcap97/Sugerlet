@@ -8,7 +8,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 
 public abstract class ModelBase<E> {
-	private Context context;
+	private final Context context;
 	
 	public ModelBase(Context context){
 		this.context = context;

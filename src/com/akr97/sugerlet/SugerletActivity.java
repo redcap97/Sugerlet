@@ -1,10 +1,15 @@
 package com.akr97.sugerlet;
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.content.Intent;
 
 public class SugerletActivity extends Activity {
@@ -21,8 +26,27 @@ public class SugerletActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-		Intent intent = new Intent(this, GroupListActivity.class);
-		startActivity(intent);
+        Vector<IntentListItem> items = new Vector<IntentListItem>();
+        items.add(new IntentHeaderItem(this, 
+        		getString(R.string.header_of_menu)));
+        items.add(new IntentLauncherItem(this,
+        		getString(R.string.menu_group_list),
+        		getGroupListIntent()));
+        
+        items.add(new IntentHeaderItem(this,
+        		getString(R.string.header_of_setting)));
+        items.add(new IntentLauncherItem(this,
+        		getString(R.string.menu_setting_account),
+        		getSettingAccountIntent()));
+        items.add(new IntentLauncherItem(this,
+        		getString(R.string.menu_about),
+        		getAboutIntent()));
+        
+        ListView listView = (ListView)findViewById(R.id.contactList);
+        listView.setAdapter(new IntentListAdapter(items));
+        View emptyView = findViewById(R.id.emptyView);
+        listView.setEmptyView(emptyView);
+        listView.setOnItemClickListener(new ItemClickListener(items));
     }
     
     @Override
@@ -45,13 +69,38 @@ public class SugerletActivity extends Activity {
     	return super.onOptionsItemSelected(item);
     }
     
+    private Intent getGroupListIntent(){
+    	return new Intent(this, GroupListActivity.class);
+    }
+    
+    private Intent getAboutIntent(){
+        return new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
+    }
+    
+    private Intent getSettingAccountIntent(){
+    	return new Intent(this, SettingAccountActivity.class);
+    }
+    
     private void launchAbout(){
-        Intent intent = new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
-        startActivity(intent);
+        startActivity(getAboutIntent());
     }
     
     private void launchSettingAccount(){
-		Intent intent = new Intent(this, SettingAccountActivity.class);
-		startActivity(intent);
+		startActivity(getSettingAccountIntent());
     }
+    
+	static class ItemClickListener implements AdapterView.OnItemClickListener {
+		private Vector<IntentListItem> items;
+		
+		public ItemClickListener(Vector<IntentListItem> items){
+			this.items = items;
+		}
+		
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			IntentListItem item = items.get(position);
+			item.onClick(view);
+		}
+	}
 }

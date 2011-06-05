@@ -20,4 +20,7 @@
     <string name="menu_about">Sugerletについて</string>
     <string name="menu_save">保存</string>
     <string name="menu_reset">リセット</string>
+    <string name="header_of_menu">メニュ</string>
+    <string name="header_of_setting">設定</string>
+    <string name="menu_group_list">グループ一覧</string>
 </resources>

@@ -1,21 +1,18 @@
-package com.akr97.sugerlet.profile;
+package com.akr97.sugerlet;
 
 import android.content.Context;
 import android.view.View;
 
-public abstract class ProfileListItem {
+public abstract class IntentListItem {
 	protected final Context context;
 	protected final Type type;
 	
 	public enum Type {
 		HEADER,
-		CONTENT,
-		PHONE,
-		EMAIL,
-		WEBSITE,
+		LAUNCHER
 	}
 	
-	public ProfileListItem(Context context, Type type){
+	public IntentListItem(Context context, Type type){
 		this.context = context;
 		this.type = type;
 	}
