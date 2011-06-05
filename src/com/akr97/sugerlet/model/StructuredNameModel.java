@@ -124,8 +124,6 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				RawContacts._ID);
 	}
 	
-
-	
 	private Cursor getCursorBelongToGroup(String accountName, String accountType){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				new String[]{ RawContactsEntity._ID },
