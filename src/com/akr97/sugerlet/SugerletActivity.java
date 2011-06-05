@@ -26,6 +26,30 @@ public class SugerletActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        setupLauncherList();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	menu.add(Menu.NONE, MENU_SETTING_ACCOUNT, Menu.NONE, getString(R.string.menu_setting_account));
+    	menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.menu_about));
+    	return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	switch(item.getItemId()){
+    	case MENU_SETTING_ACCOUNT:
+    		launchSettingAccount();
+    		return true;
+    	case MENU_ABOUT:
+    		launchAbout();
+    		return true;
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+    
+    private void setupLauncherList(){
         Vector<IntentListItem> items = new Vector<IntentListItem>();
         items.add(new IntentHeaderItem(this, 
         		getString(R.string.header_of_menu)));
@@ -47,26 +71,6 @@ public class SugerletActivity extends Activity {
         View emptyView = findViewById(R.id.emptyView);
         listView.setEmptyView(emptyView);
         listView.setOnItemClickListener(new ItemClickListener(items));
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	menu.add(Menu.NONE, MENU_SETTING_ACCOUNT, Menu.NONE, getString(R.string.menu_setting_account));
-    	menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.menu_about));
-    	return super.onCreateOptionsMenu(menu);
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	switch(item.getItemId()){
-    	case MENU_SETTING_ACCOUNT:
-    		launchSettingAccount();
-    		return true;
-    	case MENU_ABOUT:
-    		launchAbout();
-    		return true;
-    	}
-    	return super.onOptionsItemSelected(item);
     }
     
     private Intent getGroupListIntent(){
