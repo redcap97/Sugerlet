@@ -25,12 +25,16 @@ public class GroupListActivity extends Activity {
         Intent intent = getGroupListIntent(ContactListActivity.NO_GROUP_ID, getString(R.string.no_group));
         
         Vector<GroupListItem> items = new Vector<GroupListItem>();
-        items.add(new GroupListHeaderItem(this, "GroupList"));
-        items.add(new GroupListIntentItem(this, getString(R.string.no_group), intent));
+        AccountStateManager manager = AccountStateManagerFactory.create(this);
+        for(AccountStateManager.State state : manager.getEnabledStates()){
+        	items.add(new GroupListHeaderItem(this, state.getHeading()));
+        	items.add(new GroupListIntentItem(this, getString(R.string.no_group), intent));
 
-        GroupModel model = new GroupModel(this);
-        for(GroupData group : model.get()){
-        	items.add(new GroupListIntentItem(this, group.title, intent));
+        	GroupModel model = new GroupModel(this);
+        	Vector<GroupData> groups = model.getByAccount(state.getName(), state.getType());
+        	for(GroupData group : groups){
+        		items.add(new GroupListIntentItem(this, group.title, intent));
+        	}
         }
         
         ListView listView = (ListView)findViewById(R.id.contactList);
@@ -62,6 +66,5 @@ public class GroupListActivity extends Activity {
 			GroupListItem item = items.get(position);
 			item.onClick(view);
 		}
-		
 	}
 }

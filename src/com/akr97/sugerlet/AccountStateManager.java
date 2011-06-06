@@ -32,6 +32,16 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		return new StateIterator(states);
 	}
 	
+	public Vector<State> getEnabledStates(){
+		Vector<State> enabledStates = new Vector<State>();
+		for(State state : states){
+			if(state.isEnabled()){
+				enabledStates.add(state);
+			}
+		}
+		return enabledStates;
+	}
+	
 	public boolean hasFilters(){
 		for(State s : states){
 			if(!s.isEnabled()){
@@ -105,6 +115,10 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 		
 		public String getType(){
 			return account.type;
+		}
+		
+		public String getHeading(){
+			return String.format("%s (%s)", account.name, account.type);
 		}
 		
 		public boolean isEnabled(){
