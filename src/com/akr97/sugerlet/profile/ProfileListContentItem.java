@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
 
-public class ProfileContentItem extends ProfileListItem {
+public class ProfileListContentItem extends ProfileListItem {
 	private String content;
 	
-	public ProfileContentItem(Context context, String content) {
+	public ProfileListContentItem(Context context, String content) {
 		super(context, Type.CONTENT);
 		this.content = content;
 	}

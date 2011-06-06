@@ -9,10 +9,10 @@ import android.widget.TextView;
 import com.akr97.sugerlet.R;
 import com.akr97.sugerlet.model.*;
 
-public class ProfileWebsiteItem extends ProfileListItem {
+public class ProfileListWebsiteItem extends ProfileListItem {
 	private WebsiteData website;
 	
-	public ProfileWebsiteItem(Context context, WebsiteData website) {
+	public ProfileListWebsiteItem(Context context, WebsiteData website) {
 		super(context, Type.WEBSITE);
 		this.website = website;
 	}

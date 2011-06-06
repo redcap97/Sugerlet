@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
 
-public class ProfileHeaderItem extends ProfileListItem {
+public class ProfileListHeaderItem extends ProfileListItem {
 	private String title;
 	
-	public ProfileHeaderItem(Context context, String title) {
+	public ProfileListHeaderItem(Context context, String title) {
 		super(context, Type.HEADER);
 		this.title = title;
 	}

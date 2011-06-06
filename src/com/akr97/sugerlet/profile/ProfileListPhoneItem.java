@@ -9,12 +9,12 @@ import android.widget.TextView;
 import com.akr97.sugerlet.R;
 import com.akr97.sugerlet.model.*;
 
-public class ProfileEmailItem extends ProfileListItem {
-	private EmailData email;
+public class ProfileListPhoneItem extends ProfileListItem {
+	private PhoneData phone;
 	
-	public ProfileEmailItem(Context context, EmailData email) {
-		super(context, Type.EMAIL);
-		this.email = email;
+	public ProfileListPhoneItem(Context context, PhoneData phone) {
+		super(context, Type.PHONE);
+		this.phone = phone;
 	}
 
 	@Override
@@ -23,13 +23,13 @@ public class ProfileEmailItem extends ProfileListItem {
 		convertView = inflater.inflate(R.layout.profile_data_item, null);
 	
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
-		name.setText(email.address);
+		name.setText(phone.number);
 		return convertView;
 	}
 	
 	@Override
 	public void onClick(View view){
-		Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());
+		Intent intent = new Intent(Intent.ACTION_CALL, phone.getTelephoneUri());
 		context.startActivity(intent);
 	}
 }

@@ -58,10 +58,10 @@ public class ProfileActivity extends Activity {
         
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
         if(!phones.isEmpty()){
-    		items.add(new ProfileHeaderItem(this, getString(R.string.header_of_phone)));
+    		items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_phone)));
     		
         	for(PhoneData phone : phones){
-        		items.add(new ProfilePhoneItem(this, phone));
+        		items.add(new ProfileListPhoneItem(this, phone));
         	}
         }
         return items;
@@ -73,10 +73,10 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!emails.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_email)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_email)));
 			
 			for(EmailData email : emails){
-				items.add(new ProfileEmailItem(this, email));
+				items.add(new ProfileListEmailItem(this, email));
 			}
 		}
 		return items;
@@ -88,11 +88,11 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!ims.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_im)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_im)));
 			
 			for(ImData im : ims){
 				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
-				items.add(new ProfileContentItem(this, content));
+				items.add(new ProfileListContentItem(this, content));
 			}
 		}
 		return items;
@@ -104,10 +104,10 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!postals.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_postal)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_postal)));
 			
 			for(StructuredPostalData postal : postals){
-				items.add(new ProfileContentItem(this, postal.formattedAddress));
+				items.add(new ProfileListContentItem(this, postal.formattedAddress));
 			}
 		}
 		return items;
@@ -119,10 +119,10 @@ public class ProfileActivity extends Activity {
         
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!groups.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_group)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_group)));
 			
 			for(GroupData group : groups){
-				items.add(new ProfileContentItem(this, group.title));
+				items.add(new ProfileListContentItem(this, group.title));
 			}
 		}
         return items;
@@ -134,10 +134,10 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!nicknames.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_nickname)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_nickname)));
 			
 			for(NicknameData nickname : nicknames){
-				items.add(new ProfileContentItem(this, nickname.name));
+				items.add(new ProfileListContentItem(this, nickname.name));
 			}
 		}
 		return items;
@@ -149,10 +149,10 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!websites.isEmpty()){
-			items.add(new ProfileHeaderItem(this, getString(R.string.header_of_website)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_website)));
 			
 			for(WebsiteData website : websites){
-				items.add(new ProfileWebsiteItem(this, website));
+				items.add(new ProfileListWebsiteItem(this, website));
 			}
 		}
 		return items;
