@@ -39,17 +39,26 @@ public class GroupListActivity extends Activity {
         	@Override
         	public void onItemClick(AdapterView<?> parent, View view,
         			int position, long id){
-    			Intent intent = new Intent(parent.getContext(), ContactListActivity.class);
+    			Intent intent = null;
         		if(position == 0){
-        			intent.putExtra(getString(R.string.key_of_group_id), ContactListActivity.NO_GROUP_ID);
-        			intent.putExtra(getString(R.string.key_of_group_title), getString(R.string.no_group));       			
+        			intent = getGroupListIntent(ContactListActivity.NO_GROUP_ID, getString(R.string.no_group));
         		}else{
         			GroupData group = groups.get(position-1);
-        			intent.putExtra(getString(R.string.key_of_group_id), group.id);
-        			intent.putExtra(getString(R.string.key_of_group_title), group.title);
+        			intent = getGroupListIntent(group.id, group.title);
         		}
        			startActivity(intent);
         	}
         });
+	}
+	
+	private Intent getContactListIntent(){
+		return new Intent(this, ContactListActivity.class);
+	}
+	
+	private Intent getGroupListIntent(long groupId, String title){
+		Intent intent = getContactListIntent();
+		intent.putExtra(getString(R.string.key_of_group_id), groupId);
+		intent.putExtra(getString(R.string.key_of_group_title), title);
+		return intent;
 	}
 }
