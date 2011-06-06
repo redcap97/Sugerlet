@@ -10,45 +10,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class GroupListActivity extends Activity {
-	private Vector<GroupData> groups;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        adapter.add(getString(R.string.no_group));
+        
+        setupGroupList();
+	}
+	
+	private void setupGroupList(){
+        Intent intent = getGroupListIntent(ContactListActivity.NO_GROUP_ID, getString(R.string.no_group));
+        
+        Vector<GroupListItem> items = new Vector<GroupListItem>();
+        items.add(new GroupListHeaderItem(this, "GroupList"));
+        items.add(new GroupListIntentItem(this, getString(R.string.no_group), intent));
 
         GroupModel model = new GroupModel(this);
-        this.groups = model.get();
-        for(GroupData group : groups){
-        	adapter.add(group.title);
+        for(GroupData group : model.get()){
+        	items.add(new GroupListIntentItem(this, group.title, intent));
         }
         
         ListView listView = (ListView)findViewById(R.id.contactList);
-        listView.setAdapter(adapter);
-        View emptyView = findViewById(R.id.emptyView);
-        listView.setEmptyView(emptyView);
-        
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView<?> parent, View view,
-        			int position, long id){
-    			Intent intent = null;
-        		if(position == 0){
-        			intent = getGroupListIntent(ContactListActivity.NO_GROUP_ID, getString(R.string.no_group));
-        		}else{
-        			GroupData group = groups.get(position-1);
-        			intent = getGroupListIntent(group.id, group.title);
-        		}
-       			startActivity(intent);
-        	}
-        });
+        listView.setEmptyView(findViewById(R.id.emptyView));
+        listView.setAdapter(new GroupListAdapter(items));
+        listView.setOnItemClickListener(new ItemClickListener(items));
 	}
 	
 	private Intent getContactListIntent(){
@@ -60,5 +48,20 @@ public class GroupListActivity extends Activity {
 		intent.putExtra(getString(R.string.key_of_group_id), groupId);
 		intent.putExtra(getString(R.string.key_of_group_title), title);
 		return intent;
+	}
+	
+	static class ItemClickListener implements AdapterView.OnItemClickListener {
+		private final Vector<GroupListItem> items;
+		
+		public ItemClickListener(Vector<GroupListItem> items){
+			this.items = items;
+		}
+		
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			GroupListItem item = items.get(position);
+			item.onClick(view);
+		}
+		
 	}
 }
