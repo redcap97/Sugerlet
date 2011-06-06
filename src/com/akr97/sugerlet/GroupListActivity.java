@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.akr97.sugerlet.model.GroupData;
 import com.akr97.sugerlet.model.GroupModel;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,19 +22,19 @@ public class GroupListActivity extends Activity {
         setupGroupList();
 	}
 	
-	private void setupGroupList(){
-        Intent intent = getGroupListIntent(ContactListActivity.NO_GROUP_ID, getString(R.string.no_group));
-        
+	private void setupGroupList(){        	
         Vector<GroupListItem> items = new Vector<GroupListItem>();
         AccountStateManager manager = AccountStateManagerFactory.create(this);
         for(AccountStateManager.State state : manager.getEnabledStates()){
         	items.add(new GroupListHeaderItem(this, state.getHeading()));
-        	items.add(new GroupListIntentItem(this, getString(R.string.no_group), intent));
+        	items.add(new GroupListIntentItem(this, getString(R.string.no_group),
+        			getNoGroupContactListIntent(state.getAccount())));
 
         	GroupModel model = new GroupModel(this);
         	Vector<GroupData> groups = model.getByAccount(state.getName(), state.getType());
         	for(GroupData group : groups){
-        		items.add(new GroupListIntentItem(this, group.title, intent));
+        		items.add(new GroupListIntentItem(this, group.title,
+        				getContactListIntent(state.getAccount(), group.id)));
         	}
         }
         
@@ -47,10 +48,19 @@ public class GroupListActivity extends Activity {
 		return new Intent(this, ContactListActivity.class);
 	}
 	
-	private Intent getGroupListIntent(long groupId, String title){
+	private Intent getContactListIntent(Account account, long groupId){
 		Intent intent = getContactListIntent();
+		intent.putExtra(getString(R.string.key_of_account_name), account.name);
+		intent.putExtra(getString(R.string.key_of_account_type), account.type);
 		intent.putExtra(getString(R.string.key_of_group_id), groupId);
-		intent.putExtra(getString(R.string.key_of_group_title), title);
+		return intent;
+	}
+	
+	private Intent getNoGroupContactListIntent(Account account){
+		Intent intent = getContactListIntent();
+		intent.putExtra(getString(R.string.key_of_account_name), account.name);
+		intent.putExtra(getString(R.string.key_of_account_type), account.type);
+		intent.putExtra(getString(R.string.key_of_group_id), ContactListActivity.NO_GROUP_ID);
 		return intent;
 	}
 	

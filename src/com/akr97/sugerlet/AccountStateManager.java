@@ -117,6 +117,10 @@ public class AccountStateManager implements Iterable<AccountStateManager.State> 
 			return account.type;
 		}
 		
+		public Account getAccount(){
+			return account;
+		}
+		
 		public String getHeading(){
 			return String.format("%s (%s)", account.name, account.type);
 		}

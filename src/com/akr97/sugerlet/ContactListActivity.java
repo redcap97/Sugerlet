@@ -2,6 +2,7 @@ package com.akr97.sugerlet;
 
 import java.util.Vector;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,12 +22,12 @@ public class ContactListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		Parameter params = new Parameter();
-		setTitle(getString(R.string.group) + ": " + params.groupTitle);
 		
+		Parameter params = new Parameter();
+		setTitle(getString(R.string.group) + ": " + getGroupName(params.groupId));
+	
 		ListView listView = (ListView)findViewById(R.id.contactList);
-		this.structureNames = getStructuredNames(params.groupId);
+		this.structureNames = getStructuredNames(params);
 		listView.setAdapter(new ContactListAdapter(this, structureNames));
 		
 		View emptyView = findViewById(R.id.emptyView);
@@ -45,25 +46,35 @@ public class ContactListActivity extends Activity {
         });
 	}
 	
-	Vector<StructuredNameData> getStructuredNames(long groupId){
-		StructuredNameModel model = new StructuredNameModel(this);
+	private String getGroupName(long groupId){
 		if(groupId == NO_GROUP_ID){
-			return model.getNoGroup();
+			return getString(R.string.no_group);
+		}
+		
+		GroupModel groupModel = new GroupModel(this);
+		GroupData group = groupModel.getById(groupId);
+		return group.title;
+	}
+	
+	private Vector<StructuredNameData> getStructuredNames(Parameter params){
+		StructuredNameModel model = new StructuredNameModel(this);
+		if(params.groupId == NO_GROUP_ID){
+			return model.getNoGroup(params.account.name, params.account.type);
 		}else{
-			return model.getFromGroup(groupId);
+			return model.getFromGroup(params.groupId);
 		}
 	}
 	
 	class Parameter{
-		private Intent intent;
+		private final Intent intent;
 		
-		public long groupId;
-		public String groupTitle;
+		public final Account account;
+		public final long groupId;
 		
 		public Parameter(){
 			this.intent = getIntent();
 			this.groupId = getGroupId();
-			this.groupTitle = getGroupTitle();
+			this.account = new Account(getAccountName(), getAccountType());
 		}
 		
 		private long getGroupId(){
@@ -74,12 +85,20 @@ public class ContactListActivity extends Activity {
 			return groupId;
 		}
 		
-		private String getGroupTitle(){
-			String groupTitle = intent.getStringExtra(getString(R.string.key_of_group_title));
-			if(groupTitle == null){
-				throw new RuntimeException("GroupTitle is not found.");
+		private String getAccountName(){
+			String accountName = intent.getStringExtra(getString(R.string.key_of_account_name));
+			if(accountName == null){
+				throw new RuntimeException("AccountName is not found.");
 			}
-			return groupTitle;
+			return accountName;
+		}
+		
+		private String getAccountType(){
+			String accountType = intent.getStringExtra(getString(R.string.key_of_account_type));
+			if(accountType == null){
+				throw new RuntimeException("AccountType is not found.");
+			}
+			return accountType;
 		}
 	}
 }
