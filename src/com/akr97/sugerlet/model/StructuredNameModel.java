@@ -9,10 +9,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.Data;
 import android.content.Context;
 import android.database.Cursor;
-//import android.util.Log;
 
-import com.akr97.sugerlet.AccountStateManager;
-import com.akr97.sugerlet.AccountStateManagerFactory;
 import com.akr97.sugerlet.util.CursorJoinerWithIntKey;
 
 public class StructuredNameModel extends ModelBase<StructuredNameData> {
@@ -82,18 +79,6 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				results.add(extract(c2));
 			}
 		}
-		return results;
-	}
-	
-	public Vector<StructuredNameData> getNoGroup(){
-		Vector<StructuredNameData> results = new Vector<StructuredNameData>();
-		AccountStateManager changer = AccountStateManagerFactory.create(getContext());
-		for(AccountStateManager.State state : changer){
-			if(state.isEnabled()){
-				results.addAll(getNoGroup(state.getName(), state.getType()));
-			}
-		}
-		results.addAll(getNoAccount());
 		return results;
 	}
 	
