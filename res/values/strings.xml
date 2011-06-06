@@ -21,7 +21,7 @@
     <string name="menu_reset">リセット</string>
     <string name="header_of_menu">メニュ</string>
     <string name="header_of_setting">設定</string>
-    <string name="menu_group_list">グループ一覧</string>
+    <string name="menu_group_list">グループ</string>
     <string name="message_no_account">アカウントが存在しません</string>
     <string name="key_of_account_type">AccountType</string>
     <string name="key_of_account_name">AccountName</string>
