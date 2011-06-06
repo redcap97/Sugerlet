@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 public class SettingAccountActivity extends Activity {
@@ -21,6 +22,8 @@ public class SettingAccountActivity extends Activity {
         listAdapter = new SettingAccountListAdapter(this);
 		listView = (ListView)findViewById(R.id.list);
 		listView.setAdapter(listAdapter);
+		View emptyView = findViewById(R.id.emptyView);
+		listView.setEmptyView(emptyView);
     }
     
     @Override
