@@ -36,23 +36,6 @@ public class GroupModel extends ModelBase<GroupData> {
     	return new GroupData(id, title, notes, systemId, accountName, accountType);
 	}
 	
-	public Vector<GroupData> get(){
-		Vector<GroupData> groups;
-		AccountStateManager accountChanger = AccountStateManagerFactory.create(getContext());
-		if(accountChanger.hasFilters()){
-			groups = new Vector<GroupData>();
-			for(AccountStateManager.State s : accountChanger){
-				if(s.isEnabled()){
-					groups.addAll(getByAccount(s.getName(), s.getType()));
-				}
-			}
-		}else{
-			groups = getAll();
-		}
-		
-		return groups;
-	}
-	
 	public Vector<GroupData> getAll(){
         return readRows(getCursor());
 	}
