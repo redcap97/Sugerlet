@@ -51,18 +51,18 @@ public class SugerletActivity extends Activity {
     
     private void setupLauncherList(){
         Vector<LauncherListItem> items = new Vector<LauncherListItem>();
-        items.add(new LauncherHeaderItem(this, 
+        items.add(new LauncherListHeaderItem(this, 
         		getString(R.string.header_of_menu)));
-        items.add(new LauncherIntentItem(this,
+        items.add(new LauncherListIntentItem(this,
         		getString(R.string.menu_group_list),
         		getGroupListIntent()));
         
-        items.add(new LauncherHeaderItem(this,
+        items.add(new LauncherListHeaderItem(this,
         		getString(R.string.header_of_setting)));
-        items.add(new LauncherIntentItem(this,
+        items.add(new LauncherListIntentItem(this,
         		getString(R.string.menu_setting_account),
         		getSettingAccountIntent()));
-        items.add(new LauncherIntentItem(this,
+        items.add(new LauncherListIntentItem(this,
         		getString(R.string.menu_about),
         		getAboutIntent()));
         

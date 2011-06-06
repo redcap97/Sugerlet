@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class LauncherHeaderItem extends LauncherListItem {
+public class LauncherListHeaderItem extends LauncherListItem {
 	private String title;
 	
-	public LauncherHeaderItem(Context context, String title) {
+	public LauncherListHeaderItem(Context context, String title) {
 		super(context, Type.HEADER);
 		this.title = title;
 	}

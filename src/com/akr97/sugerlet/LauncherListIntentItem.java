@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class LauncherIntentItem extends LauncherListItem {
+public class LauncherListIntentItem extends LauncherListItem {
 	private String title;
 	private Intent intent;
 	
-	public LauncherIntentItem(Context context, String title, Intent intent) {
+	public LauncherListIntentItem(Context context, String title, Intent intent) {
 		super(context, Type.INTENT);
 		this.title = title;
 		this.intent = intent;
