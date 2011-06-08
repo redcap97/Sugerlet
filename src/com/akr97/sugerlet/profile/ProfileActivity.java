@@ -58,7 +58,7 @@ public class ProfileActivity extends Activity {
         
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
         if(!phones.isEmpty()){
-    		items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_phone)));
+    		items.add(new ProfileListHeaderItem(this, getString(R.string.header_phone)));
     		
         	for(PhoneData phone : phones){
         		items.add(new ProfileListPhoneItem(this, phone));
@@ -73,7 +73,7 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!emails.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_email)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_email)));
 			
 			for(EmailData email : emails){
 				items.add(new ProfileListEmailItem(this, email));
@@ -88,7 +88,7 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!ims.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_im)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_im)));
 			
 			for(ImData im : ims){
 				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
@@ -104,7 +104,7 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!postals.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_postal)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_postal)));
 			
 			for(StructuredPostalData postal : postals){
 				items.add(new ProfileListContentItem(this, postal.formattedAddress));
@@ -119,7 +119,7 @@ public class ProfileActivity extends Activity {
         
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!groups.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_group)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_group)));
 			
 			for(GroupData group : groups){
 				items.add(new ProfileListContentItem(this, group.title));
@@ -134,7 +134,7 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!nicknames.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_nickname)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_nickname)));
 			
 			for(NicknameData nickname : nicknames){
 				items.add(new ProfileListContentItem(this, nickname.name));
@@ -149,7 +149,7 @@ public class ProfileActivity extends Activity {
 		
 		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
 		if(!websites.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_of_website)));
+			items.add(new ProfileListHeaderItem(this, getString(R.string.header_website)));
 			
 			for(WebsiteData website : websites){
 				items.add(new ProfileListWebsiteItem(this, website));
@@ -169,7 +169,7 @@ public class ProfileActivity extends Activity {
 		}
 		
 		private long getRawContactId(){
-			long groupId = intent.getLongExtra(getString(R.string.key_of_raw_contact_id), -1);
+			long groupId = intent.getLongExtra(getString(R.string.key_raw_contact_id), -1);
 			if(groupId == -1L){
 				throw new RuntimeException("RawContactId is not found.");
 			}

@@ -40,7 +40,7 @@ public class ContactListActivity extends Activity {
         		StructuredNameData structuredName = structureNames.get(position);
         		
         		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
-    			intent.putExtra(getString(R.string.key_of_raw_contact_id), structuredName.rawContactId);
+    			intent.putExtra(getString(R.string.key_raw_contact_id), structuredName.rawContactId);
         		startActivity(intent);
         	}
         });
@@ -78,7 +78,7 @@ public class ContactListActivity extends Activity {
 		}
 		
 		private long getGroupId(){
-			long groupId = intent.getLongExtra(getString(R.string.key_of_group_id), -1);
+			long groupId = intent.getLongExtra(getString(R.string.key_group_id), -1);
 			if(groupId == -1L){
 				throw new RuntimeException("GroupId is not found.");
 			}
@@ -86,7 +86,7 @@ public class ContactListActivity extends Activity {
 		}
 		
 		private String getAccountName(){
-			String accountName = intent.getStringExtra(getString(R.string.key_of_account_name));
+			String accountName = intent.getStringExtra(getString(R.string.key_account_name));
 			if(accountName == null){
 				throw new RuntimeException("AccountName is not found.");
 			}
@@ -94,7 +94,7 @@ public class ContactListActivity extends Activity {
 		}
 		
 		private String getAccountType(){
-			String accountType = intent.getStringExtra(getString(R.string.key_of_account_type));
+			String accountType = intent.getStringExtra(getString(R.string.key_account_type));
 			if(accountType == null){
 				throw new RuntimeException("AccountType is not found.");
 			}

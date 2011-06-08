@@ -50,17 +50,17 @@ public class GroupListActivity extends Activity {
 	
 	private Intent getContactListIntent(Account account, long groupId){
 		Intent intent = getContactListIntent();
-		intent.putExtra(getString(R.string.key_of_account_name), account.name);
-		intent.putExtra(getString(R.string.key_of_account_type), account.type);
-		intent.putExtra(getString(R.string.key_of_group_id), groupId);
+		intent.putExtra(getString(R.string.key_account_name), account.name);
+		intent.putExtra(getString(R.string.key_account_type), account.type);
+		intent.putExtra(getString(R.string.key_group_id), groupId);
 		return intent;
 	}
 	
 	private Intent getNoGroupContactListIntent(Account account){
 		Intent intent = getContactListIntent();
-		intent.putExtra(getString(R.string.key_of_account_name), account.name);
-		intent.putExtra(getString(R.string.key_of_account_type), account.type);
-		intent.putExtra(getString(R.string.key_of_group_id), ContactListActivity.NO_GROUP_ID);
+		intent.putExtra(getString(R.string.key_account_name), account.name);
+		intent.putExtra(getString(R.string.key_account_type), account.type);
+		intent.putExtra(getString(R.string.key_group_id), ContactListActivity.NO_GROUP_ID);
 		return intent;
 	}
 	
