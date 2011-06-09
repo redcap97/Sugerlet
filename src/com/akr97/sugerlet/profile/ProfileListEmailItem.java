@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.R;
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListEmailItem extends ProfileListItem {
+public class ProfileListEmailItem extends ListItem {
 	private EmailData email;
 	
 	public ProfileListEmailItem(Context context, EmailData email) {
-		super(context, Type.EMAIL);
+		super(context, Type.CUSTOM);
 		this.email = email;
 	}
 

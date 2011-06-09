@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.R;
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListWebsiteItem extends ProfileListItem {
+public class ProfileListWebsiteItem extends ListItem {
 	private WebsiteData website;
 	
 	public ProfileListWebsiteItem(Context context, WebsiteData website) {
-		super(context, Type.WEBSITE);
+		super(context, Type.CUSTOM);
 		this.website = website;
 	}
 

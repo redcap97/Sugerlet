@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.listitem.*;
 
 public class ProfileActivity extends Activity {
 	static final String TAG = "com.akr97.sugerlet.model.ProfileActivity";
@@ -38,7 +39,7 @@ public class ProfileActivity extends Activity {
 	}
 	
 	public void setupProfileList(long rawContactId){
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		items.addAll(getPhoneList(rawContactId));
 		items.addAll(getEmailList(rawContactId));
 		items.addAll(getImList(rawContactId));
@@ -52,13 +53,13 @@ public class ProfileActivity extends Activity {
         listView.setOnItemClickListener(new ItemClickListener(items));
 	}
 	
-	Vector<ProfileListItem> getPhoneList(long rawContactId){
+	Vector<ListItem> getPhoneList(long rawContactId){
         PhoneModel phoneModel = new PhoneModel(this);
         Vector<PhoneData> phones = phoneModel.get(rawContactId);
         
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
         if(!phones.isEmpty()){
-    		items.add(new ProfileListHeaderItem(this, getString(R.string.header_phone)));
+    		items.add(new ListHeaderItem(this, getString(R.string.header_phone)));
     		
         	for(PhoneData phone : phones){
         		items.add(new ProfileListPhoneItem(this, phone));
@@ -67,13 +68,13 @@ public class ProfileActivity extends Activity {
         return items;
 	}
 	
-	Vector<ProfileListItem> getEmailList(long rawContactId){
+	Vector<ListItem> getEmailList(long rawContactId){
 		EmailModel emailModel = new EmailModel(this);
 		Vector<EmailData> emails = emailModel.get(rawContactId);
 		
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!emails.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_email)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_email)));
 			
 			for(EmailData email : emails){
 				items.add(new ProfileListEmailItem(this, email));
@@ -82,74 +83,74 @@ public class ProfileActivity extends Activity {
 		return items;
 	}
 	
-	Vector<ProfileListItem> getImList(long rawContactId){
+	Vector<ListItem> getImList(long rawContactId){
 		ImModel imModel = new ImModel(this);
 		Vector<ImData> ims = imModel.get(rawContactId);
 		
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!ims.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_im)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_im)));
 			
 			for(ImData im : ims){
 				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
-				items.add(new ProfileListContentItem(this, content));
+				items.add(new ListContentItem(this, content));
 			}
 		}
 		return items;
 	}
 	
-	Vector<ProfileListItem> getStructuredPostalList(long rawContactId){
+	Vector<ListItem> getStructuredPostalList(long rawContactId){
 		StructuredPostalModel structuredPostalModel = new StructuredPostalModel(this);
 		Vector<StructuredPostalData> postals = structuredPostalModel.get(rawContactId);
 		
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!postals.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_postal)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_postal)));
 			
 			for(StructuredPostalData postal : postals){
-				items.add(new ProfileListContentItem(this, postal.formattedAddress));
+				items.add(new ListContentItem(this, postal.formattedAddress));
 			}
 		}
 		return items;
 	}
 	
-	Vector<ProfileListItem> getGroupList(long rawContactId){
+	Vector<ListItem> getGroupList(long rawContactId){
         GroupMembershipModel groupModel = new GroupMembershipModel(this);
         Vector<GroupData> groups = groupModel.get(rawContactId);
         
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!groups.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_group)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_group)));
 			
 			for(GroupData group : groups){
-				items.add(new ProfileListContentItem(this, group.title));
+				items.add(new ListContentItem(this, group.title));
 			}
 		}
         return items;
 	}
 	
-	Vector<ProfileListItem> getNicknameList(long rawContactId){
+	Vector<ListItem> getNicknameList(long rawContactId){
 		NicknameModel nicknameModel = new NicknameModel(this);
 		Vector<NicknameData> nicknames = nicknameModel.get(rawContactId);
 		
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!nicknames.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_nickname)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_nickname)));
 			
 			for(NicknameData nickname : nicknames){
-				items.add(new ProfileListContentItem(this, nickname.name));
+				items.add(new ListContentItem(this, nickname.name));
 			}
 		}
 		return items;
 	}
 	
-	Vector<ProfileListItem> getWebsiteList(long rawContactId){
+	Vector<ListItem> getWebsiteList(long rawContactId){
 		WebsiteModel websiteModel = new WebsiteModel(this);
 		Vector<WebsiteData> websites = websiteModel.get(rawContactId);
 		
-		Vector<ProfileListItem> items = new Vector<ProfileListItem>();
+		Vector<ListItem> items = new Vector<ListItem>();
 		if(!websites.isEmpty()){
-			items.add(new ProfileListHeaderItem(this, getString(R.string.header_website)));
+			items.add(new ListHeaderItem(this, getString(R.string.header_website)));
 			
 			for(WebsiteData website : websites){
 				items.add(new ProfileListWebsiteItem(this, website));
@@ -178,9 +179,9 @@ public class ProfileActivity extends Activity {
 	}
 	
 	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private Vector<ProfileListItem> items;
+		private Vector<ListItem> items;
 		
-		public ItemClickListener(Vector<ProfileListItem> items){
+		public ItemClickListener(Vector<ListItem> items){
 			this.items = items;
 		}
 		
@@ -188,7 +189,7 @@ public class ProfileActivity extends Activity {
 		public void onItemClick(AdapterView<?> parent, View view,
 				int position, long id) {
 			
-			ProfileListItem item = items.get(position);
+			ListItem item = items.get(position);
 			item.onClick(view);
 		}
 	}

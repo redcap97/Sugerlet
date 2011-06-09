@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.R;
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListPhoneItem extends ProfileListItem {
+public class ProfileListPhoneItem extends ListItem {
 	private PhoneData phone;
 	
 	public ProfileListPhoneItem(Context context, PhoneData phone) {
-		super(context, Type.PHONE);
+		super(context, Type.CUSTOM);
 		this.phone = phone;
 	}
 

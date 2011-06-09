@@ -6,19 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.akr97.sugerlet.listitem.*;
+
 public class ProfileListAdapter extends BaseAdapter {
-	private Vector<ProfileListItem> items;
+	private Vector<ListItem> items;
 	
-	public ProfileListAdapter(Vector<ProfileListItem> items){
+	public ProfileListAdapter(Vector<ListItem> items){
 		this.items = items;
 	}
 	
 	@Override
 	public boolean isEnabled(int position){
-		ProfileListItem item = (ProfileListItem)getItem(position);
+		ListItem item = (ListItem)getItem(position);
 		return !item.isHeader();
 	}
-	
 
 	@Override
 	public int getCount() {
@@ -37,7 +38,7 @@ public class ProfileListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ProfileListItem item = (ProfileListItem)getItem(position);
+		ListItem item = (ListItem)getItem(position);
 		return item.getView(convertView);
 	}
 }
