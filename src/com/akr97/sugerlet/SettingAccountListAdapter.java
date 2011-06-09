@@ -71,8 +71,8 @@ public class SettingAccountListAdapter extends BaseAdapter {
 	
 	public void reset(){
 		states.clear();
-		AccountStateManager accountStateManager = AccountStateManagerFactory.create(context);
-		for(AccountStateManager.State state : accountStateManager){
+		AccountStateManager manager = AccountStateManagerFactory.create(context);
+		for(AccountStateManager.State state : manager.getStates()){
 			states.add(new AccountStateManager.State(state));
 		}
 	}
