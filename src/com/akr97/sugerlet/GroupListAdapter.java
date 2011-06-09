@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.akr97.sugerlet.listitem.*;
+
 public class GroupListAdapter extends BaseAdapter{
-	private Vector<GroupListItem> items;
+	private Vector<ListItem> items;
 	
-	public GroupListAdapter(Vector<GroupListItem> items){
+	public GroupListAdapter(Vector<ListItem> items){
 		this.items = items;
 	}
 	
@@ -30,7 +32,7 @@ public class GroupListAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		GroupListItem item = (GroupListItem)items.get(position);
+		ListItem item = (ListItem)items.get(position);
 		return item.getView(convertView);
 	}
 }
