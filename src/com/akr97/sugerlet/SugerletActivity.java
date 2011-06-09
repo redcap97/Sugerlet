@@ -69,7 +69,7 @@ public class SugerletActivity extends Activity {
         		getAboutIntent()));
         
         ListView listView = (ListView)findViewById(R.id.contactList);
-        listView.setAdapter(new LauncherListAdapter(items));
+        listView.setAdapter(new ListItemAdapter(items));
         View emptyView = findViewById(R.id.emptyView);
         listView.setEmptyView(emptyView);
         listView.setOnItemClickListener(new ItemClickListener(items));

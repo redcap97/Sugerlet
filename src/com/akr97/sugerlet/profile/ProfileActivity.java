@@ -49,7 +49,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getWebsiteList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
-        listView.setAdapter(new ProfileListAdapter(items));
+        listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ItemClickListener(items));
 	}
 	

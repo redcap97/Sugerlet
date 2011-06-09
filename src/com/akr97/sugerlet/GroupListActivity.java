@@ -40,7 +40,7 @@ public class GroupListActivity extends Activity {
         
         ListView listView = (ListView)findViewById(R.id.contactList);
         listView.setEmptyView(findViewById(R.id.emptyView));
-        listView.setAdapter(new GroupListAdapter(items));
+        listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ItemClickListener(items));
 	}
 	
