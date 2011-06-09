@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.akr97.sugerlet.listitem.*;
+
 public class LauncherListAdapter extends BaseAdapter {
-	private Vector<LauncherListItem> items;
+	private Vector<ListItem> items;
 	
-	public LauncherListAdapter(Vector<LauncherListItem> items){
+	public LauncherListAdapter(Vector<ListItem> items){
 		this.items = items;
 	}
 	
@@ -30,7 +32,7 @@ public class LauncherListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LauncherListItem item = (LauncherListItem)items.get(position);
+		ListItem item = (ListItem)items.get(position);
 		return item.getView(convertView);
 	}
 }

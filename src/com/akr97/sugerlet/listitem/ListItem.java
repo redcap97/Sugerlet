@@ -10,7 +10,8 @@ public abstract class ListItem {
 	public enum Type {
 		HEADER,
 		CONTENT,
-		INTENT
+		INTENT,
+		CUSTOM
 	}
 	
 	public ListItem(Context context, Type type){

@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 
+import com.akr97.sugerlet.listitem.*;
+
 public class SugerletActivity extends Activity {
 	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
 	static final int MENU_ABOUT = (Menu.FIRST + 2);
@@ -50,19 +52,19 @@ public class SugerletActivity extends Activity {
     }
     
     private void setupLauncherList(){
-        Vector<LauncherListItem> items = new Vector<LauncherListItem>();
-        items.add(new LauncherListHeaderItem(this, 
+        Vector<ListItem> items = new Vector<ListItem>();
+        items.add(new ListHeaderItem(this, 
         		getString(R.string.header_menu)));
-        items.add(new LauncherListIntentItem(this,
+        items.add(new ListIntentItem(this,
         		getString(R.string.menu_group_list),
         		getGroupListIntent()));
         
-        items.add(new LauncherListHeaderItem(this,
+        items.add(new ListHeaderItem(this,
         		getString(R.string.header_setting)));
-        items.add(new LauncherListIntentItem(this,
+        items.add(new ListIntentItem(this,
         		getString(R.string.menu_setting_account),
         		getSettingAccountIntent()));
-        items.add(new LauncherListIntentItem(this,
+        items.add(new ListIntentItem(this,
         		getString(R.string.menu_about),
         		getAboutIntent()));
         
@@ -94,16 +96,16 @@ public class SugerletActivity extends Activity {
     }
     
 	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private Vector<LauncherListItem> items;
+		private Vector<ListItem> items;
 		
-		public ItemClickListener(Vector<LauncherListItem> items){
+		public ItemClickListener(Vector<ListItem> items){
 			this.items = items;
 		}
 		
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view,
 				int position, long id) {
-			LauncherListItem item = items.get(position);
+			ListItem item = items.get(position);
 			item.onClick(view);
 		}
 	}
