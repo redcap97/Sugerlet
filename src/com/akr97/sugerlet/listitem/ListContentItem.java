@@ -18,7 +18,7 @@ public class ListContentItem extends ListItem {
 	@Override
 	public View getView(View convertView){
 		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.profile_data_item, null);
+		convertView = inflater.inflate(R.layout.list_content_item, null);
 	
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
 		name.setText(content);
