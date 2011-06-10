@@ -2,6 +2,6 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-    <TextView android:text="TextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView" android:textSize="24dip" android:layout_marginBottom="4dip" android:layout_marginLeft="2dip" android:layout_marginTop="2dip"></TextView>
+  android:layout_height="fill_parent" android:orientation="horizontal">
+    <TextView android:text="TextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView" android:textSize="24dip" android:layout_marginBottom="14dip" android:layout_marginTop="14dip" android:layout_marginLeft="6dip"></TextView>
 </LinearLayout>
