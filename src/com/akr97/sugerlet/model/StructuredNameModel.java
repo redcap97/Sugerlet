@@ -45,6 +45,10 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		return readRow(getCursorByRawContactId(id));
 	}
 
+	public Vector<StructuredNameData> getStarred(){
+		return readRows(getCursorStarred());
+	}
+	
 	public Vector<StructuredNameData> getFromGroup(long groupId){
 		GroupModel model = new GroupModel(getContext());
 		GroupData group = model.getById(groupId);
@@ -142,5 +146,16 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 					StructuredName.CONTENT_ITEM_TYPE,
 					String.valueOf(rawContactId)},
 				RawContactsEntity._ID);
+	}
+	
+	private Cursor getCursorStarred(){
+		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
+				PROJECTION,
+				RawContacts.STARRED + "=? AND " +
+					RawContactsEntity.MIMETYPE + "=?",
+				new String[]{
+					String.valueOf(1),
+					StructuredName.CONTENT_ITEM_TYPE }, 
+				RawContacts._ID);
 	}
 }
