@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -19,7 +19,7 @@ public class GroupMembershipModel extends ModelBase<GroupData> {
 		this.groupModel = new GroupModel(ctx);
 	}
 	
-	public Vector<GroupData> get(long rawContactId){
+	public ArrayList<GroupData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 	

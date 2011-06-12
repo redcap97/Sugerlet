@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +18,7 @@ public class NicknameModel extends ModelBase<NicknameData> {
 		super(ctx);
 	}
 	
-	public Vector<NicknameData> get(long rawContactId){
+	public ArrayList<NicknameData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 	

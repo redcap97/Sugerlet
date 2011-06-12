@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -34,11 +34,11 @@ public class GroupModel extends ModelBase<GroupData> {
     	return new GroupData(id, title, notes, systemId, accountName, accountType);
 	}
 	
-	public Vector<GroupData> getAll(){
+	public ArrayList<GroupData> getAll(){
         return readRows(getCursor());
 	}
 
-	public Vector<GroupData> getByAccount(String accountName, String accountType){
+	public ArrayList<GroupData> getByAccount(String accountName, String accountType){
 		return readRows(getCursor(accountName, accountType));
 	}
 	

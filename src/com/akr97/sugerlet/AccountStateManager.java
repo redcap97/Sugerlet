@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import android.content.Context;
 import android.accounts.AccountManager;
 import android.accounts.Account;
@@ -8,7 +8,7 @@ import android.accounts.Account;
 import com.akr97.sugerlet.model.*;
 
 public class AccountStateManager {
-	private Vector<State> states = new Vector<State>();
+	private ArrayList<State> states = new ArrayList<State>();
 	
 	static final String TAG = "com.akr97.sugerlet.AccountChanger";
 	
@@ -17,12 +17,12 @@ public class AccountStateManager {
 		addStatesFromSettingsModel(ctx);
 	}
 	
-	public Vector<State> getStates(){
-		return new Vector<State>(states);
+	public ArrayList<State> getStates(){
+		return new ArrayList<State>(states);
 	}
 	
-	public Vector<State> getEnabledStates(){
-		Vector<State> enabledStates = new Vector<State>();
+	public ArrayList<State> getEnabledStates(){
+		ArrayList<State> enabledStates = new ArrayList<State>();
 		for(State state : states){
 			if(state.isEnabled()){
 				enabledStates.add(state);

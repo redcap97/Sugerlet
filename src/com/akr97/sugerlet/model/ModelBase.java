@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -38,8 +38,8 @@ public abstract class ModelBase<E> {
 		return result;
 	}
 	
-	public Vector<E> readRows(Cursor c){
-		Vector<E> results = new Vector<E>();
+	public ArrayList<E> readRows(Cursor c){
+		ArrayList<E> results = new ArrayList<E>();
 		
 		if(c.moveToFirst()){
 			do {

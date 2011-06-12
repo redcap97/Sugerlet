@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -45,11 +45,11 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		return readRow(getCursorByRawContactId(id));
 	}
 
-	public Vector<StructuredNameData> getStarred(){
+	public ArrayList<StructuredNameData> getStarred(){
 		return readRows(getCursorStarred());
 	}
 	
-	public Vector<StructuredNameData> getFromGroup(long groupId){
+	public ArrayList<StructuredNameData> getFromGroup(long groupId){
 		GroupModel model = new GroupModel(getContext());
 		GroupData group = model.getById(groupId);
 		
@@ -59,7 +59,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
         CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
         		c1, new String[]{ Data.RAW_CONTACT_ID });
 
-        Vector<StructuredNameData> results = new Vector<StructuredNameData>();
+        ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
         for(CursorJoinerWithIntKey.Result r : cursorJoiner){
         	switch(r){
         	case BOTH:
@@ -69,14 +69,14 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
         return results;
 	}
 	
-	public Vector<StructuredNameData> getNoGroup(String accountName, String accountType){
+	public ArrayList<StructuredNameData> getNoGroup(String accountName, String accountType){
 		Cursor c1 = getCursorBelongToGroup(accountName, accountType);
 		Cursor c2 = getCursorBelongToAccount(accountName, accountType);
 		
 		CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ RawContactsEntity._ID });
 		
-		Vector<StructuredNameData> results = new Vector<StructuredNameData>();
+		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
 		for(CursorJoinerWithIntKey.Result r : cursorJoiner){
 			switch(r){
 			case LEFT:
@@ -86,7 +86,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		return results;
 	}
 	
-	public Vector<StructuredNameData> getNoAccount(){
+	public ArrayList<StructuredNameData> getNoAccount(){
 		return readRows(getCursorBelongToNoAccount());
 	}
 	

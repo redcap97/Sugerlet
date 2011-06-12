@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -17,7 +17,7 @@ public class SettingsModel extends ModelBase<SettingsData> {
 		super(ctx);
 	}
 	
-	public Vector<SettingsData> getAll(){
+	public ArrayList<SettingsData> getAll(){
 		return readRows(getCursor());
 	}
 	

@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -31,7 +31,7 @@ public class PhoneModel extends ModelBase<PhoneData> {
    		return new PhoneData(id, number, type, label);
 	}
 	
-	public Vector<PhoneData> get(long rawContactId){
+	public ArrayList<PhoneData> get(long rawContactId){
 		Log.d(TAG, "Start to collect phones.");
 		return readRows(getCursor(rawContactId));
 	}

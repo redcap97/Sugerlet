@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -23,7 +23,7 @@ public class GroupListActivity extends Activity {
 	}
 	
 	private void setupGroupList(){        	
-        Vector<ListItem> items = new Vector<ListItem>();
+        ArrayList<ListItem> items = new ArrayList<ListItem>();
         AccountStateManager manager = AccountStateManagerFactory.create(this);
         for(AccountStateManager.State state : manager.getEnabledStates()){
         	items.add(new ListHeaderItem(this, state.getHeading()));
@@ -31,7 +31,7 @@ public class GroupListActivity extends Activity {
         			getNoGroupContactListIntent(state.getAccount())));
 
         	GroupModel model = new GroupModel(this);
-        	Vector<GroupData> groups = model.getByAccount(state.getName(), state.getType());
+        	ArrayList<GroupData> groups = model.getByAccount(state.getName(), state.getType());
         	for(GroupData group : groups){
         		items.add(new ListIntentItem(this, group.title,
         				getContactListIntent(state.getAccount(), group.id)));
@@ -65,9 +65,9 @@ public class GroupListActivity extends Activity {
 	}
 	
 	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private final Vector<ListItem> items;
+		private final ArrayList<ListItem> items;
 		
-		public ItemClickListener(Vector<ListItem> items){
+		public ItemClickListener(ArrayList<ListItem> items){
 			this.items = items;
 		}
 		

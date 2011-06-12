@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -27,7 +27,7 @@ public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
 		super(ctx);
 	}
 	
-	public Vector<StructuredPostalData> get(long rawContactId){
+	public ArrayList<StructuredPostalData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 

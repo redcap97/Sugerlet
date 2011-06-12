@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +18,7 @@ public class WebsiteModel extends ModelBase<WebsiteData> {
 		super(ctx);
 	}
 	
-	public Vector<WebsiteData> get(long rawContactId){
+	public ArrayList<WebsiteData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 	

@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -52,7 +52,7 @@ public class SugerletActivity extends Activity {
     }
     
     private void setupLauncherList(){
-        Vector<ListItem> items = new Vector<ListItem>();
+        ArrayList<ListItem> items = new ArrayList<ListItem>();
         items.add(new ListHeaderItem(this, 
         		getString(R.string.header_menu)));
         items.add(new ListIntentItem(this,
@@ -96,9 +96,9 @@ public class SugerletActivity extends Activity {
     }
     
 	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private Vector<ListItem> items;
+		private ArrayList<ListItem> items;
 		
-		public ItemClickListener(Vector<ListItem> items){
+		public ItemClickListener(ArrayList<ListItem> items){
 			this.items = items;
 		}
 		

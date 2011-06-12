@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class SettingAccountListAdapter extends BaseAdapter {
 	private Context context;
-	private Vector<AccountStateManager.State> states = new Vector<AccountStateManager.State>();
+	private ArrayList<AccountStateManager.State> states = new ArrayList<AccountStateManager.State>();
 	
 	public SettingAccountListAdapter(Context context){
 		this.context = context;

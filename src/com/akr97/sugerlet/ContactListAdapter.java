@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +9,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.content.Context;
-//import android.util.Log;
 
 import com.akr97.sugerlet.model.*;
 
 public class ContactListAdapter extends BaseAdapter {
-	private Vector<StructuredNameData> structuredNames;
+	private ArrayList<StructuredNameData> structuredNames;
 	private Context context;
 	
 	static final String TAG = "com.akr97.sugerlet.ContactListAdapter";
 
-	public ContactListAdapter(Context context, Vector<StructuredNameData> sns) {
+	public ContactListAdapter(Context context, ArrayList<StructuredNameData> sns) {
 		this.structuredNames = sns;
 		this.context = context;
 	}

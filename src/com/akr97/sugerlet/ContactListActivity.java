@@ -1,6 +1,6 @@
 package com.akr97.sugerlet;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -14,7 +14,7 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
-	private Vector<StructuredNameData> structureNames;
+	private ArrayList<StructuredNameData> structureNames;
 	
 	public static final long NO_GROUP_ID = 0L;
 	
@@ -56,7 +56,7 @@ public class ContactListActivity extends Activity {
 		return group.title;
 	}
 	
-	private Vector<StructuredNameData> getStructuredNames(Parameter params){
+	private ArrayList<StructuredNameData> getStructuredNames(Parameter params){
 		StructuredNameModel model = new StructuredNameModel(this);
 		if(params.groupId == NO_GROUP_ID){
 			return model.getNoGroup(params.account.name, params.account.type);

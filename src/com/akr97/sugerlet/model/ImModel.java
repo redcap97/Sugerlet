@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -41,7 +41,7 @@ public class ImModel extends ModelBase<ImData> {
 		return Im.getProtocolLabel(getResources(), im.protocol, im.customProtocol).toString();
 	}
 	
-	public Vector<ImData> get(long rawContactId){
+	public ArrayList<ImData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
 	

@@ -1,15 +1,15 @@
 package com.akr97.sugerlet.listitem;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public class ListItemAdapter extends BaseAdapter {
-	private Vector<ListItem> items;
+	private ArrayList<ListItem> items;
 	
-	public ListItemAdapter(Vector<ListItem> items){
+	public ListItemAdapter(ArrayList<ListItem> items){
 		this.items = items;
 	}
 	
