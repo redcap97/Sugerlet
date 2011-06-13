@@ -14,8 +14,6 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
-	private ArrayList<StructuredNameData> structureNames;
-	
 	public static final long NO_GROUP_ID = 0L;
 	
 	@Override
@@ -25,25 +23,15 @@ public class ContactListActivity extends Activity {
 		
 		Parameter params = new Parameter();
 		setTitle(getString(R.string.group) + ": " + getGroupName(params.groupId));
-	
+
 		ListView listView = (ListView)findViewById(R.id.contactList);
-		this.structureNames = getStructuredNames(params);
-		listView.setAdapter(new ContactListAdapter(this, structureNames));
+		ArrayList<StructuredNameData> structuredNames = getStructuredNames(params);
+		listView.setAdapter(new ContactListAdapter(this, structuredNames));
 		
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
 		
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView<?> parent, View view,
-        			int position, long id){
-        		StructuredNameData structuredName = structureNames.get(position);
-        		
-        		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
-    			intent.putExtra(getString(R.string.key_raw_contact_id), structuredName.rawContactId);
-        		startActivity(intent);
-        	}
-        });
+        listView.setOnItemClickListener(new ItemClickListener(structuredNames));
 	}
 	
 	private String getGroupName(long groupId){
@@ -99,6 +87,24 @@ public class ContactListActivity extends Activity {
 				throw new RuntimeException("AccountType is not found.");
 			}
 			return accountType;
+		}
+	}
+	
+	class ItemClickListener implements AdapterView.OnItemClickListener{
+		private ArrayList<StructuredNameData> structuredNames;
+		
+		public ItemClickListener(ArrayList<StructuredNameData> structuredNames){
+			this.structuredNames = structuredNames;
+		}
+		
+		@Override
+    	public void onItemClick(AdapterView<?> parent, View view,
+    			int position, long id){
+    		StructuredNameData structuredName = structuredNames.get(position);
+    		
+    		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
+			intent.putExtra(getString(R.string.key_raw_contact_id), structuredName.rawContactId);
+    		startActivity(intent);
 		}
 	}
 }
