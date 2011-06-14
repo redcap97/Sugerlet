@@ -10,11 +10,13 @@ import com.akr97.sugerlet.model.*;
 
 public class GroupContactsGetter extends ContactsGetter {
 	private Parameter params;
+	private Intent intent;
 	
 	public static final long NO_GROUP_ID = 0L;
 	
 	public GroupContactsGetter(Context context, Intent intent){
-		super(context, intent);
+		super(context);
+		this.intent = intent;
 		this.params = new Parameter();
 	}
 	

@@ -13,6 +13,7 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
+	private ContactsGetter getter;
 	private ArrayList<StructuredNameData> structuredNames;
 	
 	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
@@ -22,9 +23,8 @@ public class ContactListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		ContactsGetter getter = new GroupContactsGetter(this, getIntent());
+		setType();
 		this.structuredNames = getter.getStructuredNames();
-		
 		setTitle(getter.getTitle());
 		setupContactList();
 	}
@@ -37,6 +37,11 @@ public class ContactListActivity extends Activity {
 		listView.setEmptyView(emptyView);
 		
         listView.setOnItemClickListener(new ItemClickListener());
+	}
+	
+	private void setType(){
+		//ContactsGetter getter = new GroupContactsGetter(this, getIntent());
+		this.getter = new StarredContactsGetter(this);
 	}
 
 	class ItemClickListener implements AdapterView.OnItemClickListener{
