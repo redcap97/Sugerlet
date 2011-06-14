@@ -45,7 +45,9 @@ public class GroupListActivity extends Activity {
 	}
 	
 	private Intent getContactListIntent(){
-		return new Intent(this, ContactListActivity.class);
+		Intent intent = new Intent(this, ContactListActivity.class);
+		intent.putExtra(getString(R.string.key_type), ContactListActivity.TYPE_GROUP);
+		return intent;
 	}
 	
 	private Intent getContactListIntent(Account account, long groupId){
@@ -57,11 +59,7 @@ public class GroupListActivity extends Activity {
 	}
 	
 	private Intent getNoGroupContactListIntent(Account account){
-		Intent intent = getContactListIntent();
-		intent.putExtra(getString(R.string.key_account_name), account.name);
-		intent.putExtra(getString(R.string.key_account_type), account.type);
-		intent.putExtra(getString(R.string.key_group_id), ContactListActivity.NO_GROUP_ID);
-		return intent;
+		return getContactListIntent(account, ContactListActivity.NO_GROUP_ID);
 	}
 	
 	static class ItemClickListener implements AdapterView.OnItemClickListener {

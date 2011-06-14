@@ -17,13 +17,17 @@ public class ContactListActivity extends Activity {
 	private ArrayList<StructuredNameData> structuredNames;
 	
 	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
+	public static final int TYPE_GROUP = 1;
+	public static final int TYPE_STARRED = 2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		setType();
+		Parameter params = new Parameter();
+		setType(params.type);
+		
 		this.structuredNames = getter.getStructuredNames();
 		setTitle(getter.getTitle());
 		setupContactList();
@@ -39,11 +43,36 @@ public class ContactListActivity extends Activity {
         listView.setOnItemClickListener(new ItemClickListener());
 	}
 	
-	private void setType(){
-		//ContactsGetter getter = new GroupContactsGetter(this, getIntent());
-		this.getter = new StarredContactsGetter(this);
+	private void setType(int type){
+		switch(type){
+		case TYPE_GROUP:
+			this.getter = new GroupContactsGetter(this, getIntent());
+			break;
+		case TYPE_STARRED:
+			this.getter = new StarredContactsGetter(this); 
+			break;
+		}
 	}
 
+	class Parameter {
+		private Intent intent;
+		
+		public int type;
+		
+		public Parameter(){
+			this.intent = getIntent();
+			this.type = getType();
+		}
+		
+		public int getType(){
+			int type = intent.getIntExtra(getString(R.string.key_type), -1);
+			if(type == -1){
+				throw new RuntimeException("Type is not found.");
+			}
+			return type;
+		}
+	}
+	
 	class ItemClickListener implements AdapterView.OnItemClickListener{
 		@Override
     	public void onItemClick(AdapterView<?> parent, View view,
