@@ -9,6 +9,8 @@ import android.content.Intent;
 import com.akr97.sugerlet.model.*;
 
 public class GroupContactsGetter {
+	public static final long NO_GROUP_ID = 0L;
+	
 	private Context context;
 	private Intent intent;
 	private Parameter params;
@@ -25,7 +27,7 @@ public class GroupContactsGetter {
 	
 	public ArrayList<StructuredNameData> getStructuredNames(){
 		StructuredNameModel model = new StructuredNameModel(context);
-		if(params.groupId == ContactListActivity.NO_GROUP_ID){
+		if(params.groupId == NO_GROUP_ID){
 			return model.getNoGroup(params.account.name, params.account.type);
 		}else{
 			return model.getFromGroup(params.groupId);
@@ -33,7 +35,7 @@ public class GroupContactsGetter {
 	}
 	
 	private String getGroupName(long groupId){
-		if(groupId == ContactListActivity.NO_GROUP_ID){
+		if(groupId == NO_GROUP_ID){
 			return context.getString(R.string.no_group);
 		}
 		
