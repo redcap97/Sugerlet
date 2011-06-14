@@ -13,7 +13,7 @@ public class StarredContactsGetter extends ContactsGetter {
 
 	@Override
 	public String getTitle() {
-		return "Starred";
+		return context.getString(R.string.starred_contacts);
 	}
 
 	@Override

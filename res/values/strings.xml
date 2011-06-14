@@ -25,4 +25,6 @@
     <string name="key_account_type">AccountType</string>
     <string name="key_account_name">AccountName</string>
     <string name="key_type">Type</string>
+    <string name="menu_starred_contacts">お気に入り</string>
+    <string name="starred_contacts">お気に入り</string>
 </resources>

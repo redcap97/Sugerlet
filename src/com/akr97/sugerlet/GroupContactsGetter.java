@@ -22,7 +22,9 @@ public class GroupContactsGetter extends ContactsGetter {
 	
 	@Override
 	public String getTitle(){
-		return context.getString(R.string.group) + ": " + getGroupName(params.groupId);
+		return String.format("%s: %s", 
+				context.getString(R.string.group),
+				getGroupName(params.groupId));
 	}
 	
 	@Override
