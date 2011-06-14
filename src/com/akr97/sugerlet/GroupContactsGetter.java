@@ -8,23 +8,22 @@ import android.content.Intent;
 
 import com.akr97.sugerlet.model.*;
 
-public class GroupContactsGetter {
-	public static final long NO_GROUP_ID = 0L;
-	
-	private Context context;
-	private Intent intent;
+public class GroupContactsGetter extends ContactsGetter {
 	private Parameter params;
 	
+	public static final long NO_GROUP_ID = 0L;
+	
 	public GroupContactsGetter(Context context, Intent intent){
-		this.context = context;
-		this.intent = intent;
+		super(context, intent);
 		this.params = new Parameter();
 	}
 	
+	@Override
 	public String getTitle(){
 		return context.getString(R.string.group) + ": " + getGroupName(params.groupId);
 	}
 	
+	@Override
 	public ArrayList<StructuredNameData> getStructuredNames(){
 		StructuredNameModel model = new StructuredNameModel(context);
 		if(params.groupId == NO_GROUP_ID){

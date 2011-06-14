@@ -13,16 +13,16 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactListActivity extends Activity {
-	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
-	
 	private ArrayList<StructuredNameData> structuredNames;
+	
+	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		GroupContactsGetter getter = new GroupContactsGetter(this, getIntent());
+		ContactsGetter getter = new GroupContactsGetter(this, getIntent());
 		this.structuredNames = getter.getStructuredNames();
 		
 		setTitle(getter.getTitle());
