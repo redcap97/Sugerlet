@@ -67,6 +67,9 @@ public class SettingAccountListAdapter extends BaseAdapter {
 		for(AccountState state : states){
 			accountStateManager.update(state);
 		}
+		
+		AccountStateStore store = new AccountStateStore(context);
+		store.put(accountStateManager.getStates());
 	}
 	
 	public void reset(){

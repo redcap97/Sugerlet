@@ -13,8 +13,12 @@ public class AccountStateManager {
 	static final String TAG = "com.akr97.sugerlet.AccountChanger";
 	
 	public AccountStateManager(Context ctx){
-		addStatesFromAccountManager(ctx);
-		addStatesFromSettingsModel(ctx);
+		this(ctx, true);
+	}
+	
+	public AccountStateManager(Context ctx, boolean defaultState){
+		addStatesFromAccountManager(ctx, defaultState);
+		addStatesFromSettingsModel(ctx, defaultState);
 	}
 	
 	public ArrayList<AccountState> getStates(){
@@ -59,23 +63,23 @@ public class AccountStateManager {
 		}
 	}
 
-	private void addStatesFromAccountManager(Context ctx){
+	private void addStatesFromAccountManager(Context ctx, boolean defaultState){
         Account[] accounts = AccountManager.get(ctx).getAccounts();
         for(Account account : accounts){
-        	addState(account);
+        	addState(account, defaultState);
         }
 	}
 	
-	private void addStatesFromSettingsModel(Context ctx){
+	private void addStatesFromSettingsModel(Context ctx, boolean defaultState){
         SettingsModel settingsModel = new SettingsModel(ctx);
         for(SettingsData settings : settingsModel.getAll()){
-        	addState(settings.getAccount());
+        	addState(settings.getAccount(), defaultState);
         }
 	}
 	
-	private void addState(Account account){
+	private void addState(Account account, boolean enabled){
 		if(!isIncluded(account)){
-			states.add(new AccountState(account));
+			states.add(new AccountState(account, enabled));
 		}
 	}
 }

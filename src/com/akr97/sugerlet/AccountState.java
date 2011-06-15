@@ -6,9 +6,9 @@ public class AccountState {
 	private final Account account;
 	private boolean enabled;
 	
-	public AccountState(Account account){
+	public AccountState(Account account, boolean enabled){
 		this.account = account;
-		this.enabled = true;
+		this.enabled = enabled;
 	}
 	
 	public AccountState(AccountState state){
