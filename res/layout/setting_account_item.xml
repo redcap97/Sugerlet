@@ -7,5 +7,5 @@
         <TextView android:textSize="24dip" android:text="name" android:id="@+id/name" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
         <TextView android:textSize="16dip" android:text="type" android:id="@+id/type" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     </TableLayout>
-    <CheckBox android:id="@+id/checkBox" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="right" android:layout_marginRight="6dip"></CheckBox>
+    <CheckBox android:id="@+id/checkBox" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="right" android:layout_marginRight="6dip" android:focusable="false" android:focusableInTouchMode="true"></CheckBox>
 </LinearLayout>

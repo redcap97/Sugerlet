@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,12 +23,27 @@ public class SettingAccountActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_account);
         
+        setupSettingAccountList();
+        setupSaveButton();
+    }
+    
+    private void setupSettingAccountList(){
         listAdapter = new SettingAccountListAdapter(this);
 		listView = (ListView)findViewById(R.id.list);
 		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
-		
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+	    			int position, long id){
+				CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkBox);
+				checkBox.setChecked(!checkBox.isChecked());
+			}
+		});
+    }
+    
+    private void setupSaveButton(){
 		View saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(new View.OnClickListener(){
 			@Override
