@@ -27,4 +27,6 @@
     <string name="key_type">Type</string>
     <string name="menu_starred_contacts">お気に入り</string>
     <string name="starred_contacts">お気に入り</string>
+    <string name="save">保存</string>
+    <string name="message_save">保存しました</string>
 </resources>

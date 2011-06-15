@@ -6,10 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SettingAccountActivity extends Activity {
 	static final int MENU_SAVE = (Menu.FIRST + 1);
 	static final int MENU_RESET = (Menu.FIRST + 2);
+	static final int DURATION_TOAST = 5;
 	
 	private SettingAccountListAdapter listAdapter;
 	private ListView listView;
@@ -24,6 +26,14 @@ public class SettingAccountActivity extends Activity {
 		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
+		
+		View saveButton = findViewById(R.id.saveButton);
+		saveButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				saveChanges();
+			}
+		});
     }
     
     @Override
@@ -48,6 +58,7 @@ public class SettingAccountActivity extends Activity {
     
     public void saveChanges(){
 		listAdapter.save();
+		Toast.makeText(this, getString(R.string.message_save), DURATION_TOAST).show();
 		finish();
     }
     
