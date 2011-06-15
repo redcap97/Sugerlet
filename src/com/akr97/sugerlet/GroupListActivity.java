@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.akr97.sugerlet.listitem.*;
 import com.akr97.sugerlet.model.*;
+import com.akr97.sugerlet.util.*;
 
 public class GroupListActivity extends Activity {
 	@Override
@@ -26,7 +28,7 @@ public class GroupListActivity extends Activity {
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         AccountStateManager manager = AccountStateManagerFactory.create(this);
         for(AccountStateManager.State state : manager.getEnabledStates()){
-        	items.add(new ListHeaderItem(this, state.getHeading()));
+        	items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
         	items.add(new ListIntentItem(this, getString(R.string.no_group),
         			getNoGroupContactListIntent(state.getAccount())));
 
@@ -39,7 +41,9 @@ public class GroupListActivity extends Activity {
         }
         
         ListView listView = (ListView)findViewById(R.id.contactList);
-        listView.setEmptyView(findViewById(R.id.emptyView));
+        TextView textView = (TextView)findViewById(R.id.emptyView);
+        textView.setText(getString(R.string.message_no_group));
+        listView.setEmptyView(textView);
         listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ItemClickListener(items));
 	}

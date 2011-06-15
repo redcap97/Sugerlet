@@ -105,10 +105,6 @@ public class AccountStateManager {
 			return account;
 		}
 		
-		public String getHeading(){
-			return String.format("%s (%s)", account.name, account.type);
-		}
-		
 		public boolean isEnabled(){
 			return enabled;
 		}
