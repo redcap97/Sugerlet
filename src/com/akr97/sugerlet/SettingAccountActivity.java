@@ -13,7 +13,6 @@ import android.widget.Toast;
 public class SettingAccountActivity extends Activity {
 	static final int MENU_SAVE = (Menu.FIRST + 1);
 	static final int MENU_RESET = (Menu.FIRST + 2);
-	static final int DURATION_TOAST = 5;
 	
 	private SettingAccountListAdapter listAdapter;
 	private ListView listView;
@@ -75,7 +74,7 @@ public class SettingAccountActivity extends Activity {
     
     public void saveChanges(){
 		listAdapter.save();
-		Toast.makeText(this, getString(R.string.message_save), DURATION_TOAST).show();
+		Toast.makeText(this, getString(R.string.message_save), Toast.LENGTH_SHORT).show();
 		finish();
     }
     
