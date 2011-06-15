@@ -27,7 +27,7 @@ public class GroupListActivity extends Activity {
 	private void setupGroupList(){        	
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         AccountStateManager manager = AccountStateManagerFactory.create(this);
-        for(AccountStateManager.State state : manager.getEnabledStates()){
+        for(AccountState state : manager.getEnabledStates()){
         	items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
         	items.add(new ListIntentItem(this, getString(R.string.no_group),
         			getNoGroupContactListIntent(state.getAccount())));

@@ -14,7 +14,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class SettingAccountListAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<AccountStateManager.State> states = new ArrayList<AccountStateManager.State>();
+	private ArrayList<AccountState> states = new ArrayList<AccountState>();
 	
 	public SettingAccountListAdapter(Context context){
 		this.context = context;
@@ -38,7 +38,7 @@ public class SettingAccountListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		AccountStateManager.State state = (AccountStateManager.State)getItem(position);
+		AccountState state = (AccountState)getItem(position);
 		ViewHolder holder;
 		
 		if(convertView == null){
@@ -64,7 +64,7 @@ public class SettingAccountListAdapter extends BaseAdapter {
 	
 	public void save(){
 		AccountStateManager accountStateManager = AccountStateManagerFactory.create(context);
-		for(AccountStateManager.State state : states){
+		for(AccountState state : states){
 			accountStateManager.update(state);
 		}
 	}
@@ -72,8 +72,8 @@ public class SettingAccountListAdapter extends BaseAdapter {
 	public void reset(){
 		states.clear();
 		AccountStateManager manager = AccountStateManagerFactory.create(context);
-		for(AccountStateManager.State state : manager.getStates()){
-			states.add(new AccountStateManager.State(state));
+		for(AccountState state : manager.getStates()){
+			states.add(new AccountState(state));
 		}
 	}
 	
@@ -92,7 +92,7 @@ public class SettingAccountListAdapter extends BaseAdapter {
 		
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			AccountStateManager.State state = states.get(position);
+			AccountState state = states.get(position);
 			state.setEnabled(isChecked);
 		}
 	}

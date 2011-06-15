@@ -8,7 +8,7 @@ import android.accounts.Account;
 import com.akr97.sugerlet.model.*;
 
 public class AccountStateManager {
-	private ArrayList<State> states = new ArrayList<State>();
+	private ArrayList<AccountState> states = new ArrayList<AccountState>();
 	
 	static final String TAG = "com.akr97.sugerlet.AccountChanger";
 	
@@ -17,13 +17,13 @@ public class AccountStateManager {
 		addStatesFromSettingsModel(ctx);
 	}
 	
-	public ArrayList<State> getStates(){
-		return new ArrayList<State>(states);
+	public ArrayList<AccountState> getStates(){
+		return new ArrayList<AccountState>(states);
 	}
 	
-	public ArrayList<State> getEnabledStates(){
-		ArrayList<State> enabledStates = new ArrayList<State>();
-		for(State state : states){
+	public ArrayList<AccountState> getEnabledStates(){
+		ArrayList<AccountState> enabledStates = new ArrayList<AccountState>();
+		for(AccountState state : states){
 			if(state.isEnabled()){
 				enabledStates.add(state);
 			}
@@ -32,7 +32,7 @@ public class AccountStateManager {
 	}
 	
 	public boolean hasFilters(){
-		for(State s : states){
+		for(AccountState s : states){
 			if(!s.isEnabled()){
 				return true;
 			}
@@ -41,7 +41,7 @@ public class AccountStateManager {
 	}
 	
 	public boolean isIncluded(Account account){
-		for(State s : states){
+		for(AccountState s : states){
 			if(account.equals(s.getAccount())){
 				return true;
 			}
@@ -49,9 +49,9 @@ public class AccountStateManager {
 		return false;
 	}
 	
-	public void update(State state){
+	public void update(AccountState state){
 		Account account = state.getAccount();
-		for(State s : states){
+		for(AccountState s : states){
 			if(account.equals(s.getAccount())){
 				s.setEnabled(state.isEnabled());
 				return;
@@ -75,48 +75,7 @@ public class AccountStateManager {
 	
 	private void addState(Account account){
 		if(!isIncluded(account)){
-			states.add(new State(account));
-		}
-	}
-	
-	public static class State {		
-		private final Account account;
-		private boolean enabled;
-		
-		public State(Account account){
-			this.account = account;
-			this.enabled = true;
-		}
-		
-		public State(State state){
-			this.account = new Account(state.getName(), state.getType());
-			this.enabled = state.isEnabled();
-		}
-		
-		public String getName(){
-			return account.name;
-		}
-		
-		public String getType(){
-			return account.type;
-		}
-		
-		public Account getAccount(){
-			return account;
-		}
-		
-		public boolean isEnabled(){
-			return enabled;
-		}
-		
-		public void setEnabled(boolean enabled){
-			this.enabled = enabled;
-		}
-		
-		@Override
-		public String toString(){
-			return String.format("name: %s, type: %s, enabled: %b",
-					account.name, account.type, enabled);
+			states.add(new AccountState(account));
 		}
 	}
 }
