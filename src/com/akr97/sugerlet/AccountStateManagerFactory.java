@@ -6,14 +6,10 @@ public class AccountStateManagerFactory {
 	static AccountStateManager accountStateManager;
 	
 	public static AccountStateManager create(Context ctx){
-		if(accountStateManager == null){
-			AccountStateStore store = new AccountStateStore(ctx);
-			
-			if(store.isInitialized()){
+		if(accountStateManager == null){		
+			if(AccountStateManager.canLoad(ctx)){
 				accountStateManager = new AccountStateManager(ctx, false);
-				for(AccountState state : store.get()){
-					accountStateManager.update(state);
-				}
+				accountStateManager.load();
 			}else{
 				accountStateManager = new AccountStateManager(ctx);			
 			}

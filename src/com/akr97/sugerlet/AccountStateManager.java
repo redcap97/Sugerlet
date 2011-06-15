@@ -9,6 +9,7 @@ import com.akr97.sugerlet.model.*;
 
 public class AccountStateManager {
 	private ArrayList<AccountState> states = new ArrayList<AccountState>();
+	private Context context;
 	
 	static final String TAG = "com.akr97.sugerlet.AccountChanger";
 	
@@ -17,8 +18,9 @@ public class AccountStateManager {
 	}
 	
 	public AccountStateManager(Context ctx, boolean defaultState){
-		addStatesFromAccountManager(ctx, defaultState);
-		addStatesFromSettingsModel(ctx, defaultState);
+		this.context = ctx;
+		addStatesFromAccountManager(defaultState);
+		addStatesFromSettingsModel(defaultState);
 	}
 	
 	public ArrayList<AccountState> getStates(){
@@ -33,15 +35,6 @@ public class AccountStateManager {
 			}
 		}
 		return enabledStates;
-	}
-	
-	public boolean hasFilters(){
-		for(AccountState s : states){
-			if(!s.isEnabled()){
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	public boolean isIncluded(Account account){
@@ -62,16 +55,33 @@ public class AccountStateManager {
 			}
 		}
 	}
+	
+	public static boolean canLoad(Context context){
+		AccountStateStore store = new AccountStateStore(context);
+		return store.isInitialized();
+	}
+	
+	public void load(){
+		AccountStateStore store = new AccountStateStore(context);
+		for(AccountState state : store.get()){
+			update(state);
+		}
+	}
+	
+	public void save(){
+		AccountStateStore store = new AccountStateStore(context);
+		store.put(states);
+	}
 
-	private void addStatesFromAccountManager(Context ctx, boolean defaultState){
-        Account[] accounts = AccountManager.get(ctx).getAccounts();
+	private void addStatesFromAccountManager(boolean defaultState){
+        Account[] accounts = AccountManager.get(context).getAccounts();
         for(Account account : accounts){
         	addState(account, defaultState);
         }
 	}
 	
-	private void addStatesFromSettingsModel(Context ctx, boolean defaultState){
-        SettingsModel settingsModel = new SettingsModel(ctx);
+	private void addStatesFromSettingsModel(boolean defaultState){
+        SettingsModel settingsModel = new SettingsModel(context);
         for(SettingsData settings : settingsModel.getAll()){
         	addState(settings.getAccount(), defaultState);
         }
