@@ -10,7 +10,8 @@ import android.provider.ContactsContract.Data;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.akr97.sugerlet.util.CursorJoinerWithIntKey;
+import com.akr97.sugerlet.*;
+import com.akr97.sugerlet.util.*;
 
 public class StructuredNameModel extends ModelBase<StructuredNameData> {
     static final String TAG = "com.akr97.sugerlet.model.StructuredNameModel";
@@ -46,7 +47,17 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 	}
 
 	public ArrayList<StructuredNameData> getStarred(){
-		return readRows(getCursorStarred());
+		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
+		
+		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
+		for(AccountState state : manager.getEnabledStates()){
+			results.addAll(getStarred(state.getName(), state.getType()));
+		}
+		return results;
+	}
+	
+	public ArrayList<StructuredNameData> getStarred(String accountName, String accountType){
+		return readRows(getCursorStarred(accountName, accountType));
 	}
 	
 	public ArrayList<StructuredNameData> getFromGroup(long groupId){
@@ -148,14 +159,17 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				RawContactsEntity._ID);
 	}
 	
-	private Cursor getCursorStarred(){
+	private Cursor getCursorStarred(String accountName, String accountType){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContacts.STARRED + "=? AND " +
-					RawContactsEntity.MIMETYPE + "=?",
+					RawContactsEntity.MIMETYPE + "=? AND " +
+					RawContacts.ACCOUNT_NAME + "=? AND " +
+					RawContacts.ACCOUNT_TYPE + "=?",
 				new String[]{
 					String.valueOf(1),
-					StructuredName.CONTENT_ITEM_TYPE }, 
+					StructuredName.CONTENT_ITEM_TYPE,
+					accountName, accountType }, 
 				RawContacts._ID);
 	}
 }
