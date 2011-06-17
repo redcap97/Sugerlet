@@ -30,4 +30,5 @@
     <string name="save">保存</string>
     <string name="message_save">保存しました</string>
     <string name="message_no_group">グループが存在しません</string>
+    <string name="menu_account_list">アカウント</string>
 </resources>

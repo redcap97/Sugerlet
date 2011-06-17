@@ -20,6 +20,7 @@
         <activity android:name=".profile.ProfileActivity"></activity>
         <activity android:name=".SettingAccountActivity"></activity>
         <activity android:name=".GroupListActivity"></activity>
+        <activity android:name=".AccountListActivity"></activity>
 
     </application>
 </manifest>
