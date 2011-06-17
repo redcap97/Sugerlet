@@ -9,8 +9,8 @@ import android.content.Intent;
 import com.akr97.sugerlet.model.*;
 
 public class GroupContactsGetter extends ContactsGetter {
-	private Parameter params;
-	private Intent intent;
+	private final Parameter params;
+	private final Intent intent;
 	
 	public static final long NO_GROUP_ID = 0L;
 	

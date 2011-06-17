@@ -19,6 +19,7 @@ public class ContactListActivity extends Activity {
 	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
 	public static final int TYPE_GROUP = 1;
 	public static final int TYPE_STARRED = 2;
+	public static final int TYPE_ACCOUNT = 3;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,9 @@ public class ContactListActivity extends Activity {
 			break;
 		case TYPE_STARRED:
 			this.getter = new StarredContactsGetter(this); 
+			break;
+		case TYPE_ACCOUNT:
+			this.getter = new AccountContactsGetter(this, getIntent());
 			break;
 		}
 	}

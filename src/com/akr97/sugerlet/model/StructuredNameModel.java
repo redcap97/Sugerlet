@@ -80,6 +80,10 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
         return results;
 	}
 	
+	public ArrayList<StructuredNameData> getByAccount(String accountName, String accountType){
+		return readRows(getCursorBelongToAccount(accountName, accountType));
+	}
+	
 	public ArrayList<StructuredNameData> getNoGroup(String accountName, String accountType){
 		Cursor c1 = getCursorBelongToGroup(accountName, accountType);
 		Cursor c2 = getCursorBelongToAccount(accountName, accountType);

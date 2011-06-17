@@ -2,6 +2,7 @@ package com.akr97.sugerlet;
 
 import android.accounts.Account;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -27,5 +28,14 @@ public class AccountListContentItem extends ListItem {
 		tvType.setText(account.type);
 		
 		return convertView;
+	}
+	
+	@Override
+	public void onClick(View view){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_type), ContactListActivity.TYPE_ACCOUNT);
+		intent.putExtra(context.getString(R.string.key_account_name), account.name);
+		intent.putExtra(context.getString(R.string.key_account_type), account.type);
+		context.startActivity(intent);
 	}
 }
