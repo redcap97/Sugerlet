@@ -43,7 +43,7 @@ public class SettingAccountListAdapter extends BaseAdapter {
 		
 		if(convertView == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
-			convertView = inflater.inflate(R.layout.setting_account_item, null);
+			convertView = inflater.inflate(R.layout.setting_account_list_item, null);
 			
 			holder = new ViewHolder();
 			holder.name = (TextView)convertView.findViewById(R.id.name);
