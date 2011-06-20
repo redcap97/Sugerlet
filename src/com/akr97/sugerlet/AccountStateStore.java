@@ -2,6 +2,7 @@ package com.akr97.sugerlet;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -35,14 +36,17 @@ public class AccountStateStore {
 	public ArrayList<AccountState> get(){
 		ArrayList<AccountState> states = new ArrayList<AccountState>();	
 		Map<String, ?> map = pref.getAll();
-		for(String key : map.keySet()){
-			if(key.equals(KEY_IS_INITIALIZED)){
-				continue;
+
+		for(Entry<String, ?> entry : map.entrySet()){
+			String key = entry.getKey();
+			if(!key.equals(KEY_IS_INITIALIZED)){
+				Account account = parseAccountKey(key);
+				boolean state = (Boolean)entry.getValue();
+				
+				states.add(new AccountState(account, state));
 			}
-			
-			Account account = parseAccountKey(key);
-			states.add(new AccountState(account, (Boolean)map.get(key)));
 		}
+		
 		return states;
 	}
 	
