@@ -3,6 +3,7 @@ package com.akr97.sugerlet.profile;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -155,6 +156,12 @@ public class ProfileActivity extends Activity {
 			}
 		}
 		return items;
+	}
+	
+	public static Intent getIntent(Context context, long rawContactId){
+		Intent intent = new Intent(context, ProfileActivity.class);
+		intent.putExtra(context.getString(R.string.key_raw_contact_id), rawContactId);
+		return intent;
 	}
 	
 	class Parameter{

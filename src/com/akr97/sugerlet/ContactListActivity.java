@@ -82,10 +82,7 @@ public class ContactListActivity extends Activity {
     	public void onItemClick(AdapterView<?> parent, View view,
     			int position, long id){
     		StructuredNameData structuredName = structuredNames.get(position);
-    		
-    		Intent intent = new Intent(parent.getContext(), ProfileActivity.class);
-			intent.putExtra(getString(R.string.key_raw_contact_id), structuredName.rawContactId);
-    		startActivity(intent);
+    		startActivity(ProfileActivity.getIntent(parent.getContext(), structuredName.rawContactId));
 		}
 	}
 }
