@@ -4,8 +4,8 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent" android:orientation="horizontal" android:gravity="center_vertical">
     <TableLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1" android:id="@+id/tableLayout">
-        <TextView android:textSize="24dip" android:text="name" android:id="@+id/name" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-        <TextView android:textSize="16dip" android:text="type" android:id="@+id/type" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+        <TextView android:textSize="24dip" android:text="name" android:id="@+id/name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dip" android:layout_marginBottom="2dip" android:layout_marginTop="2dip"></TextView>
+        <TextView android:textSize="16dip" android:text="type" android:id="@+id/type" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#00AA00" android:layout_marginLeft="4dip" android:layout_marginBottom="2dip"></TextView>
     </TableLayout>
     <CheckBox android:id="@+id/checkBox" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="right" android:layout_marginRight="6dip" android:focusable="false" android:focusableInTouchMode="true"></CheckBox>
 </LinearLayout>
