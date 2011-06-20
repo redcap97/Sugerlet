@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 
@@ -78,7 +77,7 @@ public class SugerletActivity extends Activity {
         listView.setAdapter(new ListItemAdapter(items));
         View emptyView = findViewById(R.id.emptyView);
         listView.setEmptyView(emptyView);
-        listView.setOnItemClickListener(new ItemClickListener(items));
+        listView.setOnItemClickListener(new ListItemClickListener(items));
     }
     
     private Intent getGroupListIntent(){
@@ -110,19 +109,4 @@ public class SugerletActivity extends Activity {
     private void launchSettingAccount(){
 		startActivity(getSettingAccountIntent());
     }
-    
-	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private ArrayList<ListItem> items;
-		
-		public ItemClickListener(ArrayList<ListItem> items){
-			this.items = items;
-		}
-		
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view,
-				int position, long id) {
-			ListItem item = items.get(position);
-			item.onClick(view);
-		}
-	}
 }

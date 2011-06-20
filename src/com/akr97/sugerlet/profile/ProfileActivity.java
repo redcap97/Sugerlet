@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,7 +48,7 @@ public class ProfileActivity extends Activity {
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ListItemAdapter(items));
-        listView.setOnItemClickListener(new ItemClickListener(items));
+        listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
 	
 	ArrayList<ListItem> getPhoneList(long rawContactId){
@@ -175,22 +173,6 @@ public class ProfileActivity extends Activity {
 				throw new RuntimeException("RawContactId is not found.");
 			}
 			return groupId;
-		}
-	}
-	
-	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private ArrayList<ListItem> items;
-		
-		public ItemClickListener(ArrayList<ListItem> items){
-			this.items = items;
-		}
-		
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view,
-				int position, long id) {
-			
-			ListItem item = items.get(position);
-			item.onClick(view);
 		}
 	}
 }

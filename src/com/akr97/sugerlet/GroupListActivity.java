@@ -6,8 +6,6 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,7 +43,7 @@ public class GroupListActivity extends Activity {
         textView.setText(getString(R.string.message_no_group));
         listView.setEmptyView(textView);
         listView.setAdapter(new ListItemAdapter(items));
-        listView.setOnItemClickListener(new ItemClickListener(items));
+        listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
 	
 	private Intent getContactListIntent(){
@@ -64,19 +62,5 @@ public class GroupListActivity extends Activity {
 	
 	private Intent getNoGroupContactListIntent(Account account){
 		return getContactListIntent(account, ContactListActivity.NO_GROUP_ID);
-	}
-	
-	static class ItemClickListener implements AdapterView.OnItemClickListener {
-		private final ArrayList<ListItem> items;
-		
-		public ItemClickListener(ArrayList<ListItem> items){
-			this.items = items;
-		}
-		
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			ListItem item = items.get(position);
-			item.onClick(view);
-		}
 	}
 }
