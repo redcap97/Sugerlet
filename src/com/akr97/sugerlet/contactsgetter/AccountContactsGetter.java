@@ -1,4 +1,4 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.contactsgetter;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.util.AccountUtil;
 

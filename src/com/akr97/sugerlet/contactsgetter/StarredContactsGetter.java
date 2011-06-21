@@ -1,9 +1,10 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.contactsgetter;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
 
 public class StarredContactsGetter extends ContactsGetter {

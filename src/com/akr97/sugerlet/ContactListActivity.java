@@ -13,6 +13,7 @@ import android.content.Intent;
 
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
+import com.akr97.sugerlet.contactsgetter.*;
 
 public class ContactListActivity extends Activity {
 	private ContactsGetter getter;
