@@ -18,10 +18,11 @@ public class ContactListActivity extends Activity {
 	private ContactsGetter getter;
 	private ArrayList<StructuredNameData> structuredNames;
 	
-	public static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
 	public static final int TYPE_GROUP = 1;
 	public static final int TYPE_STARRED = 2;
 	public static final int TYPE_ACCOUNT = 3;
+	
+	private static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,14 @@ public class ContactListActivity extends Activity {
 	
 	public static Intent getIntentNoGroup(Context context, Account account){
 		return ContactListActivity.getIntentGroup(context, account, NO_GROUP_ID);
+	}
+	
+	public static Intent getIntentAccount(Context context, Account account){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_type), TYPE_ACCOUNT);
+		intent.putExtra(context.getString(R.string.key_account_name), account.name);
+		intent.putExtra(context.getString(R.string.key_account_type), account.type);
+		return intent;
 	}
 
 	class Parameter {
