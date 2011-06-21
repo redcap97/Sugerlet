@@ -2,7 +2,6 @@ package com.akr97.sugerlet;
 
 import java.util.ArrayList;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,13 +28,13 @@ public class GroupListActivity extends Activity {
         for(AccountState state : manager.getEnabledStates()){
         	items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
         	items.add(new ListIntentItem(this, getString(R.string.no_group),
-        			getNoGroupContactListIntent(state.getAccount())));
+        			ContactListActivity.getIntentNoGroup(this, state.getAccount())));
 
         	GroupModel model = new GroupModel(this);
         	ArrayList<GroupData> groups = model.getByAccount(state.getName(), state.getType());
         	for(GroupData group : groups){
         		items.add(new ListIntentItem(this, group.title,
-        				getContactListIntent(state.getAccount(), group.id)));
+        				ContactListActivity.getIntentGroup(this, state.getAccount(), group.id)));
         	}
         }
         
@@ -45,24 +44,6 @@ public class GroupListActivity extends Activity {
         listView.setEmptyView(textView);
         listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ListItemClickListener(items));
-	}
-	
-	private Intent getContactListIntent(){
-		Intent intent = new Intent(this, ContactListActivity.class);
-		intent.putExtra(getString(R.string.key_type), ContactListActivity.TYPE_GROUP);
-		return intent;
-	}
-	
-	private Intent getContactListIntent(Account account, long groupId){
-		Intent intent = getContactListIntent();
-		intent.putExtra(getString(R.string.key_account_name), account.name);
-		intent.putExtra(getString(R.string.key_account_type), account.type);
-		intent.putExtra(getString(R.string.key_group_id), groupId);
-		return intent;
-	}
-	
-	private Intent getNoGroupContactListIntent(Account account){
-		return getContactListIntent(account, ContactListActivity.NO_GROUP_ID);
 	}
 	
 	public static Intent getIntent(Context context){

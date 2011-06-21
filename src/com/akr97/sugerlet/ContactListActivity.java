@@ -2,6 +2,7 @@ package com.akr97.sugerlet;
 
 import java.util.ArrayList;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,11 +51,11 @@ public class ContactListActivity extends Activity {
 		case TYPE_GROUP:
 			this.getter = new GroupContactsGetter(this, getIntent());
 			break;
-		case TYPE_STARRED:
-			this.getter = new StarredContactsGetter(this); 
-			break;
 		case TYPE_ACCOUNT:
 			this.getter = new AccountContactsGetter(this, getIntent());
+			break;
+		case TYPE_STARRED:
+			this.getter = new StarredContactsGetter(this); 
 			break;
 		}
 	}
@@ -63,6 +64,19 @@ public class ContactListActivity extends Activity {
     	Intent intent = new Intent(context, ContactListActivity.class);
     	intent.putExtra(context.getString(R.string.key_type), TYPE_STARRED);
     	return intent;
+	}
+	
+	public static Intent getIntentGroup(Context context, Account account, long groupId){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_type), ContactListActivity.TYPE_GROUP);
+		intent.putExtra(context.getString(R.string.key_account_name), account.name);
+		intent.putExtra(context.getString(R.string.key_account_type), account.type);
+		intent.putExtra(context.getString(R.string.key_group_id), groupId);
+		return intent;
+	}
+	
+	public static Intent getIntentNoGroup(Context context, Account account){
+		return ContactListActivity.getIntentGroup(context, account, NO_GROUP_ID);
 	}
 
 	class Parameter {
@@ -75,7 +89,7 @@ public class ContactListActivity extends Activity {
 			this.type = getType();
 		}
 		
-		public int getType(){
+		private int getType(){
 			int type = intent.getIntExtra(getString(R.string.key_type), -1);
 			if(type == -1){
 				throw new RuntimeException("Type is not found.");
