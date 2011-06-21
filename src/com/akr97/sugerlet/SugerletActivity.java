@@ -68,7 +68,7 @@ public class SugerletActivity extends Activity {
         		getString(R.string.header_setting)));
         items.add(new ListIntentItem(this,
         		getString(R.string.menu_setting_account),
-        		getSettingAccountIntent()));
+        		SettingAccountActivity.getIntent(this)));
         items.add(new ListIntentItem(this,
         		getString(R.string.menu_about),
         		getAboutIntent()));
@@ -88,10 +88,6 @@ public class SugerletActivity extends Activity {
         return new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
     }
     
-    private Intent getSettingAccountIntent(){
-    	return new Intent(this, SettingAccountActivity.class);
-    }
-    
     private Intent getAccountListIntent(){
     	return new Intent(this, AccountListActivity.class);
     }
@@ -107,6 +103,6 @@ public class SugerletActivity extends Activity {
     }
     
     private void launchSettingAccount(){
-		startActivity(getSettingAccountIntent());
+		startActivity(SettingAccountActivity.getIntent(this));
     }
 }
