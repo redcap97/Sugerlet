@@ -56,7 +56,7 @@ public class SugerletActivity extends Activity {
         		getString(R.string.header_menu)));
         items.add(new ListIntentItem(this,
         		getString(R.string.menu_group_list),
-        		getGroupListIntent()));
+        		GroupListActivity.getIntent(this)));
         items.add(new ListIntentItem(this,
         		getString(R.string.menu_starred_contacts),
         		getStarredContactsIntent()));
@@ -78,10 +78,6 @@ public class SugerletActivity extends Activity {
         View emptyView = findViewById(R.id.emptyView);
         listView.setEmptyView(emptyView);
         listView.setOnItemClickListener(new ListItemClickListener(items));
-    }
-    
-    private Intent getGroupListIntent(){
-    	return new Intent(this, GroupListActivity.class);
     }
     
     private Intent getAboutIntent(){

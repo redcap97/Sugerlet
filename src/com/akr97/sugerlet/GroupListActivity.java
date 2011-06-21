@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.accounts.Account;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -62,5 +63,9 @@ public class GroupListActivity extends Activity {
 	
 	private Intent getNoGroupContactListIntent(Account account){
 		return getContactListIntent(account, ContactListActivity.NO_GROUP_ID);
+	}
+	
+	public static Intent getIntent(Context context){
+    	return new Intent(context, GroupListActivity.class);
 	}
 }
