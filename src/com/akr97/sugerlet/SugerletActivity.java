@@ -62,7 +62,7 @@ public class SugerletActivity extends Activity {
         		getStarredContactsIntent()));
         items.add(new ListIntentItem(this,
         		getString(R.string.menu_account_list),
-        		getAccountListIntent()));
+        		AccountListActivity.getIntent(this)));
         
         items.add(new ListHeaderItem(this,
         		getString(R.string.header_setting)));
@@ -82,10 +82,6 @@ public class SugerletActivity extends Activity {
     
     private Intent getAboutIntent(){
         return new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
-    }
-    
-    private Intent getAccountListIntent(){
-    	return new Intent(this, AccountListActivity.class);
     }
     
     private Intent getStarredContactsIntent(){

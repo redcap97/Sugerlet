@@ -3,6 +3,8 @@ package com.akr97.sugerlet;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,4 +34,8 @@ public class AccountListActivity extends Activity {
         listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
+	
+    public static Intent getIntent(Context context){
+    	return new Intent(context, AccountListActivity.class);
+    }
 }
