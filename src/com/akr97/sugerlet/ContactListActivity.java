@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.content.Context;
 import android.content.Intent;
 
 import com.akr97.sugerlet.model.*;
@@ -56,6 +57,12 @@ public class ContactListActivity extends Activity {
 			this.getter = new AccountContactsGetter(this, getIntent());
 			break;
 		}
+	}
+	
+	public static Intent getIntentStarred(Context context){
+    	Intent intent = new Intent(context, ContactListActivity.class);
+    	intent.putExtra(context.getString(R.string.key_type), TYPE_STARRED);
+    	return intent;
 	}
 
 	class Parameter {
