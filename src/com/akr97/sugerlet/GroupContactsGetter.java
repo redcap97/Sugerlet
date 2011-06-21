@@ -47,6 +47,14 @@ public class GroupContactsGetter extends ContactsGetter {
 		return group.title;
 	}
 	
+	public static Intent getIntent(Context context, Account account, long groupId){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_account_name), account.name);
+		intent.putExtra(context.getString(R.string.key_account_type), account.type);
+		intent.putExtra(context.getString(R.string.key_group_id), groupId);
+		return intent;
+	}
+	
 	class Parameter{
 		public final Account account;
 		public final long groupId;

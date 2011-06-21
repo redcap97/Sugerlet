@@ -32,6 +32,13 @@ public class AccountContactsGetter extends ContactsGetter {
 		return model.getByAccount(params.account.name, params.account.type);
 	}
 	
+	public static Intent getIntent(Context context, Account account){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_account_name), account.name);
+		intent.putExtra(context.getString(R.string.key_account_type), account.type);
+		return intent;
+	}
+	
 	class Parameter {
 		public final Account account;
 		

@@ -68,11 +68,8 @@ public class ContactListActivity extends Activity {
 	}
 	
 	public static Intent getIntentGroup(Context context, Account account, long groupId){
-		Intent intent = new Intent(context, ContactListActivity.class);
-		intent.putExtra(context.getString(R.string.key_type), ContactListActivity.TYPE_GROUP);
-		intent.putExtra(context.getString(R.string.key_account_name), account.name);
-		intent.putExtra(context.getString(R.string.key_account_type), account.type);
-		intent.putExtra(context.getString(R.string.key_group_id), groupId);
+		Intent intent = GroupContactsGetter.getIntent(context, account, groupId);
+		intent.putExtra(context.getString(R.string.key_type), TYPE_GROUP);
 		return intent;
 	}
 	
@@ -81,10 +78,8 @@ public class ContactListActivity extends Activity {
 	}
 	
 	public static Intent getIntentAccount(Context context, Account account){
-		Intent intent = new Intent(context, ContactListActivity.class);
+		Intent intent = AccountContactsGetter.getIntent(context, account);
 		intent.putExtra(context.getString(R.string.key_type), TYPE_ACCOUNT);
-		intent.putExtra(context.getString(R.string.key_account_name), account.name);
-		intent.putExtra(context.getString(R.string.key_account_type), account.type);
 		return intent;
 	}
 
