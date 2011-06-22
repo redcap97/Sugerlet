@@ -42,6 +42,16 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				phoneticGivenName, phoneticFamilyName);
 	}
 	
+	public ArrayList<StructuredNameData> getAll(){
+		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
+		
+		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
+		for(AccountState state : manager.getEnabledStates()){
+			results.addAll(getByAccount(state.getName(), state.getType()));
+		}	
+		return results;
+	}
+	
 	public StructuredNameData getByRawContactsId(long id){
 		return readRow(getCursorByRawContactId(id));
 	}

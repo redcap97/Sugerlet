@@ -32,4 +32,6 @@
     <string name="message_no_group">グループが存在しません</string>
     <string name="menu_account_list">アカウント</string>
     <string name="account">アカウント</string>
+    <string name="menu_all_contacts">すべての連絡先</string>
+    <string name="all_contacts">すべての連絡先</string>
 </resources>
