@@ -4,6 +4,10 @@ import android.accounts.Account;
 
 public class AccountUtil {
 	public static String getHeading(Account account){
-		return String.format("%s (%s)", account.name, account.type);
+		if(account.name.equals(account.type)){
+			return account.name;
+		}else{
+			return String.format("%s (%s)", account.name, account.type);
+		}
 	}
 }
