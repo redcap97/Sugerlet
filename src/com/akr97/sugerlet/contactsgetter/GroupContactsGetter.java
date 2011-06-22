@@ -32,7 +32,7 @@ public class GroupContactsGetter extends ContactsGetter {
 	public ArrayList<StructuredNameData> getStructuredNames(){
 		StructuredNameModel model = new StructuredNameModel(context);
 		if(params.groupId == NO_GROUP_ID){
-			return model.getNoGroup(params.account.name, params.account.type);
+			return model.getNoGroup(params.account);
 		}else{
 			return model.getFromGroup(params.groupId);
 		}

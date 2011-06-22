@@ -30,7 +30,7 @@ public class AccountContactsGetter extends ContactsGetter {
 	@Override
 	public ArrayList<StructuredNameData> getStructuredNames() {
 		StructuredNameModel model = new StructuredNameModel(context);
-		return model.getByAccount(params.account.name, params.account.type);
+		return model.getByAccount(params.account);
 	}
 	
 	public static Intent getIntent(Context context, Account account){

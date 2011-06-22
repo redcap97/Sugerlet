@@ -7,6 +7,7 @@ import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.Data;
+import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -47,7 +48,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		
 		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
 		for(AccountState state : manager.getEnabledStates()){
-			results.addAll(getByAccount(state.getName(), state.getType()));
+			results.addAll(getByAccount(state.getAccount()));
 		}	
 		return results;
 	}
@@ -61,13 +62,13 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		
 		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
 		for(AccountState state : manager.getEnabledStates()){
-			results.addAll(getStarred(state.getName(), state.getType()));
+			results.addAll(getStarred(state.getAccount()));
 		}
 		return results;
 	}
 	
-	public ArrayList<StructuredNameData> getStarred(String accountName, String accountType){
-		return readRows(getCursorStarred(accountName, accountType));
+	public ArrayList<StructuredNameData> getStarred(Account account){
+		return readRows(getCursorStarred(account));
 	}
 	
 	public ArrayList<StructuredNameData> getFromGroup(long groupId){
@@ -75,7 +76,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		GroupData group = model.getById(groupId);
 		
         Cursor c1 = getCursorBelongToGroup(groupId);
-        Cursor c2 = getCursorBelongToAccount(group.accountName, group.accountType);
+        Cursor c2 = getCursorBelongToAccount(group.getAccount());
 
         CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
         		c1, new String[]{ Data.RAW_CONTACT_ID });
@@ -90,13 +91,13 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
         return results;
 	}
 	
-	public ArrayList<StructuredNameData> getByAccount(String accountName, String accountType){
-		return readRows(getCursorBelongToAccount(accountName, accountType));
+	public ArrayList<StructuredNameData> getByAccount(Account account){
+		return readRows(getCursorBelongToAccount(account));
 	}
 	
-	public ArrayList<StructuredNameData> getNoGroup(String accountName, String accountType){
-		Cursor c1 = getCursorBelongToGroup(accountName, accountType);
-		Cursor c2 = getCursorBelongToAccount(accountName, accountType);
+	public ArrayList<StructuredNameData> getNoGroup(Account account){
+		Cursor c1 = getCursorBelongToGroup(account);
+		Cursor c2 = getCursorBelongToAccount(account);
 		
 		CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ RawContactsEntity._ID });
@@ -115,7 +116,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		return readRows(getCursorBelongToNoAccount());
 	}
 	
-	private Cursor getCursorBelongToAccount(String accountName, String accountType){
+	private Cursor getCursorBelongToAccount(Account account){
         return getContentResolver().query(RawContactsEntity.CONTENT_URI, 
                 PROJECTION,
                 RawContactsEntity.MIMETYPE + "=? AND " 
@@ -123,8 +124,8 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
                 	+ RawContacts.ACCOUNT_TYPE + "=?",
                 new String[]{
         			StructuredName.CONTENT_ITEM_TYPE,
-        			accountName,
-        			accountType}, 
+        			account.name,
+        			account.type}, 
                 RawContactsEntity._ID);
 	}
 	
@@ -138,7 +139,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				RawContacts._ID);
 	}
 	
-	private Cursor getCursorBelongToGroup(String accountName, String accountType){
+	private Cursor getCursorBelongToGroup(Account account){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				new String[]{ RawContactsEntity._ID },
 				RawContactsEntity.MIMETYPE + "=? AND " +
@@ -146,8 +147,8 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 					RawContacts.ACCOUNT_TYPE + "=?",
 				new String[]{
 					GroupMembership.CONTENT_ITEM_TYPE,
-					accountName,
-					accountType},
+					account.name,
+					account.type},
 				RawContactsEntity._ID);
 	}
 	
@@ -173,7 +174,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				RawContactsEntity._ID);
 	}
 	
-	private Cursor getCursorStarred(String accountName, String accountType){
+	private Cursor getCursorStarred(Account account){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
 				RawContacts.STARRED + "=? AND " +
@@ -183,7 +184,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 				new String[]{
 					String.valueOf(1),
 					StructuredName.CONTENT_ITEM_TYPE,
-					accountName, accountType }, 
+					account.name, account.type }, 
 				RawContacts._ID);
 	}
 }

@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.model;
 
+import android.accounts.Account;
+
 public class GroupData {
 	public final long id;
 	public final String title;
@@ -16,6 +18,10 @@ public class GroupData {
 		this.systemId = systemId;
 		this.accountName = accountName;
 		this.accountType = accountType;
+	}
+	
+	public Account getAccount(){
+		return new Account(accountName, accountType);
 	}
 	
 	@Override
