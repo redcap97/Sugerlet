@@ -13,7 +13,7 @@ import com.akr97.sugerlet.listitem.*;
 
 public class InitialsIndexActivity extends Activity {
 	static final String[] INITIALS = new String[]{
-		"Ç†", "Ç©", "Ç≥", "ÇΩ", "Ç»", "ÇÕ", "Ç‹", "Ç‚", "ÇÁ", "ÇÌ"
+		"„ÅÇ", "„Åã", "„Åï", "„Åü", "„Å™", "„ÅØ", "„Åæ", "„ÇÑ", "„Çâ", "„Çè"
 	};
 	
 	@Override
@@ -28,7 +28,7 @@ public class InitialsIndexActivity extends Activity {
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         
         for(String initial : INITIALS){
-            items.add(new ListContentItem(this, initial + "çs"));
+            items.add(new ListContentItem(this, initial + "Ë°å"));
         }
         items.add(new ListContentItem(this, getString(R.string.alphabet)));
         items.add(new ListContentItem(this, getString(R.string.other)));
