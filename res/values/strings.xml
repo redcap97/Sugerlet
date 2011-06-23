@@ -34,4 +34,7 @@
     <string name="account">アカウント</string>
     <string name="menu_all_contacts">すべての連絡先</string>
     <string name="all_contacts">すべての連絡先</string>
+    <string name="menu_initials_index">ふりがな</string>
+    <string name="other">その他</string>
+    <string name="alphabet">アルファベット</string>
 </resources>

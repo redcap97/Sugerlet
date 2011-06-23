@@ -61,6 +61,9 @@ public class SugerletActivity extends Activity {
         		getString(R.string.menu_group_list),
         		GroupListActivity.getIntent(this)));
         items.add(new ListIntentItem(this,
+        		getString(R.string.menu_initials_index),
+        		InitialsIndexActivity.getIntent(this)));
+        items.add(new ListIntentItem(this,
         		getString(R.string.menu_starred_contacts),
         		ContactListActivity.getIntentStarred(this)));
         items.add(new ListIntentItem(this,

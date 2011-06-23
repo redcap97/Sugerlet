@@ -21,6 +21,7 @@
         <activity android:name=".SettingAccountActivity"></activity>
         <activity android:name=".GroupListActivity"></activity>
         <activity android:name=".AccountListActivity"></activity>
+        <activity android:name=".InitialsIndexActivity"></activity>
 
     </application>
 </manifest>
