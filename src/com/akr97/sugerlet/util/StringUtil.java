@@ -14,4 +14,8 @@ public class StringUtil {
 	public static String toZenkakuKatakana(String s){
 		return HankakuKatakanaToZenkakuKatakana.hankakuKatakanaToZenkakuKatakana(s);
 	}
+	
+	public static String toZenkaku(String s){
+		return toZenkakuHiragana(toZenkakuKatakana(s));
+	}
 }
