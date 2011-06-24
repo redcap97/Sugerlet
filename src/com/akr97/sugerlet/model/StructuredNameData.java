@@ -40,9 +40,9 @@ public class StructuredNameData {
 	
 	public String getJapaneseStyleName(String familyName, String givenName){
 		if(givenName == null){
-			return StringUtil.toNonNullString(familyName);
+			return StringUtil.toNonNull(familyName);
 		}else if(familyName == null){
-			return StringUtil.toNonNullString(givenName);
+			return StringUtil.toNonNull(givenName);
 		}else{
 			return familyName + " " + givenName;
 		}

@@ -3,7 +3,7 @@ package com.akr97.sugerlet.util;
 import com.akr97.sugerlet.util.japanese.*;
 
 public class StringUtil {
-	public static String toNonNullString(String str){
+	public static String toNonNull(String str){
 		return str == null ? "" : str;
 	}
 

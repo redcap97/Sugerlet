@@ -23,6 +23,7 @@ public class ContactListActivity extends Activity {
 	public static final int TYPE_STARRED = 2;
 	public static final int TYPE_ACCOUNT = 3;
 	public static final int TYPE_ALL = 4;
+	public static final int TYPE_INITIALS_GROUP = 5;
 	
 	private static final long NO_GROUP_ID = GroupContactsGetter.NO_GROUP_ID;
 	
@@ -63,6 +64,9 @@ public class ContactListActivity extends Activity {
 		case TYPE_ALL:
 			this.getter = new AllContactsGetter(this);
 			break;
+		case TYPE_INITIALS_GROUP:
+			this.getter = new InitialsGroupContactsGetter(this);
+			break;
 		}
 	}
 	
@@ -91,6 +95,12 @@ public class ContactListActivity extends Activity {
 	public static Intent getIntentAccount(Context context, Account account){
 		Intent intent = AccountContactsGetter.getIntent(context, account);
 		intent.putExtra(context.getString(R.string.key_type), TYPE_ACCOUNT);
+		return intent;
+	}
+	
+	public static Intent getIntentInitialsGroup(Context context){
+		Intent intent = new Intent(context, ContactListActivity.class);
+		intent.putExtra(context.getString(R.string.key_type), TYPE_INITIALS_GROUP);
 		return intent;
 	}
 

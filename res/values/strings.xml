@@ -37,4 +37,5 @@
     <string name="menu_initials_group_list">ふりがな</string>
     <string name="other">その他</string>
     <string name="alphabet">アルファベット</string>
+    <string name="initials_group">ふりがな</string>
 </resources>

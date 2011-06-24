@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.akr97.sugerlet.listitem.*;
 
 public class InitialsGroupListActivity extends Activity {
-	static final String[] INITIALS = new String[]{
-		"あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ"
+	static final char[] INITIALS = new char[]{
+		'あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ'
 	};
 	
 	@Override
@@ -27,10 +27,12 @@ public class InitialsGroupListActivity extends Activity {
 	public void setupInitialsIndex(){
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         
-        for(String initial : INITIALS){
+        for(char initial : INITIALS){
             items.add(new ListContentItem(this, initial + "行"));
         }
-        items.add(new ListContentItem(this, getString(R.string.alphabet)));
+        items.add(new ListIntentItem(this,
+        		getString(R.string.alphabet),
+        		ContactListActivity.getIntentInitialsGroup(this)));
         items.add(new ListContentItem(this, getString(R.string.other)));
         
         ListView listView = (ListView)findViewById(R.id.contactList);
