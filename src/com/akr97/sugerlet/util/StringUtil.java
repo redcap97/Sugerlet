@@ -10,4 +10,8 @@ public class StringUtil {
 	public static String toZenkakuHiragana(String s) {
 		return ZenkakuKatakanaToZenkakuHiragana.zenkakuHiraganaToZenkakuKatakana(s);
 	}
+	
+	public static String toZenkakuKatakana(String s){
+		return HankakuKatakanaToZenkakuKatakana.hankakuKatakanaToZenkakuKatakana(s);
+	}
 }
