@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.akr97.sugerlet.listitem.*;
 
-public class InitialsIndexActivity extends Activity {
+public class InitialsGroupListActivity extends Activity {
 	static final String[] INITIALS = new String[]{
 		"あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ"
 	};
@@ -42,6 +42,6 @@ public class InitialsIndexActivity extends Activity {
 	}
 	
 	public static Intent getIntent(Context context){
-    	return new Intent(context, InitialsIndexActivity.class);
+    	return new Intent(context, InitialsGroupListActivity.class);
 	}
 }
