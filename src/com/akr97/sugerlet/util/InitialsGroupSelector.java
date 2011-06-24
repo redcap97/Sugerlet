@@ -26,10 +26,11 @@ public class InitialsGroupSelector {
 	}
 
 	public Character select(String s){
+		Character result = null;
 		if(s.length() != 0){
-			return groupMap.get(s.charAt(0));
+			result = groupMap.get(s.charAt(0));
 		}
-		return null;
+		return result == null ? '\0' : result;
 	}
 
 	private HashMap<Character, Character> createGroupMap(){
