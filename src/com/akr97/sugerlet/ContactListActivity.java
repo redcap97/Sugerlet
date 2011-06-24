@@ -65,7 +65,7 @@ public class ContactListActivity extends Activity {
 			this.getter = new AllContactsGetter(this);
 			break;
 		case TYPE_INITIALS_GROUP:
-			this.getter = new InitialsGroupContactsGetter(this);
+			this.getter = new InitialsGroupContactsGetter(this, getIntent());
 			break;
 		}
 	}
@@ -98,8 +98,8 @@ public class ContactListActivity extends Activity {
 		return intent;
 	}
 	
-	public static Intent getIntentInitialsGroup(Context context){
-		Intent intent = new Intent(context, ContactListActivity.class);
+	public static Intent getIntentInitialsGroup(Context context, char initialsGroup){
+		Intent intent = InitialsGroupContactsGetter.getIntent(context, initialsGroup);
 		intent.putExtra(context.getString(R.string.key_type), TYPE_INITIALS_GROUP);
 		return intent;
 	}

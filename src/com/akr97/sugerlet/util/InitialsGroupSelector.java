@@ -25,12 +25,12 @@ public class InitialsGroupSelector {
 		this.groupMap = createGroupMap();
 	}
 
-	public Character select(String s){
+	public char select(String s){
 		Character result = null;
 		if(s.length() != 0){
 			result = groupMap.get(s.charAt(0));
 		}
-		return result == null ? '\0' : result;
+		return result == null ? '~' : result.charValue();
 	}
 
 	private HashMap<Character, Character> createGroupMap(){

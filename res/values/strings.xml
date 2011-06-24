@@ -36,6 +36,8 @@
     <string name="all_contacts">すべての連絡先</string>
     <string name="menu_initials_group_list">ふりがな</string>
     <string name="other">その他</string>
-    <string name="alphabet">アルファベット</string>
+    <string name="alphabet">英字</string>
     <string name="initials_group">ふりがな</string>
+    <string name="key_initials_group">InitialsGroup</string>
+    <string name="number">数字</string>
 </resources>
