@@ -1,4 +1,4 @@
-package com.akr97.sugerlet.util.japanese;
+package com.akr97.sugerlet.japanese;
 
 import java.util.HashMap;
 
