@@ -89,7 +89,7 @@ public class InitialsGroupContactsGetter extends ContactsGetter {
 					StringUtil.toNonNull(sn.givenName);
 			}
 			
-			return StringUtil.toZenkaku(name.toUpperCase());
+			return StringUtil.toZenkakuHiragana(name.toUpperCase());
 		}
 	}
 }
