@@ -8,6 +8,7 @@ import android.content.Intent;
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.util.*;
+import com.akr97.sugerlet.util.japanese.*;
 
 public class InitialsGroupContactsGetter extends ContactsGetter {
 	private final Intent intent;
