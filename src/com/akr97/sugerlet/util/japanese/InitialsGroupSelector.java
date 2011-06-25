@@ -3,6 +3,10 @@ package com.akr97.sugerlet.util.japanese;
 import java.util.HashMap;
 
 public class InitialsGroupSelector {
+	public static final char[] INITIALS_GROUP_NAMES = {
+		'あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ', 'A', '0', '~'
+	};
+	
 	static final char[][] INITIALS_GROUPS = {
 		{'あ', 'ぁ', 'い', 'ぃ', 'う', 'ぅ', 'え', 'ぇ', 'お', 'ぉ'},
 		{'か', 'が', 'き', 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご'},
@@ -18,6 +22,10 @@ public class InitialsGroupSelector {
 			'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'},
 		{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}
 	};
+	
+	static final char GROUP_ALPHABET = 'A';
+	static final char GROUP_NUMBER = '0';
+	static final char GROUP_OTHER = '~';
 
 	private HashMap<Character, Character> groupMap = new HashMap<Character, Character>();
 
@@ -30,7 +38,7 @@ public class InitialsGroupSelector {
 		if(s.length() != 0){
 			result = groupMap.get(s.charAt(0));
 		}
-		return result == null ? '~' : result.charValue();
+		return result == null ? GROUP_OTHER : result.charValue();
 	}
 
 	private HashMap<Character, Character> createGroupMap(){
@@ -42,5 +50,17 @@ public class InitialsGroupSelector {
 			}
 		}
 		return map;
+	}
+	
+	public static String getGroupName(char group){
+		switch(group){
+		case GROUP_ALPHABET:
+			return "英字";
+		case GROUP_NUMBER:
+			return "数字";
+		case GROUP_OTHER:
+			return "その他";
+		}
+		return String.valueOf(group) + "行";
 	}
 }
