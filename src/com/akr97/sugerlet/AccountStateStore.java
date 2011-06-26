@@ -9,11 +9,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.akr97.sugerlet.util.*;
+
 public class AccountStateStore {
 	private SharedPreferences pref;
 	
 	static final String PREF_FILE_NAME = "account_states";
 	static final String KEY_IS_INITIALIZED = "Config.isInitialized";
+	static final String ACCOUNT_SEPARATOR = "$";
 	
 	public AccountStateStore(Context context){
 		this.pref = context.getSharedPreferences(PREF_FILE_NAME, Activity.MODE_PRIVATE);
@@ -57,12 +60,14 @@ public class AccountStateStore {
 	}
 	
 	private String buildAccountKey(Account account){
-		return account.name + "\0" + account.type;
+		return account.name + ACCOUNT_SEPARATOR + account.type;
 	}
 	
 	private Account parseAccountKey(String key){
-		String[] tokens = key.split("\0");
-		if(tokens.length != 2){
+		String[] tokens = null;
+		try{
+			tokens = StringUtil.splitLast(key, ACCOUNT_SEPARATOR);
+		}catch(Exception e){
 			reset();
 			throw new RuntimeException("Account Key is not valid.");
 		}
