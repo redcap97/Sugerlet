@@ -45,7 +45,15 @@ public class ContactListActivity extends Activity {
 
 	public void setupContactList(){
 		ListView listView = (ListView)findViewById(R.id.contactList);
-
+		
+		ArrayList<ListItem> items = getListItems(structuredNames);
+		listView.setAdapter(new ListItemAdapter(items));
+		View emptyView = findViewById(R.id.emptyView);
+		listView.setEmptyView(emptyView);
+		listView.setOnItemClickListener(new ListItemClickListener(items));
+	}
+	
+	public ArrayList<ListItem> getListItems(ArrayList<StructuredNameData> structuredNames){
 		NormalizedNameList list = NormalizedNameList.fromStructuredNames(structuredNames);
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
@@ -57,11 +65,7 @@ public class ContactListActivity extends Activity {
 				}
 			}
 		}
-		listView.setAdapter(new ListItemAdapter(items));
-
-		View emptyView = findViewById(R.id.emptyView);
-		listView.setEmptyView(emptyView);
-		listView.setOnItemClickListener(new ListItemClickListener(items));
+		return items;
 	}
 
 	private void setType(int type){
