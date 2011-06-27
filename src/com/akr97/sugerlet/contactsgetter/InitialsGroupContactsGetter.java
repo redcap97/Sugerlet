@@ -1,6 +1,7 @@
 package com.akr97.sugerlet.contactsgetter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,19 +28,10 @@ public class InitialsGroupContactsGetter extends ContactsGetter {
 	@Override
 	public ArrayList<StructuredNameData> getStructuredNames(){
 		Parameter params = new Parameter();
-		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-
-		InitialsGroupSelector selector = new InitialsGroupSelector();
+		
 		StructuredNameModel model = new StructuredNameModel(context);
-		for(StructuredNameData sn : model.getAll()){
-			NormalizedName name = new NormalizedName(sn);
-
-			char initialsGroup = selector.select(name.get());
-			if(initialsGroup == params.initialsGroup){
-				results.add(name.getEntity());
-			}
-		}
-		return results;
+		NormalizedNameList list =  NormalizedNameList.fromStructuredNames(model.getAll());
+		return list.filter(params.initialsGroup).sort().extract();
 	}
 
 	public static Intent getIntent(Context context, char initialsGroup){
@@ -63,18 +55,59 @@ public class InitialsGroupContactsGetter extends ContactsGetter {
 			return initialsGroup;
 		}
 	}
+	
+	static class NormalizedNameList {
+		private final ArrayList<NormalizedName> list;
+		
+		public NormalizedNameList(ArrayList<NormalizedName> list){
+			this.list = list;
+		}
+		
+		public NormalizedNameList filter(char initialsGroup){
+			ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
+			InitialsGroupSelector selector = new InitialsGroupSelector();
+			for(NormalizedName name : list){
+				if(selector.select(name.get()) == initialsGroup){
+					results.add(name);
+				}
+			}
+			return new NormalizedNameList(results);
+		}
+		
+		public NormalizedNameList sort(){
+			ArrayList<NormalizedName> results = new ArrayList<NormalizedName>(list);
+			Collections.sort(results);
+			return new NormalizedNameList(results);
+		}
+		
+		public ArrayList<StructuredNameData> extract(){
+			ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
+			for(NormalizedName name : list){
+				results.add(name.getEntity());
+			}
+			return results;
+		}
+		
+		public static NormalizedNameList fromStructuredNames(ArrayList<StructuredNameData> names){
+			ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
+			for(StructuredNameData sn : names){
+				results.add(new NormalizedName(sn));
+			}			
+			return new NormalizedNameList(results);
+		}
+	}
 
-	static class NormalizedName{
+	static class NormalizedName implements Comparable<NormalizedName>{
 		private final StructuredNameData entity;
-		private final String name;
+		private final String value;
 
 		public NormalizedName(StructuredNameData sn){
 			this.entity = sn;
-			this.name = normalize(sn);
+			this.value = normalize(sn);
 		}
 
 		public String get(){
-			return name;
+			return value;
 		}
 
 		public StructuredNameData getEntity(){
@@ -89,8 +122,13 @@ public class InitialsGroupContactsGetter extends ContactsGetter {
 				name = StringUtil.toNonNull(sn.familyName) +
 				StringUtil.toNonNull(sn.givenName);
 			}
-
+			
 			return JapaneseUtil.toZenkakuHiragana(name.toUpperCase());
+		}
+
+		@Override
+		public int compareTo(NormalizedName another) {
+			return this.get().compareTo(another.get());
 		}
 	}
 }
