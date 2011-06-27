@@ -2,21 +2,22 @@ package com.akr97.sugerlet.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 import com.akr97.sugerlet.japanese.*;
 import com.akr97.sugerlet.model.*;
 
-public class NormalizedNameList {
-	private final ArrayList<NormalizedName> list;
+public class NormalizedNameList implements Iterable<NormalizedName> {
+	private final ArrayList<NormalizedName> names;
 
-	public NormalizedNameList(ArrayList<NormalizedName> list){
-		this.list = list;
+	public NormalizedNameList(ArrayList<NormalizedName> names){
+		this.names = names;
 	}
 
 	public NormalizedNameList filter(char initialsGroup){
 		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
 		InitialsGroupSelector selector = new InitialsGroupSelector();
-		for(NormalizedName name : list){
+		for(NormalizedName name : names){
 			if(selector.select(name.get()) == initialsGroup){
 				results.add(name);
 			}
@@ -25,24 +26,60 @@ public class NormalizedNameList {
 	}
 
 	public NormalizedNameList sort(){
-		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>(list);
+		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>(names);
 		Collections.sort(results);
 		return new NormalizedNameList(results);
 	}
 
 	public ArrayList<StructuredNameData> extract(){
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-		for(NormalizedName name : list){
+		for(NormalizedName name : names){
 			results.add(name.getEntity());
 		}
 		return results;
 	}
 
+	public int size(){
+		return names.size();
+	}
+	
+	@Override
+	public Iterator<NormalizedName> iterator() {
+		return new NormalizedNameIterator(names);
+	}
+	
 	public static NormalizedNameList fromStructuredNames(ArrayList<StructuredNameData> names){
 		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
 		for(StructuredNameData sn : names){
 			results.add(new NormalizedName(sn));
 		}
 		return new NormalizedNameList(results);
+	}
+
+	public static class NormalizedNameIterator implements Iterator<NormalizedName>{
+		private int pos = 0;
+		private ArrayList<NormalizedName> names;
+
+		public NormalizedNameIterator(ArrayList<NormalizedName> names){
+			this.names = names;
+		}
+
+		@Override
+		public boolean hasNext() {
+			if(names.size() <= pos){
+				return false;
+			}
+			return true;
+		}
+
+		@Override
+		public NormalizedName next() {
+			return names.get(pos++);
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("remove() method is not implemented.");
+		}
 	}
 }
