@@ -16,12 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactListActivity"></activity>
         <activity android:name=".profile.ProfileActivity"></activity>
         <activity android:name=".SettingAccountActivity"></activity>
         <activity android:name=".GroupListActivity"></activity>
         <activity android:name=".AccountListActivity"></activity>
         <activity android:name=".InitialsGroupListActivity"></activity>
+        <activity android:name=".AllContactsActivity"></activity>
+        <activity android:name=".GroupContactsActivity"></activity>
+        <activity android:name=".AccountContactsActivity"></activity>
+        <activity android:name=".StarredContactsActivity"></activity>
+        <activity android:name=".InitialsGroupContactsActivity"></activity>
 
     </application>
 </manifest>

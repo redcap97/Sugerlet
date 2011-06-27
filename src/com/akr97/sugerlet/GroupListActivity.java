@@ -28,13 +28,13 @@ public class GroupListActivity extends Activity {
         for(AccountState state : manager.getEnabledStates()){
         	items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
         	items.add(new ListIntentItem(this, getString(R.string.no_group),
-        			ContactListActivity.getIntentNoGroup(this, state.getAccount())));
+        			GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
 
         	GroupModel model = new GroupModel(this);
         	ArrayList<GroupData> groups = model.getByAccount(state.getName(), state.getType());
         	for(GroupData group : groups){
         		items.add(new ListIntentItem(this, group.title,
-        				ContactListActivity.getIntentGroup(this, state.getAccount(), group.id)));
+        				GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));
         	}
         }
         

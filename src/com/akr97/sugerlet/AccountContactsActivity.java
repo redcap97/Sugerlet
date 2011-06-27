@@ -1,54 +1,56 @@
-package com.akr97.sugerlet.contactsgetter;
+package com.akr97.sugerlet;
 
 import java.util.ArrayList;
 
 import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
-import com.akr97.sugerlet.*;
+import com.akr97.sugerlet.listitem.*;
 import com.akr97.sugerlet.model.*;
-import com.akr97.sugerlet.util.AccountUtil;
+import com.akr97.sugerlet.util.*;
 
-public class AccountContactsGetter extends ContactsGetter {
-	private final Parameter params;
-	private final Intent intent;
-
-	public AccountContactsGetter(Context context, Intent intent) {
-		super(context);
-		this.intent = intent;
-		this.params = new Parameter();
-	}
-
+public class AccountContactsActivity extends ContactsActivity {
+	private Parameter params;
+	
 	@Override
-	public String getTitle() {		
+	public void onCreate(Bundle savedInstanceState) {
+		this.params = new Parameter();
+		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
+	public String createTitle(){
 		return String.format("%s: %s",
-				context.getString(R.string.account),
+				getString(R.string.account),
 				AccountUtil.getHeading(params.account));
 	}
-
+	
 	@Override
-	public ArrayList<StructuredNameData> getStructuredNames() {
-		StructuredNameModel model = new StructuredNameModel(context);
-		return model.getByAccount(params.account);
+	public ArrayList<ListItem> createListItems(){
+		StructuredNameModel model = new StructuredNameModel(this);
+		return createListItems(model.getByAccount(params.account));
 	}
 	
 	public static Intent getIntent(Context context, Account account){
-		Intent intent = new Intent(context, ContactListActivity.class);
+		Intent intent = new Intent(context, AccountContactsActivity.class);
 		intent.putExtra(context.getString(R.string.key_account_name), account.name);
 		intent.putExtra(context.getString(R.string.key_account_type), account.type);
 		return intent;
 	}
 	
 	class Parameter {
+		public final Intent intent;
 		public final Account account;
 		
 		public Parameter(){
+			this.intent = getIntent();
 			this.account = new Account(getAccountName(), getAccountType());
 		}
 		
 		private String getAccountName(){
-			String accountName = intent.getStringExtra(context.getString(R.string.key_account_name));
+			String accountName = intent.getStringExtra(getString(R.string.key_account_name));
 			if(accountName == null){
 				throw new RuntimeException("AccountName is not found.");
 			}
@@ -56,7 +58,7 @@ public class AccountContactsGetter extends ContactsGetter {
 		}
 		
 		private String getAccountType(){
-			String accountType = intent.getStringExtra(context.getString(R.string.key_account_type));
+			String accountType = intent.getStringExtra(getString(R.string.key_account_type));
 			if(accountType == null){
 				throw new RuntimeException("AccountType is not found.");
 			}

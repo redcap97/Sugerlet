@@ -31,6 +31,6 @@ public class AccountListContentItem extends ListItem {
 	
 	@Override
 	public void onClick(View view){
-		context.startActivity(ContactListActivity.getIntentAccount(context, account));
+		context.startActivity(AccountContactsActivity.getIntent(context, account));
 	}
 }
