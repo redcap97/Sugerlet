@@ -1,6 +1,6 @@
 package com.akr97.sugerlet.model;
 
-import com.akr97.sugerlet.japanese.util.*;
+import com.akr97.sugerlet.japanese.*;
 
 public class StructuredNameData {
 	public final long rawContactId;

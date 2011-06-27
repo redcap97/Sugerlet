@@ -8,7 +8,6 @@ import android.content.Intent;
 
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.japanese.*;
-import com.akr97.sugerlet.japanese.util.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.util.*;
 

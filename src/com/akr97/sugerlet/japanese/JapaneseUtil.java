@@ -1,6 +1,5 @@
-package com.akr97.sugerlet.japanese.util;
+package com.akr97.sugerlet.japanese;
 
-import com.akr97.sugerlet.japanese.*;
 import com.akr97.sugerlet.util.*;
 
 public class JapaneseUtil {

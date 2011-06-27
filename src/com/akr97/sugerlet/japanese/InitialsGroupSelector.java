@@ -7,7 +7,7 @@ public class InitialsGroupSelector {
 		'あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ', 'A', '0', '~'
 	};
 	
-	static final char[][] INITIALS_GROUPS = {
+	private static final char[][] INITIALS_GROUPS = {
 		{'あ', 'ぁ', 'い', 'ぃ', 'う', 'ぅ', 'え', 'ぇ', 'お', 'ぉ'},
 		{'か', 'が', 'き', 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご'},
 		{'さ', 'ざ', 'し', 'じ', 'す', 'ず', 'せ', 'ぜ', 'そ', 'ぞ'},
@@ -23,14 +23,16 @@ public class InitialsGroupSelector {
 		{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}
 	};
 	
-	static final char GROUP_ALPHABET = 'A';
-	static final char GROUP_NUMBER = '0';
-	static final char GROUP_OTHER = '~';
+	private static final char GROUP_ALPHABET = 'A';
+	private static final char GROUP_NUMBER = '0';
+	private static final char GROUP_OTHER = '~';
 
-	private HashMap<Character, Character> groupMap = new HashMap<Character, Character>();
+	private static HashMap<Character, Character> groupMap = null;
 
 	public InitialsGroupSelector(){
-		this.groupMap = createGroupMap();
+		if(groupMap == null){
+			groupMap = createGroupMap();
+		}
 	}
 
 	public char select(String s){
