@@ -34,6 +34,20 @@ public class NormalizedName implements Comparable<NormalizedName>{
 
 	@Override
 	public int compareTo(NormalizedName another) {
-		return this.get().compareTo(another.get());
+		return value.compareTo(another.value);
+	}
+	
+	@Override
+	public boolean equals(Object object){
+		if((object != null) && (object instanceof NormalizedName)){
+			NormalizedName another = (NormalizedName)object;
+			return value.equals(another.value);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return value.hashCode();
 	}
 }
