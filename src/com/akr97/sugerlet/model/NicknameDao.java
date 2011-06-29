@@ -7,14 +7,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 
-public class NicknameModel extends ModelBase<NicknameData> {
+public class NicknameDao extends ModelBase<NicknameData> {
 	static final String[] PROJECTION = new String[]{
 		Nickname.NAME,
 		Nickname.TYPE,
 		Nickname.LABEL
     };
 	
-	public NicknameModel(Context ctx){
+	public NicknameDao(Context ctx){
 		super(ctx);
 	}
 	

@@ -129,8 +129,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getNicknameList(long rawContactId){
-		NicknameModel nicknameModel = new NicknameModel(this);
-		ArrayList<NicknameData> nicknames = nicknameModel.get(rawContactId);
+		NicknameDao nicknameDao = new NicknameDao(this);
+		ArrayList<NicknameData> nicknames = nicknameDao.get(rawContactId);
 		
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!nicknames.isEmpty()){
