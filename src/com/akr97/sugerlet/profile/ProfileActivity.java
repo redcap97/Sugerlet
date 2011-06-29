@@ -27,8 +27,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	public void setupHeader(long rawContactId){
-		StructuredNameModel structuredNameModel = new StructuredNameModel(this);
-		StructuredNameData structuredName = structuredNameModel.getByRawContactsId(rawContactId);
+		StructuredNameDao structuredNameDao = new StructuredNameDao(this);
+		StructuredNameData structuredName = structuredNameDao.getByRawContactsId(rawContactId);
 		
 		TextView tvName = (TextView)findViewById(R.id.name);
 		tvName.setText(structuredName.getName());

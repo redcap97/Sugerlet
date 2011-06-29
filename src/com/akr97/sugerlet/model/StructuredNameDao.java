@@ -14,7 +14,7 @@ import android.database.Cursor;
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.util.*;
 
-public class StructuredNameModel extends ModelBase<StructuredNameData> {
+public class StructuredNameDao extends ModelBase<StructuredNameData> {
     static final String TAG = "com.akr97.sugerlet.model.StructuredNameModel";
 	
 	static final String[] PROJECTION = new String[] {
@@ -26,7 +26,7 @@ public class StructuredNameModel extends ModelBase<StructuredNameData> {
 		StructuredName.PHONETIC_FAMILY_NAME
 	};
 
-	public StructuredNameModel(Context ctx){
+	public StructuredNameDao(Context ctx){
 		super(ctx);
 	}
 	

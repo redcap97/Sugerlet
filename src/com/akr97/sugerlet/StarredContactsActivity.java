@@ -17,8 +17,8 @@ public class StarredContactsActivity extends ContactsActivity {
 
 	@Override
 	public ArrayList<ListItem> createListItems() {
-		StructuredNameModel model = new StructuredNameModel(this);
-		return createListItems(model.getStarred());
+		StructuredNameDao dao = new StructuredNameDao(this);
+		return createListItems(dao.getStarred());
 	}
 	
 	public static Intent getIntent(Context context){

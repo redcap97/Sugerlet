@@ -34,11 +34,11 @@ public class GroupContactsActivity extends ContactsActivity {
 	}
 	
 	public ArrayList<StructuredNameData> getStructuredNames(){
-		StructuredNameModel model = new StructuredNameModel(this);
+		StructuredNameDao dao = new StructuredNameDao(this);
 		if(params.groupId == NO_GROUP_ID){
-			return model.getNoGroup(params.account);
+			return dao.getNoGroup(params.account);
 		}else{
-			return model.getFromGroup(params.groupId);
+			return dao.getFromGroup(params.groupId);
 		}
 	}
 	

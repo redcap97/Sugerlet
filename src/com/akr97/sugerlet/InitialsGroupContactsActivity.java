@@ -29,8 +29,8 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 	public ArrayList<ListItem> createListItems(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
-		StructuredNameModel model = new StructuredNameModel(this);
-		NormalizedNameList list = NormalizedNameList.fromStructuredNames(model.getAll())
+		StructuredNameDao dao = new StructuredNameDao(this);
+		NormalizedNameList list = NormalizedNameList.fromStructuredNames(dao.getAll())
 									.filter(params.initialsGroup).sort();
 		if(list.size() > 0){
 			items.add(new ListHeaderItem(this,

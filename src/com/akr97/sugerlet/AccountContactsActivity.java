@@ -29,8 +29,8 @@ public class AccountContactsActivity extends ContactsActivity {
 	
 	@Override
 	public ArrayList<ListItem> createListItems(){
-		StructuredNameModel model = new StructuredNameModel(this);
-		return createListItems(model.getByAccount(params.account));
+		StructuredNameDao dao = new StructuredNameDao(this);
+		return createListItems(dao.getByAccount(params.account));
 	}
 	
 	public static Intent getIntent(Context context, Account account){

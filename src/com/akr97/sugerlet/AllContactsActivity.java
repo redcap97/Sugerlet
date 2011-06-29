@@ -16,8 +16,8 @@ public class AllContactsActivity extends ContactsActivity {
 
 	@Override
 	public ArrayList<ListItem> createListItems() {
-		StructuredNameModel model = new StructuredNameModel(this);
-		return createListItems(model.getAll());
+		StructuredNameDao dao = new StructuredNameDao(this);
+		return createListItems(dao.getAll());
 	}
 	
 	public static Intent getIntent(Context context){
