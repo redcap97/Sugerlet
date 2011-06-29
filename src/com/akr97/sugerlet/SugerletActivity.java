@@ -25,7 +25,7 @@ public class SugerletActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.list_items);
         
         setupLauncherList();
     }
