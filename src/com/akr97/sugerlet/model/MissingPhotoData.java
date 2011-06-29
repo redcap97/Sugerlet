@@ -19,7 +19,7 @@ public class MissingPhotoData extends PhotoData {
 	@Override
 	public Bitmap getBitmap(){
 		if(cache == null){
-			cache = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.ic_contact_picture);
+			cache = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.contact);
 		}	
 		return cache; 
 	}
