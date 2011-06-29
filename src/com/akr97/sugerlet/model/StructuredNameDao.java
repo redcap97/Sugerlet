@@ -72,8 +72,8 @@ public class StructuredNameDao extends ModelBase<StructuredNameData> {
 	}
 	
 	public ArrayList<StructuredNameData> getFromGroup(long groupId){
-		GroupModel model = new GroupModel(getContext());
-		GroupData group = model.getById(groupId);
+		GroupDao dao = new GroupDao(getContext());
+		GroupData group = dao.getById(groupId);
 		
         Cursor c1 = getCursorBelongToGroup(groupId);
         Cursor c2 = getCursorBelongToAccount(group.getAccount());

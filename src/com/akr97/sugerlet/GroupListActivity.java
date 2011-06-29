@@ -30,8 +30,8 @@ public class GroupListActivity extends Activity {
         	items.add(new ListIntentItem(this, getString(R.string.no_group),
         			GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
 
-        	GroupModel model = new GroupModel(this);
-        	ArrayList<GroupData> groups = model.getByAccount(state.getName(), state.getType());
+        	GroupDao dao = new GroupDao(this);
+        	ArrayList<GroupData> groups = dao.getByAccount(state.getName(), state.getType());
         	for(GroupData group : groups){
         		items.add(new ListIntentItem(this, group.title,
         				GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));

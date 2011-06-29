@@ -59,8 +59,8 @@ public class GroupContactsActivity extends ContactsActivity {
 			return getString(R.string.no_group);
 		}
 		
-		GroupModel groupModel = new GroupModel(this);
-		GroupData group = groupModel.getById(groupId);
+		GroupDao groupDao = new GroupDao(this);
+		GroupData group = groupDao.getById(groupId);
 		return group.title;
 	}
 	

@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Groups;
 
-public class GroupModel extends ModelBase<GroupData> {
+public class GroupDao extends ModelBase<GroupData> {
 	static final String TAG = "com.akr97.sugerlet.GroupModel";
 	
 	static final String[] PROJECTION = new String[]{
@@ -18,7 +18,7 @@ public class GroupModel extends ModelBase<GroupData> {
     	Groups.ACCOUNT_TYPE
     };
 	
-	public GroupModel(Context ctx){
+	public GroupDao(Context ctx){
 		super(ctx);
 	}
 	

@@ -8,7 +8,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
 public class GroupMembershipModel extends ModelBase<GroupData> {
-	private GroupModel groupModel;
+	private GroupDao groupDao;
 	
 	static final String[] PROJECTION = new String[]{
 		GroupMembership.GROUP_ROW_ID
@@ -16,7 +16,7 @@ public class GroupMembershipModel extends ModelBase<GroupData> {
 	
 	public GroupMembershipModel(Context ctx){
 		super(ctx);
-		this.groupModel = new GroupModel(ctx);
+		this.groupDao = new GroupDao(ctx);
 	}
 	
 	public ArrayList<GroupData> get(long rawContactId){
@@ -37,6 +37,6 @@ public class GroupMembershipModel extends ModelBase<GroupData> {
 	@Override
 	public GroupData extract(Cursor c) {
 		long groupRowId = c.getLong(0);
-		return groupModel.getById(groupRowId);
+		return groupDao.getById(groupRowId);
 	}
 }
