@@ -144,8 +144,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getWebsiteList(long rawContactId){
-		WebsiteModel websiteModel = new WebsiteModel(this);
-		ArrayList<WebsiteData> websites = websiteModel.get(rawContactId);
+		WebsiteDao websiteDao = new WebsiteDao(this);
+		ArrayList<WebsiteData> websites = websiteDao.get(rawContactId);
 		
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!websites.isEmpty()){

@@ -7,14 +7,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 
-public class WebsiteModel extends ModelBase<WebsiteData> {
+public class WebsiteDao extends ModelBase<WebsiteData> {
 	static final String[] PROJECTION = new String[]{
 		Website.URL,
 		Website.TYPE,
 		Website.LABEL
     };
 	
-	public WebsiteModel(Context ctx){
+	public WebsiteDao(Context ctx){
 		super(ctx);
 	}
 	
