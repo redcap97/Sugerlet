@@ -99,8 +99,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getStructuredPostalList(long rawContactId){
-		StructuredPostalModel structuredPostalModel = new StructuredPostalModel(this);
-		ArrayList<StructuredPostalData> postals = structuredPostalModel.get(rawContactId);
+		StructuredPostalDao structuredPostalDao = new StructuredPostalDao(this);
+		ArrayList<StructuredPostalData> postals = structuredPostalDao.get(rawContactId);
 		
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!postals.isEmpty()){

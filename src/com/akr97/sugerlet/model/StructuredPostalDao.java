@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 
-public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
+public class StructuredPostalDao extends ModelBase<StructuredPostalData> {
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -23,7 +23,7 @@ public class StructuredPostalModel extends ModelBase<StructuredPostalData> {
 		StructuredPostal.COUNTRY
 	};
 	
-	public StructuredPostalModel(Context ctx){
+	public StructuredPostalDao(Context ctx){
 		super(ctx);
 	}
 	
