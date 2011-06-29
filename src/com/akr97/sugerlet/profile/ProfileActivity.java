@@ -83,15 +83,15 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getImList(long rawContactId){
-		ImModel imModel = new ImModel(this);
-		ArrayList<ImData> ims = imModel.get(rawContactId);
+		ImDao imDao = new ImDao(this);
+		ArrayList<ImData> ims = imDao.get(rawContactId);
 		
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!ims.isEmpty()){
 			items.add(new ListHeaderItem(this, getString(R.string.header_im)));
 			
 			for(ImData im : ims){
-				String content = String.format("(%s) %s", imModel.getProtocolLabel(im), im.data);
+				String content = String.format("(%s) %s", imDao.getProtocolLabel(im), im.data);
 				items.add(new ListContentItem(this, content));
 			}
 		}

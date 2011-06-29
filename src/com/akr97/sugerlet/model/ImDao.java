@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 
-public class ImModel extends ModelBase<ImData> {
+public class ImDao extends ModelBase<ImData> {
     static final String TAG = "com.akr97.sugerlet.model.ImModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -18,7 +18,7 @@ public class ImModel extends ModelBase<ImData> {
 		Im.CUSTOM_PROTOCOL
 	};
 	
-	public ImModel(Context ctx){
+	public ImDao(Context ctx){
 		super(ctx);
 	}
 
