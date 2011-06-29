@@ -41,5 +41,4 @@ public class EventDao extends DaoBase<EventData> {
 		
 		return new EventData(startDate, type, label);
 	}
-
 }

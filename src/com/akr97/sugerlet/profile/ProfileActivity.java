@@ -47,6 +47,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getNicknameList(rawContactId));
 		items.addAll(getWebsiteList(rawContactId));
 		items.addAll(getEventList(rawContactId));
+		items.addAll(getOrganizationList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ListItemAdapter(items));
@@ -168,8 +169,22 @@ public class ProfileActivity extends Activity {
 			items.add(new ListHeaderItem(this, "Event"));
 			
 			for(EventData event : events){
-				String content = String.format("(%d) %s", event.type, event.startDate);
-				items.add(new ListContentItem(this, content));
+				items.add(new ListContentItem(this, event.toString()));
+			}
+		}
+		return items;
+	}
+	
+	ArrayList<ListItem> getOrganizationList(long rawContactId){
+		OrganizationDao organizationDao = new OrganizationDao(this);
+		ArrayList<OrganizationData> organizations = organizationDao.get(rawContactId);
+		
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		if(!organizations.isEmpty()){
+			items.add(new ListHeaderItem(this, "Organization"));
+			
+			for(OrganizationData organization : organizations){
+				items.add(new ListContentItem(this, organization.toString()));
 			}
 		}
 		return items;
