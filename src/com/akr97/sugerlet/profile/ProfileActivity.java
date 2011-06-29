@@ -68,8 +68,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getEmailList(long rawContactId){
-		EmailModel emailModel = new EmailModel(this);
-		ArrayList<EmailData> emails = emailModel.get(rawContactId);
+		EmailDao emailDao = new EmailDao(this);
+		ArrayList<EmailData> emails = emailDao.get(rawContactId);
 		
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!emails.isEmpty()){

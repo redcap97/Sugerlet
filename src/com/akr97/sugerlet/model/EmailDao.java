@@ -7,14 +7,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
-public class EmailModel extends ModelBase<EmailData> {	
+public class EmailDao extends ModelBase<EmailData> {	
 	static final String[] PROJECTION = new String[]{
 		Email.DATA,
 		Email.TYPE,
 		Email.LABEL
     };
 	
-	public EmailModel(Context ctx){
+	public EmailDao(Context ctx){
 		super(ctx);
 	}
 	
