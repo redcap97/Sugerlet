@@ -53,8 +53,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getPhoneList(long rawContactId){
-        PhoneModel phoneModel = new PhoneModel(this);
-        ArrayList<PhoneData> phones = phoneModel.get(rawContactId);
+        PhoneDao phoneDao = new PhoneDao(this);
+        ArrayList<PhoneData> phones = phoneDao.get(rawContactId);
         
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
         if(!phones.isEmpty()){

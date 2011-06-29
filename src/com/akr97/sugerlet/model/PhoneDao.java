@@ -8,7 +8,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
-public class PhoneModel extends ModelBase<PhoneData> {
+public class PhoneDao extends ModelBase<PhoneData> {
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
 	static final String[] PROJECTION = new String[]{
@@ -18,7 +18,7 @@ public class PhoneModel extends ModelBase<PhoneData> {
 		Phone.LABEL
 	};
 	
-	public PhoneModel(Context ctx){
+	public PhoneDao(Context ctx){
 		super(ctx);
 	}
 	
