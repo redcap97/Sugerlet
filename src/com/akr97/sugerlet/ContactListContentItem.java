@@ -36,8 +36,8 @@ public class ContactListContentItem  extends ListItem {
 			holder = (ViewHolder)convertView.getTag();
 		}
 
-		PhotoModel photoModel = new PhotoModel(context);
-		PhotoData photo = photoModel.getByRawContactId(structuredName.rawContactId);
+		PhotoDao photoDao = new PhotoDao(context);
+		PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
 
 		holder.icon.setImageBitmap(photo.getBitmap());
 		holder.name.setText(structuredName.getName());

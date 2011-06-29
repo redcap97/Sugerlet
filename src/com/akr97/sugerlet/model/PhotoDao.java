@@ -5,12 +5,12 @@ import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
 
-public class PhotoModel extends ModelBase<PhotoData> {
+public class PhotoDao extends ModelBase<PhotoData> {
 	static final String[] PROJECTION = new String[]{
 		Photo.PHOTO
 	};
 	
-	public PhotoModel(Context ctx){
+	public PhotoDao(Context ctx){
 		super(ctx);
 	}
 	
