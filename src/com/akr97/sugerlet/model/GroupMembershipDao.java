@@ -7,14 +7,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
-public class GroupMembershipModel extends ModelBase<GroupData> {
+public class GroupMembershipDao extends ModelBase<GroupData> {
 	private GroupDao groupDao;
 	
 	static final String[] PROJECTION = new String[]{
 		GroupMembership.GROUP_ROW_ID
     };
 	
-	public GroupMembershipModel(Context ctx){
+	public GroupMembershipDao(Context ctx){
 		super(ctx);
 		this.groupDao = new GroupDao(ctx);
 	}

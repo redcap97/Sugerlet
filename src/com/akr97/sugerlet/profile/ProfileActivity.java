@@ -114,8 +114,8 @@ public class ProfileActivity extends Activity {
 	}
 	
 	ArrayList<ListItem> getGroupList(long rawContactId){
-        GroupMembershipModel groupModel = new GroupMembershipModel(this);
-        ArrayList<GroupData> groups = groupModel.get(rawContactId);
+        GroupMembershipDao groupDao = new GroupMembershipDao(this);
+        ArrayList<GroupData> groups = groupDao.get(rawContactId);
         
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!groups.isEmpty()){
