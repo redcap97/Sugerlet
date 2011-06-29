@@ -8,7 +8,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
-public class PhoneDao extends ModelBase<PhoneData> {
+public class PhoneDao extends DaoBase<PhoneData> {
     static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
     
 	static final String[] PROJECTION = new String[]{

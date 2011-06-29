@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
-public class EmailDao extends ModelBase<EmailData> {	
+public class EmailDao extends DaoBase<EmailData> {
 	static final String[] PROJECTION = new String[]{
 		Email.DATA,
 		Email.TYPE,

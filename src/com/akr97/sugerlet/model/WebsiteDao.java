@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 
-public class WebsiteDao extends ModelBase<WebsiteData> {
+public class WebsiteDao extends DaoBase<WebsiteData> {
 	static final String[] PROJECTION = new String[]{
 		Website.URL,
 		Website.TYPE,

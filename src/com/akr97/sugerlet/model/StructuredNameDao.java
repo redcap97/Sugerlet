@@ -14,7 +14,7 @@ import android.database.Cursor;
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.util.*;
 
-public class StructuredNameDao extends ModelBase<StructuredNameData> {
+public class StructuredNameDao extends DaoBase<StructuredNameData> {
     static final String TAG = "com.akr97.sugerlet.model.StructuredNameModel";
 	
 	static final String[] PROJECTION = new String[] {

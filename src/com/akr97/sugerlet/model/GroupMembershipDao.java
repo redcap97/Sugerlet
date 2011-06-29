@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
-public class GroupMembershipDao extends ModelBase<GroupData> {
+public class GroupMembershipDao extends DaoBase<GroupData> {
 	private GroupDao groupDao;
 	
 	static final String[] PROJECTION = new String[]{

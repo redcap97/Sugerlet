@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
 
-public class PhotoDao extends ModelBase<PhotoData> {
+public class PhotoDao extends DaoBase<PhotoData> {
 	static final String[] PROJECTION = new String[]{
 		Photo.PHOTO
 	};

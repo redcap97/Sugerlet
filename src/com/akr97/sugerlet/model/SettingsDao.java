@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Settings;
 
-public class SettingsDao extends ModelBase<SettingsData> {
+public class SettingsDao extends DaoBase<SettingsData> {
 	static final String[] PROJECTION = new String[]{
 		Settings.ACCOUNT_NAME,
 		Settings.ACCOUNT_TYPE,

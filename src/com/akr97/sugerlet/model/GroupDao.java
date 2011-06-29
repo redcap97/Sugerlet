@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Groups;
 
-public class GroupDao extends ModelBase<GroupData> {
+public class GroupDao extends DaoBase<GroupData> {
 	static final String TAG = "com.akr97.sugerlet.GroupModel";
 	
 	static final String[] PROJECTION = new String[]{
