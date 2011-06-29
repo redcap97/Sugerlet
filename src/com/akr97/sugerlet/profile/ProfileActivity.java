@@ -46,6 +46,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getGroupList(rawContactId));
 		items.addAll(getNicknameList(rawContactId));
 		items.addAll(getWebsiteList(rawContactId));
+		items.addAll(getEventList(rawContactId));
 		
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ListItemAdapter(items));
@@ -153,6 +154,22 @@ public class ProfileActivity extends Activity {
 			
 			for(WebsiteData website : websites){
 				items.add(new ProfileListWebsiteItem(this, website));
+			}
+		}
+		return items;
+	}
+	
+	ArrayList<ListItem> getEventList(long rawContactId){
+		EventDao eventDao = new EventDao(this);
+		ArrayList<EventData> events = eventDao.get(rawContactId);
+		
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		if(!events.isEmpty()){
+			items.add(new ListHeaderItem(this, "Event"));
+			
+			for(EventData event : events){
+				String content = String.format("(%d) %s", event.type, event.startDate);
+				items.add(new ListContentItem(this, content));
 			}
 		}
 		return items;
