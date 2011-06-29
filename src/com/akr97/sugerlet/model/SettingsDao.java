@@ -6,14 +6,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.Settings;
 
-public class SettingsModel extends ModelBase<SettingsData> {
+public class SettingsDao extends ModelBase<SettingsData> {
 	static final String[] PROJECTION = new String[]{
 		Settings.ACCOUNT_NAME,
 		Settings.ACCOUNT_TYPE,
 		Settings.UNGROUPED_VISIBLE
 	};
 	
-	public SettingsModel(Context ctx){
+	public SettingsDao(Context ctx){
 		super(ctx);
 	}
 	

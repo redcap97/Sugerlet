@@ -81,8 +81,8 @@ public class AccountStateManager {
 	}
 	
 	private void addStatesFromSettingsModel(boolean defaultState){
-        SettingsModel settingsModel = new SettingsModel(context);
-        for(SettingsData settings : settingsModel.getAll()){
+        SettingsDao settingsDao = new SettingsDao(context);
+        for(SettingsData settings : settingsDao.getAll()){
         	addState(settings.getAccount(), defaultState);
         }
 	}
