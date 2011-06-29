@@ -89,7 +89,7 @@ public final class CursorJoinerWithLongKey implements Iterator<CursorJoinerWithL
         if (hasLeft && hasRight) {
             populateValues(mValues, mCursorLeft, mColumnsLeft, 0 /* start filling at index 0 */);
             populateValues(mValues, mCursorRight, mColumnsRight, 1 /* start filling at index 1 */);
-            switch (compareInts(mValues)) {
+            switch (compareLongs(mValues)) {
             case -1:
                 mCompareResult = Result.LEFT;
                 break;
@@ -139,7 +139,7 @@ public final class CursorJoinerWithLongKey implements Iterator<CursorJoinerWithL
         }
     }
 
-    private static int compareInts(long... values) {
+    private static int compareLongs(long... values) {
         if ((values.length % 2) != 0) {
             throw new IllegalArgumentException("you must specify an even number of values");
         }
