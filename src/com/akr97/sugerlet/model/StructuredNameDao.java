@@ -78,11 +78,11 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
         Cursor c1 = getCursorBelongToGroup(groupId);
         Cursor c2 = getCursorBelongToAccount(group.getAccount());
 
-        CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
+        CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(c2, new String[]{ RawContactsEntity._ID },
         		c1, new String[]{ Data.RAW_CONTACT_ID });
 
         ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-        for(CursorJoinerWithIntKey.Result r : cursorJoiner){
+        for(CursorJoinerWithLongKey.Result r : cursorJoiner){
         	switch(r){
         	case BOTH:
         		results.add(extract(c2));
@@ -99,11 +99,11 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 		Cursor c1 = getCursorBelongToGroup(account);
 		Cursor c2 = getCursorBelongToAccount(account);
 		
-		CursorJoinerWithIntKey cursorJoiner = new CursorJoinerWithIntKey(c2, new String[]{ RawContactsEntity._ID },
+		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ RawContactsEntity._ID });
 		
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-		for(CursorJoinerWithIntKey.Result r : cursorJoiner){
+		for(CursorJoinerWithLongKey.Result r : cursorJoiner){
 			switch(r){
 			case LEFT:
 				results.add(extract(c2));
