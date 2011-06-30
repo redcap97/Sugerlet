@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.akr97.sugerlet.japanese.InitialsGroupSelector;
+import com.akr97.sugerlet.japanese.*;
 import com.akr97.sugerlet.listitem.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.util.*;
@@ -32,12 +32,17 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 		StructuredNameDao dao = new StructuredNameDao(this);
 		NormalizedNameList list = NormalizedNameList.fromStructuredNames(dao.getAll())
 									.filter(params.initialsGroup).sort();
-		if(list.size() > 0){
-			items.add(new ListHeaderItem(this,
-					InitialsGroupSelector.getGroupName(params.initialsGroup)));
-			for(NormalizedName name : list){
-				items.add(new ContactListContentItem(this, name.getEntity()));
+
+		char currentGroup = '\0';
+		InitialsSubgroupSelector subgroupSelector = new InitialsSubgroupSelector();
+		for(NormalizedName name : list){
+			char subgroup = subgroupSelector.select(name.get());
+			if(currentGroup != subgroup){
+				currentGroup = subgroup;
+				items.add(new ListHeaderItem(this,
+						InitialsSubgroupSelector.getGroupName(currentGroup)));
 			}
+			items.add(new ContactListContentItem(this, name.getEntity()));
 		}
 		return items;
 	}
