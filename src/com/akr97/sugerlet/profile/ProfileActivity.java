@@ -41,14 +41,14 @@ public class ProfileActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		items.addAll(getPhoneList(rawContactId));
 		items.addAll(getEmailList(rawContactId));
-		items.addAll(getImList(rawContactId));
-		items.addAll(getStructuredPostalList(rawContactId));
-		items.addAll(getGroupList(rawContactId));
 		items.addAll(getNicknameList(rawContactId));
+		items.addAll(getStructuredPostalList(rawContactId));
+		items.addAll(getImList(rawContactId));
+		items.addAll(getGroupList(rawContactId));
 		items.addAll(getWebsiteList(rawContactId));
 		items.addAll(getEventList(rawContactId));
 		items.addAll(getOrganizationList(rawContactId));
-		
+
 		ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(new ListItemAdapter(items));
         listView.setOnItemClickListener(new ListItemClickListener(items));
@@ -120,9 +120,11 @@ public class ProfileActivity extends Activity {
         ArrayList<GroupData> groups = groupDao.get(rawContactId);
         
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!groups.isEmpty()){
-			items.add(new ListHeaderItem(this, getString(R.string.header_group)));
-			
+		
+		items.add(new ListHeaderItem(this, getString(R.string.header_group)));
+		if(groups.isEmpty()){
+			items.add(new ListContentItem(this, getString(R.string.no_group)));
+		}else{
 			for(GroupData group : groups){
 				items.add(new ListContentItem(this, group.title));
 			}
