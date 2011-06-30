@@ -119,9 +119,9 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	private Cursor getCursorBelongToAccount(Account account){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
-				RawContactsEntity.MIMETYPE + "=? AND "
-					+ RawContacts.ACCOUNT_NAME + "=? AND "
-					+ RawContacts.ACCOUNT_TYPE + "=?",
+				RawContactsEntity.MIMETYPE + "=? AND " +
+					RawContacts.ACCOUNT_NAME + "=? AND " +
+					RawContacts.ACCOUNT_TYPE + "=?",
 				new String[]{
 					StructuredName.CONTENT_ITEM_TYPE,
 					account.name,
