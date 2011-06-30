@@ -48,6 +48,6 @@ public class PhoneDao extends DaoBase<PhoneData> {
 				new String[] {
 					String.valueOf(rawContactId),
 					Phone.CONTENT_ITEM_TYPE},
-				Data._ID);
+				Phone._ID);
 	}
 }

@@ -39,7 +39,7 @@ public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 				new String[] {
 					String.valueOf(rawContactId),
 					StructuredPostal.CONTENT_ITEM_TYPE},
-				Data._ID);
+				StructuredPostal._ID);
 	}
 
 	@Override

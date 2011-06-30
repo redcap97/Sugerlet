@@ -30,7 +30,7 @@ public class NicknameDao extends DaoBase<NicknameData> {
 	   			new String[] {
 					String.valueOf(rawContactId),
 					Nickname.CONTENT_ITEM_TYPE},
-				Data._ID);
+				Nickname._ID);
 	}
 
 	@Override
