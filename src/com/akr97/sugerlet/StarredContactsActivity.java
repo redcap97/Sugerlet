@@ -20,7 +20,7 @@ public class StarredContactsActivity extends ContactsActivity {
 		StructuredNameDao dao = new StructuredNameDao(this);
 		return createListItems(dao.getStarred());
 	}
-	
+
 	public static Intent getIntent(Context context){
 		return new Intent(context, StarredContactsActivity.class);
 	}

@@ -7,7 +7,7 @@ public class JapaneseUtil {
 		s = HankakuKatakanaToZenkakuKatakana.hankakuKatakanaToZenkakuKatakana(s);
 		return ZenkakuKatakanaToZenkakuHiragana.zenkakuHiraganaToZenkakuKatakana(s);
 	}
-	
+
 	public static String getName(String familyName, String givenName){
 		if(givenName == null || givenName.length() == 0){
 			return StringUtil.toNonNull(familyName);

@@ -15,27 +15,27 @@ public class AccountListActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_items);
-        
-        setupAccountList();
+		setContentView(R.layout.list_items);
+
+		setupAccountList();
 	}
-	
+
 	public void setupAccountList(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		AccountStateManager manager = AccountStateManagerFactory.create(this);
-		
+
 		for(AccountState state : manager.getEnabledStates()){
 			items.add(new AccountListContentItem(this, state.getAccount()));
 		}
-        ListView listView = (ListView)findViewById(R.id.contactList);
-        TextView textView = (TextView)findViewById(R.id.emptyView);
-        textView.setText(getString(R.string.message_no_account));
-        listView.setEmptyView(textView);
-        listView.setAdapter(new ListItemAdapter(items));
-        listView.setOnItemClickListener(new ListItemClickListener(items));
+		ListView listView = (ListView)findViewById(R.id.contactList);
+		TextView textView = (TextView)findViewById(R.id.emptyView);
+		textView.setText(getString(R.string.message_no_account));
+		listView.setEmptyView(textView);
+		listView.setAdapter(new ListItemAdapter(items));
+		listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
-	
-    public static Intent getIntent(Context context){
-    	return new Intent(context, AccountListActivity.class);
-    }
+
+	public static Intent getIntent(Context context){
+		return new Intent(context, AccountListActivity.class);
+	}
 }

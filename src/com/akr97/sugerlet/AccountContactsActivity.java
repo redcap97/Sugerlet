@@ -13,42 +13,42 @@ import com.akr97.sugerlet.util.*;
 
 public class AccountContactsActivity extends ContactsActivity {
 	private Parameter params;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		this.params = new Parameter();
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public String createTitle(){
 		return String.format("%s: %s",
 				getString(R.string.account),
 				AccountUtil.getHeading(params.account));
 	}
-	
+
 	@Override
 	public ArrayList<ListItem> createListItems(){
 		StructuredNameDao dao = new StructuredNameDao(this);
 		return createListItems(dao.getByAccount(params.account));
 	}
-	
+
 	public static Intent getIntent(Context context, Account account){
 		Intent intent = new Intent(context, AccountContactsActivity.class);
 		intent.putExtra(context.getString(R.string.key_account_name), account.name);
 		intent.putExtra(context.getString(R.string.key_account_type), account.type);
 		return intent;
 	}
-	
+
 	class Parameter {
 		public final Intent intent;
 		public final Account account;
-		
+
 		public Parameter(){
 			this.intent = getIntent();
 			this.account = new Account(getAccountName(), getAccountType());
 		}
-		
+
 		private String getAccountName(){
 			String accountName = intent.getStringExtra(getString(R.string.key_account_name));
 			if(accountName == null){
@@ -56,7 +56,7 @@ public class AccountContactsActivity extends ContactsActivity {
 			}
 			return accountName;
 		}
-		
+
 		private String getAccountType(){
 			String accountType = intent.getStringExtra(getString(R.string.key_account_type));
 			if(accountType == null){

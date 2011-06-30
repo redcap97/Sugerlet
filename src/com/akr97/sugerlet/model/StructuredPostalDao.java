@@ -8,8 +8,8 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 
 public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
-    static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
-    
+	static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
+
 	static final String[] PROJECTION = new String[]{
 		StructuredPostal.FORMATTED_ADDRESS,
 		StructuredPostal.TYPE,
@@ -22,11 +22,11 @@ public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 		StructuredPostal.POSTCODE,
 		StructuredPostal.COUNTRY
 	};
-	
+
 	public StructuredPostalDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	public ArrayList<StructuredPostalData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
@@ -36,12 +36,12 @@ public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "=? AND " 
 					+ Data.MIMETYPE + "=?",
-	   			new String[] {
+				new String[] {
 					String.valueOf(rawContactId),
 					StructuredPostal.CONTENT_ITEM_TYPE},
 				Data._ID);
 	}
-	
+
 	@Override
 	public StructuredPostalData extract(Cursor c) {
 		String formattedAddress = c.getString(0);
@@ -58,5 +58,4 @@ public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 		return new StructuredPostalData(formattedAddress, type, label, 
 				street, pobox, neighborhood, city, region, postcode, country);
 	}
-
 }

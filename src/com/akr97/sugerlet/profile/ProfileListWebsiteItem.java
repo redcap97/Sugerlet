@@ -12,7 +12,7 @@ import com.akr97.sugerlet.listitem.*;
 
 public class ProfileListWebsiteItem extends ListItem {
 	private WebsiteData website;
-	
+
 	public ProfileListWebsiteItem(Context context, WebsiteData website) {
 		super(context, Type.CUSTOM);
 		this.website = website;
@@ -22,15 +22,15 @@ public class ProfileListWebsiteItem extends ListItem {
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.list_content_item, null);
-	
+
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
 		name.setText(website.url);
 		return convertView;
 	}
-	
+
 	@Override
 	public void onClick(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW, website.getUri());
-        context.startActivity(intent);
+		Intent intent = new Intent(Intent.ACTION_VIEW, website.getUri());
+		context.startActivity(intent);
 	}
 }

@@ -19,7 +19,7 @@ public class AllContactsActivity extends ContactsActivity {
 		StructuredNameDao dao = new StructuredNameDao(this);
 		return createListItems(dao.getAll());
 	}
-	
+
 	public static Intent getIntent(Context context){
 		return new Intent(context, AllContactsActivity.class);
 	}

@@ -12,7 +12,7 @@ import com.akr97.sugerlet.listitem.*;
 
 public class ProfileListEmailItem extends ListItem {
 	private EmailData email;
-	
+
 	public ProfileListEmailItem(Context context, EmailData email) {
 		super(context, Type.CUSTOM);
 		this.email = email;
@@ -22,12 +22,12 @@ public class ProfileListEmailItem extends ListItem {
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.list_content_item, null);
-	
+
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
 		name.setText(email.address);
 		return convertView;
 	}
-	
+
 	@Override
 	public void onClick(View view){
 		Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());

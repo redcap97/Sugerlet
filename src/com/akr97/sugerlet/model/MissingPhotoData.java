@@ -8,14 +8,14 @@ import android.content.Context;
 
 public class MissingPhotoData extends PhotoData {
 	private Context ctx;
-	
+
 	static Bitmap cache = null;
-	
+
 	public MissingPhotoData(Context ctx) {
 		super(null);
 		this.ctx = ctx;
 	}
-	
+
 	@Override
 	public Bitmap getBitmap(){
 		if(cache == null){

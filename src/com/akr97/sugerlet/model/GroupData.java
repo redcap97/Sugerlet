@@ -9,7 +9,7 @@ public class GroupData {
 	public final String systemId;
 	public final String accountName;
 	public final String accountType;
-	
+
 	public GroupData(long id, String title, String notes, String systemId, 
 			String accountName, String accountType){
 		this.id = id;
@@ -19,11 +19,11 @@ public class GroupData {
 		this.accountName = accountName;
 		this.accountType = accountType;
 	}
-	
+
 	public Account getAccount(){
 		return new Account(accountName, accountType);
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("id: %d, title: %s, notes: %s, systemId: %s,"

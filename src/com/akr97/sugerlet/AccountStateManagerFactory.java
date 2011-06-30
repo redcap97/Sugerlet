@@ -4,7 +4,7 @@ import android.content.Context;
 
 public class AccountStateManagerFactory {
 	static AccountStateManager accountStateManager;
-	
+
 	public static AccountStateManager create(Context ctx){
 		if(accountStateManager == null){		
 			if(AccountStateManager.canLoad(ctx)){

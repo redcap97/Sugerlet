@@ -17,28 +17,28 @@ public class InitialsGroupListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_items);
-		
+
 		setupInitialsIndex();
 	}
-	
+
 	public void setupInitialsIndex(){
-        ArrayList<ListItem> items = new ArrayList<ListItem>();
-        
-        for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
-        	items.add(new ListIntentItem(this,
-        			InitialsGroupSelector.getGroupName(group),
-        			InitialsGroupContactsActivity.getIntent(this, group)));
-        }
-        
-        ListView listView = (ListView)findViewById(R.id.contactList);
-        TextView textView = (TextView)findViewById(R.id.emptyView);
-        textView.setText(getString(R.string.message_no_group));
-        listView.setEmptyView(textView);
-        listView.setAdapter(new ListItemAdapter(items));
-        listView.setOnItemClickListener(new ListItemClickListener(items));
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+
+		for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
+			items.add(new ListIntentItem(this,
+					InitialsGroupSelector.getGroupName(group),
+					InitialsGroupContactsActivity.getIntent(this, group)));
+		}
+
+		ListView listView = (ListView)findViewById(R.id.contactList);
+		TextView textView = (TextView)findViewById(R.id.emptyView);
+		textView.setText(getString(R.string.message_no_group));
+		listView.setEmptyView(textView);
+		listView.setAdapter(new ListItemAdapter(items));
+		listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
-	
+
 	public static Intent getIntent(Context context){
-    	return new Intent(context, InitialsGroupListActivity.class);
+		return new Intent(context, InitialsGroupListActivity.class);
 	}
 }

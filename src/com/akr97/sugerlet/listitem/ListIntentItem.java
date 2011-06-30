@@ -22,13 +22,13 @@ public class ListIntentItem extends ListItem {
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.list_content_item, null);
-	
+
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
 		name.setText(title);
-		
+
 		return convertView;
 	}
-	
+
 	@Override
 	public void onClick(View view){
 		context.startActivity(intent);

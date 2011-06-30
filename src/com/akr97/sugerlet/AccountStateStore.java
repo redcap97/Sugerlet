@@ -13,19 +13,19 @@ import com.akr97.sugerlet.util.*;
 
 public class AccountStateStore {
 	private SharedPreferences pref;
-	
+
 	static final String PREF_FILE_NAME = "account_states";
 	static final String KEY_IS_INITIALIZED = "Config.isInitialized";
 	static final String ACCOUNT_SEPARATOR = "$";
-	
+
 	public AccountStateStore(Context context){
 		this.pref = context.getSharedPreferences(PREF_FILE_NAME, Activity.MODE_PRIVATE);
 	}
-	
+
 	public boolean isInitialized(){
 		return pref.getBoolean(KEY_IS_INITIALIZED, false);
 	}
-	
+
 	public void put(ArrayList<AccountState> states){
 		SharedPreferences.Editor editor = pref.edit();
 		editor.clear();
@@ -35,7 +35,7 @@ public class AccountStateStore {
 		}
 		editor.commit();
 	}
-	
+
 	public ArrayList<AccountState> get(){
 		ArrayList<AccountState> states = new ArrayList<AccountState>();	
 		Map<String, ?> map = pref.getAll();
@@ -45,24 +45,24 @@ public class AccountStateStore {
 			if(!key.equals(KEY_IS_INITIALIZED)){
 				Account account = parseAccountKey(key);
 				boolean state = (Boolean)entry.getValue();
-				
+
 				states.add(new AccountState(account, state));
 			}
 		}
-		
+
 		return states;
 	}
-	
+
 	private void reset(){
 		SharedPreferences.Editor editor = pref.edit();
 		editor.clear();
 		editor.commit();
 	}
-	
+
 	private String buildAccountKey(Account account){
 		return account.name + ACCOUNT_SEPARATOR + account.type;
 	}
-	
+
 	private Account parseAccountKey(String key){
 		String[] tokens = null;
 		try{

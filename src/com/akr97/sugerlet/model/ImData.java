@@ -6,7 +6,7 @@ public class ImData {
 	public final String label;
 	public final int protocol;
 	public final String customProtocol;
-	
+
 	public ImData(String data, int type, String label, 
 			int protocol, String customProtocol){
 		this.data = data;
@@ -15,7 +15,7 @@ public class ImData {
 		this.protocol = protocol;
 		this.customProtocol = customProtocol;
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("data: %s, type: %d, label: %s," 

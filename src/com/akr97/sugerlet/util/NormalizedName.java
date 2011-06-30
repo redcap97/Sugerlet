@@ -36,7 +36,7 @@ public class NormalizedName implements Comparable<NormalizedName>{
 	public int compareTo(NormalizedName another) {
 		return value.compareTo(another.value);
 	}
-	
+
 	@Override
 	public boolean equals(Object object){
 		if((object != null) && (object instanceof NormalizedName)){
@@ -45,7 +45,7 @@ public class NormalizedName implements Comparable<NormalizedName>{
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode(){
 		return value.hashCode();

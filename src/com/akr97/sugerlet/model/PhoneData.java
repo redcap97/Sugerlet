@@ -7,18 +7,18 @@ public class PhoneData {
 	public final String number;
 	public final int type;
 	public final String label;
-	
+
 	public PhoneData(long id, String number, int type, String label){
 		this.id = id;
 		this.number = number;
 		this.type = type;
 		this.label = label;
 	}
-	
+
 	public Uri getTelephoneUri(){
 		return Uri.parse("tel:" + number);
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("id: %d, number: %s, type: %d, label: %s", 

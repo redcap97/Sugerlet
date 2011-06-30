@@ -18,17 +18,17 @@ public class InitialsSubgroupSelector {
 			{'O'}, {'P'}, {'Q'}, {'R'}, {'S'}, {'T'}, {'U'}, {'V'}, {'W'}, {'X'}, {'Y'}, {'Z'},
 		{'0'}, {'1'}, {'2'}, {'3'}, {'4'}, {'5'}, {'6'}, {'7'}, {'8'}, {'9'}
 	};
-	
+
 	private static final char GROUP_OTHER = '~';
-	
+
 	private static HashMap<Character, Character> groupMap = null;
-	
+
 	public InitialsSubgroupSelector(){
 		if(groupMap == null){
 			groupMap = createGroupMap();
 		}
 	}
-	
+
 	public char select(String s){
 		Character result = null;
 		if(s.length() != 0){
@@ -36,7 +36,7 @@ public class InitialsSubgroupSelector {
 		}
 		return result == null ? GROUP_OTHER : result.charValue();
 	}
-	
+
 	private HashMap<Character, Character> createGroupMap(){
 		HashMap<Character, Character> map = new HashMap<Character, Character>();
 		for(char[] initialsGroup : INITIALS_GROUPS){
@@ -47,7 +47,7 @@ public class InitialsSubgroupSelector {
 		}
 		return map;
 	}
-	
+
 	public static String getGroupName(char group){
 		if(group == GROUP_OTHER){
 			return "その他";

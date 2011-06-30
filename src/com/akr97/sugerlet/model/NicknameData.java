@@ -10,7 +10,7 @@ public class NicknameData {
 		this.type = type;
 		this.label = label;
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("name: %s, type: %d, label: %s", name, type, label);

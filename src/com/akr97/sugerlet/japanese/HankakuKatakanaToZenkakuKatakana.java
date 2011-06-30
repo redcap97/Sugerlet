@@ -31,7 +31,7 @@ public class HankakuKatakanaToZenkakuKatakana {
 			return c;
 		}
 	}
-	
+
 	/**
 	 * 2文字目が濁点・半濁点で、1文字目に加えることができる場合は、合成した文字を返します。
 	 * 合成ができないときは、c1を返します。

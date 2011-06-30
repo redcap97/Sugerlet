@@ -5,11 +5,11 @@ import android.graphics.BitmapFactory;
 
 public class PhotoData {
 	public final byte[] bytes;
-	
+
 	public PhotoData(byte[] bytes){
 		this.bytes = bytes;
 	}
-	
+
 	public Bitmap getBitmap(){
 		return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
 	}

@@ -12,15 +12,15 @@ public class SettingsDao extends DaoBase<SettingsData> {
 		Settings.ACCOUNT_TYPE,
 		Settings.UNGROUPED_VISIBLE
 	};
-	
+
 	public SettingsDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	public ArrayList<SettingsData> getAll(){
 		return readRows(getCursor());
 	}
-	
+
 	public Cursor getCursor(){
 		return getContentResolver().query(
 				Settings.CONTENT_URI,
@@ -33,7 +33,7 @@ public class SettingsDao extends DaoBase<SettingsData> {
 		String accountName = c.getString(0);
 		String accountType = c.getString(1);
 		int ungroupedVisible = c.getInt(2);
-		
+
 		return new SettingsData(accountName, accountType, ungroupedVisible);
 	}
 }

@@ -7,11 +7,11 @@ import android.widget.AdapterView;
 
 public class ListItemClickListener implements AdapterView.OnItemClickListener {
 	private final ArrayList<ListItem> items;
-	
+
 	public ListItemClickListener(ArrayList<ListItem> items){
 		this.items = items;
 	}
-	
+
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view,
 			int position, long id) {

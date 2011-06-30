@@ -15,21 +15,21 @@ import android.widget.Toast;
 public class SettingAccountActivity extends Activity {
 	static final int MENU_SAVE = (Menu.FIRST + 1);
 	static final int MENU_RESET = (Menu.FIRST + 2);
-	
+
 	private SettingAccountListAdapter listAdapter;
 	private ListView listView;
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.setting_account);
-        
-        setupSettingAccountList();
-        setupSaveButton();
-    }
-    
-    private void setupSettingAccountList(){
-        listAdapter = new SettingAccountListAdapter(this);
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.setting_account);
+
+		setupSettingAccountList();
+		setupSaveButton();
+	}
+
+	private void setupSettingAccountList(){
+		listAdapter = new SettingAccountListAdapter(this);
 		listView = (ListView)findViewById(R.id.list);
 		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
@@ -37,14 +37,14 @@ public class SettingAccountActivity extends Activity {
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-	    			int position, long id){
+					int position, long id){
 				CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkBox);
 				checkBox.setChecked(!checkBox.isChecked());
 			}
 		});
-    }
-    
-    private void setupSaveButton(){
+	}
+
+	private void setupSaveButton(){
 		View saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(new View.OnClickListener(){
 			@Override
@@ -52,41 +52,41 @@ public class SettingAccountActivity extends Activity {
 				saveChanges();
 			}
 		});
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	menu.add(Menu.NONE, MENU_SAVE, Menu.NONE, getString(R.string.menu_save));
-    	menu.add(Menu.NONE, MENU_RESET, Menu.NONE, getString(R.string.menu_reset));
-    	return super.onCreateOptionsMenu(menu);
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	switch(item.getItemId()){
-    	case MENU_SAVE:
-    		saveChanges();
-    		return true;
-    	case MENU_RESET:
-    		resetChanges();
-    		return true;
-    	}
-    	return super.onOptionsItemSelected(item);
-    }
-    
-    public void saveChanges(){
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(Menu.NONE, MENU_SAVE, Menu.NONE, getString(R.string.menu_save));
+		menu.add(Menu.NONE, MENU_RESET, Menu.NONE, getString(R.string.menu_reset));
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case MENU_SAVE:
+			saveChanges();
+			return true;
+		case MENU_RESET:
+			resetChanges();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	public void saveChanges(){
 		listAdapter.save();
 		Toast.makeText(this, getString(R.string.message_save), Toast.LENGTH_SHORT).show();
 		finish();
-    }
-    
-    public void resetChanges(){
+	}
+
+	public void resetChanges(){
 		listAdapter.reset();
 		listAdapter.notifyDataSetChanged();
 		listView.invalidateViews();
-    }
-    
-    public static Intent getIntent(Context context){
-    	return new Intent(context, SettingAccountActivity.class);
-    }
+	}
+
+	public static Intent getIntent(Context context){
+		return new Intent(context, SettingAccountActivity.class);
+	}
 }

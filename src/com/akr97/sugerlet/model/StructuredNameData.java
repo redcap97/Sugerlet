@@ -9,7 +9,7 @@ public class StructuredNameData {
 	public final String familyName;
 	public final String phoneticGivenName;
 	public final String phoneticFamilyName;
-	
+
 	public StructuredNameData(long rawContactId, String displayName, String givenName, String familyName,
 			String phoneticGivenName, String phoneticFamilyName){
 		this.rawContactId = rawContactId;
@@ -19,18 +19,18 @@ public class StructuredNameData {
 		this.phoneticGivenName = phoneticGivenName;
 		this.phoneticFamilyName = phoneticFamilyName;
 	}
-	
+
 	public String getName(){
 		return JapaneseUtil.getName(familyName, givenName);
 	}
-	
+
 	public String getPhoneticName(){
 		return JapaneseUtil.getName(phoneticFamilyName, phoneticGivenName);
 	}
-	
+
 	public String getPhoneticName(String defaultValue){
 		String phoneticName = getPhoneticName();
-		
+
 		if(phoneticName.length() != 0){
 			return phoneticName;
 		}else{

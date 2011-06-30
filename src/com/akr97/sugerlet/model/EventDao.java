@@ -17,11 +17,11 @@ public class EventDao extends DaoBase<EventData> {
 	public EventDao(Context context) {
 		super(context);
 	}
-	
+
 	public ArrayList<EventData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
@@ -32,13 +32,13 @@ public class EventDao extends DaoBase<EventData> {
 					Event.CONTENT_ITEM_TYPE },
 				Event._ID);
 	}
-	
+
 	@Override
 	public EventData extract(Cursor c) {
 		String startDate = c.getString(0);
 		int type = c.getInt(1);
 		String label = c.getString(2);
-		
+
 		return new EventData(startDate, type, label);
 	}
 }

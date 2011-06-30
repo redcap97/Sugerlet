@@ -10,7 +10,7 @@ import com.akr97.sugerlet.listitem.*;
 
 public class AccountListContentItem extends ListItem {
 	private Account account;
-	
+
 	public AccountListContentItem(Context context, Account account){
 		super(context, Type.CUSTOM);
 		this.account = account;
@@ -20,15 +20,15 @@ public class AccountListContentItem extends ListItem {
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.account_list_content_item, null);
-	
+
 		TextView tvName = (TextView)convertView.findViewById(R.id.name);
 		tvName.setText(account.name);
 		TextView tvType = (TextView)convertView.findViewById(R.id.type);
 		tvType.setText(account.type);
-		
+
 		return convertView;
 	}
-	
+
 	@Override
 	public void onClick(View view){
 		context.startActivity(AccountContactsActivity.getIntent(context, account));

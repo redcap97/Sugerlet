@@ -12,16 +12,16 @@ public class WebsiteDao extends DaoBase<WebsiteData> {
 		Website.URL,
 		Website.TYPE,
 		Website.LABEL
-    };
-	
+	};
+
 	public WebsiteDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	public ArrayList<WebsiteData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
@@ -32,13 +32,13 @@ public class WebsiteDao extends DaoBase<WebsiteData> {
 					Website.CONTENT_ITEM_TYPE },
 				Website._ID);
 	}
-	
+
 	@Override
 	public WebsiteData extract(Cursor c) {
 		String url = c.getString(0);
 		int type = c.getInt(1);
 		String label = c.getString(2);
-		
+
 		return new WebsiteData(url, type, label);
 	}
 

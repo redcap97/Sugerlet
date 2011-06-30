@@ -17,36 +17,36 @@ public class GroupListActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_items);
-        
-        setupGroupList();
-	}
-	
-	private void setupGroupList(){        	
-        ArrayList<ListItem> items = new ArrayList<ListItem>();
-        AccountStateManager manager = AccountStateManagerFactory.create(this);
-        for(AccountState state : manager.getEnabledStates()){
-        	items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
-        	items.add(new ListIntentItem(this, getString(R.string.no_group),
-        			GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
+		setContentView(R.layout.list_items);
 
-        	GroupDao dao = new GroupDao(this);
-        	ArrayList<GroupData> groups = dao.getByAccount(state.getName(), state.getType());
-        	for(GroupData group : groups){
-        		items.add(new ListIntentItem(this, group.title,
-        				GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));
-        	}
-        }
-        
-        ListView listView = (ListView)findViewById(R.id.contactList);
-        TextView textView = (TextView)findViewById(R.id.emptyView);
-        textView.setText(getString(R.string.message_no_group));
-        listView.setEmptyView(textView);
-        listView.setAdapter(new ListItemAdapter(items));
-        listView.setOnItemClickListener(new ListItemClickListener(items));
+		setupGroupList();
 	}
-	
+
+	private void setupGroupList(){        	
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		AccountStateManager manager = AccountStateManagerFactory.create(this);
+		for(AccountState state : manager.getEnabledStates()){
+			items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
+			items.add(new ListIntentItem(this, getString(R.string.no_group),
+					GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
+
+			GroupDao dao = new GroupDao(this);
+			ArrayList<GroupData> groups = dao.getByAccount(state.getName(), state.getType());
+			for(GroupData group : groups){
+				items.add(new ListIntentItem(this, group.title,
+						GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));
+			}
+		}
+
+		ListView listView = (ListView)findViewById(R.id.contactList);
+		TextView textView = (TextView)findViewById(R.id.emptyView);
+		textView.setText(getString(R.string.message_no_group));
+		listView.setEmptyView(textView);
+		listView.setAdapter(new ListItemAdapter(items));
+		listView.setOnItemClickListener(new ListItemClickListener(items));
+	}
+
 	public static Intent getIntent(Context context){
-    	return new Intent(context, GroupListActivity.class);
+		return new Intent(context, GroupListActivity.class);
 	}
 }

@@ -12,16 +12,16 @@ public class NicknameDao extends DaoBase<NicknameData> {
 		Nickname.NAME,
 		Nickname.TYPE,
 		Nickname.LABEL
-    };
-	
+	};
+
 	public NicknameDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	public ArrayList<NicknameData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
@@ -32,13 +32,13 @@ public class NicknameDao extends DaoBase<NicknameData> {
 					Nickname.CONTENT_ITEM_TYPE},
 				Data._ID);
 	}
-	
+
 	@Override
 	public NicknameData extract(Cursor c) {
 		String name = c.getString(0);
 		int type = c.getInt(1);
 		String label = c.getString(1);
-		
+
 		return new NicknameData(name, type, label);
 	}
 }

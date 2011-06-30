@@ -8,8 +8,8 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 
 public class ImDao extends DaoBase<ImData> {
-    static final String TAG = "com.akr97.sugerlet.model.ImModel";
-    
+	static final String TAG = "com.akr97.sugerlet.model.ImModel";
+
 	static final String[] PROJECTION = new String[]{
 		Im.DATA,
 		Im.TYPE,
@@ -17,7 +17,7 @@ public class ImDao extends DaoBase<ImData> {
 		Im.PROTOCOL,
 		Im.CUSTOM_PROTOCOL
 	};
-	
+
 	public ImDao(Context ctx){
 		super(ctx);
 	}
@@ -29,22 +29,22 @@ public class ImDao extends DaoBase<ImData> {
 		String label = c.getString(2);
 		int protocol = c.getInt(3);
 		String customProtocol = c.getString(4);
-		
+
 		return new ImData(data, type, label, protocol, customProtocol);
 	}
-	
+
 	public String getTypeLabel(ImData im){
 		return Im.getTypeLabel(getResources(), im.type, im.label).toString();
 	}
-	
+
 	public String getProtocolLabel(ImData im){
 		return Im.getProtocolLabel(getResources(), im.protocol, im.customProtocol).toString();
 	}
-	
+
 	public ArrayList<ImData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,

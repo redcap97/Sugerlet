@@ -15,12 +15,12 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 public class SettingAccountListAdapter extends BaseAdapter {
 	private Context context;
 	private ArrayList<AccountState> states = new ArrayList<AccountState>();
-	
+
 	public SettingAccountListAdapter(Context context){
 		this.context = context;
 		reset();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return states.size();
@@ -40,11 +40,11 @@ public class SettingAccountListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		AccountState state = (AccountState)getItem(position);
 		ViewHolder holder;
-		
+
 		if(convertView == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
 			convertView = inflater.inflate(R.layout.setting_account_list_item, null);
-			
+
 			holder = new ViewHolder();
 			holder.name = (TextView)convertView.findViewById(R.id.name);
 			holder.type = (TextView)convertView.findViewById(R.id.type);
@@ -53,15 +53,15 @@ public class SettingAccountListAdapter extends BaseAdapter {
 		}else{
 			holder = (ViewHolder)convertView.getTag();
 		}
-		
+
 		holder.name.setText(state.getName());
 		holder.type.setText(state.getType());
 		holder.checkBox.setOnCheckedChangeListener(new CheckedChangeListener(position));
 		holder.checkBox.setChecked(state.isEnabled());
-		
+
 		return convertView;
 	}
-	
+
 	public void save(){
 		AccountStateManager accountStateManager = AccountStateManagerFactory.create(context);
 		for(AccountState state : states){
@@ -69,7 +69,7 @@ public class SettingAccountListAdapter extends BaseAdapter {
 		}
 		accountStateManager.save();
 	}
-	
+
 	public void reset(){
 		states.clear();
 		AccountStateManager manager = AccountStateManagerFactory.create(context);
@@ -77,20 +77,20 @@ public class SettingAccountListAdapter extends BaseAdapter {
 			states.add(new AccountState(state));
 		}
 	}
-	
+
 	static class ViewHolder{
 		public TextView name;
 		public TextView type;
 		public CheckBox checkBox;
 	}
-	
+
 	class CheckedChangeListener implements OnCheckedChangeListener{
 		private int position;
-		
+
 		public CheckedChangeListener(int position){
 			this.position = position;
 		}
-		
+
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 			AccountState state = states.get(position);

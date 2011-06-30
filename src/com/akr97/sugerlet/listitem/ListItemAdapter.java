@@ -8,11 +8,11 @@ import android.widget.BaseAdapter;
 
 public class ListItemAdapter extends BaseAdapter {
 	private ArrayList<ListItem> items;
-	
+
 	public ListItemAdapter(ArrayList<ListItem> items){
 		this.items = items;
 	}
-	
+
 	@Override
 	public boolean isEnabled(int position){
 		ListItem item = (ListItem)getItem(position);

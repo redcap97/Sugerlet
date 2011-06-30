@@ -12,15 +12,15 @@ import com.akr97.sugerlet.model.*;
 
 public class GroupContactsActivity extends ContactsActivity {
 	public static final long NO_GROUP_ID = 0L;
-	
+
 	private Parameter params;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		this.params = new Parameter();
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public String createTitle() {
 		return String.format("%s: %s", 
@@ -32,7 +32,7 @@ public class GroupContactsActivity extends ContactsActivity {
 	public ArrayList<ListItem> createListItems() {
 		return createListItems(getStructuredNames());
 	}
-	
+
 	public ArrayList<StructuredNameData> getStructuredNames(){
 		StructuredNameDao dao = new StructuredNameDao(this);
 		if(params.groupId == NO_GROUP_ID){
@@ -41,7 +41,7 @@ public class GroupContactsActivity extends ContactsActivity {
 			return dao.getFromGroup(params.groupId);
 		}
 	}
-	
+
 	public static Intent getIntent(Context context, Account account, long groupId){
 		Intent intent = new Intent(context, GroupContactsActivity.class);
 		intent.putExtra(context.getString(R.string.key_account_name), account.name);
@@ -49,32 +49,32 @@ public class GroupContactsActivity extends ContactsActivity {
 		intent.putExtra(context.getString(R.string.key_group_id), groupId);
 		return intent;
 	}
-	
+
 	public static Intent getIntentNoGroup(Context context, Account account){
 		return getIntent(context, account, NO_GROUP_ID);
 	}
-	
+
 	private String getGroupName(long groupId){
 		if(groupId == NO_GROUP_ID){
 			return getString(R.string.no_group);
 		}
-		
+
 		GroupDao groupDao = new GroupDao(this);
 		GroupData group = groupDao.getById(groupId);
 		return group.title;
 	}
-	
+
 	class Parameter{
 		public final Intent intent;
 		public final Account account;
 		public final long groupId;
-		
+
 		public Parameter(){
 			this.intent = getIntent();
 			this.groupId = getGroupId();
 			this.account = new Account(getAccountName(), getAccountType());
 		}
-		
+
 		private long getGroupId(){
 			long groupId = intent.getLongExtra(getString(R.string.key_group_id), -1);
 			if(groupId == -1L){
@@ -82,7 +82,7 @@ public class GroupContactsActivity extends ContactsActivity {
 			}
 			return groupId;
 		}
-		
+
 		private String getAccountName(){
 			String accountName = intent.getStringExtra(getString(R.string.key_account_name));
 			if(accountName == null){
@@ -90,7 +90,7 @@ public class GroupContactsActivity extends ContactsActivity {
 			}
 			return accountName;
 		}
-		
+
 		private String getAccountType(){
 			String accountType = intent.getStringExtra(getString(R.string.key_account_type));
 			if(accountType == null){

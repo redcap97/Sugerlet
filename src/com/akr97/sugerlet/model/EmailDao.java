@@ -12,16 +12,16 @@ public class EmailDao extends DaoBase<EmailData> {
 		Email.DATA,
 		Email.TYPE,
 		Email.LABEL
-    };
-	
+	};
+
 	public EmailDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	public ArrayList<EmailData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
@@ -32,13 +32,13 @@ public class EmailDao extends DaoBase<EmailData> {
 					Email.CONTENT_ITEM_TYPE },
 				Email._ID);
 	}
-	
+
 	@Override
 	public EmailData extract(Cursor c) {
 		String address = c.getString(0);
 		int type = c.getInt(1);
 		String label = c.getString(2);
-		
+
 		return new EmailData(address, type, label);
 	}
 }

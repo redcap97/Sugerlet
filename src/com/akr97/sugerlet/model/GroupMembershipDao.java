@@ -9,20 +9,20 @@ import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
 public class GroupMembershipDao extends DaoBase<GroupData> {
 	private GroupDao groupDao;
-	
+
 	static final String[] PROJECTION = new String[]{
 		GroupMembership.GROUP_ROW_ID
-    };
-	
+	};
+
 	public GroupMembershipDao(Context ctx){
 		super(ctx);
 		this.groupDao = new GroupDao(ctx);
 	}
-	
+
 	public ArrayList<GroupData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class ListContentItem extends ListItem {
 	private final String content;
-	
+
 	public ListContentItem(Context context, String content){
 		super(context, Type.CONTENT);
 		this.content = content;
@@ -19,13 +19,13 @@ public class ListContentItem extends ListItem {
 	public View getView(View convertView){
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.list_content_item, null);
-	
+
 		TextView name = (TextView)convertView.findViewById(R.id.textView);
 		name.setText(content);
-		
+
 		return convertView;
 	}
-	
+
 	@Override
 	public void onClick(View view){
 		android.widget.Toast.makeText(context, content, 20).show();

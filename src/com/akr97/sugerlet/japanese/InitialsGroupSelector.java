@@ -6,7 +6,7 @@ public class InitialsGroupSelector {
 	public static final char[] INITIALS_GROUP_NAMES = {
 		'あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ', 'A', '0', '~'
 	};
-	
+
 	private static final char[][] INITIALS_GROUPS = {
 		{'あ', 'ぁ', 'い', 'ぃ', 'う', 'ぅ', 'え', 'ぇ', 'お', 'ぉ'},
 		{'か', 'が', 'き', 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご'},
@@ -22,7 +22,7 @@ public class InitialsGroupSelector {
 			'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'},
 		{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}
 	};
-	
+
 	private static final char GROUP_ALPHABET = 'A';
 	private static final char GROUP_NUMBER = '0';
 	private static final char GROUP_OTHER = '~';
@@ -53,7 +53,7 @@ public class InitialsGroupSelector {
 		}
 		return map;
 	}
-	
+
 	public static String getGroupName(char group){
 		switch(group){
 		case GROUP_ALPHABET:

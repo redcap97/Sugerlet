@@ -9,17 +9,17 @@ public class PhotoDao extends DaoBase<PhotoData> {
 	static final String[] PROJECTION = new String[]{
 		Photo.PHOTO
 	};
-	
+
 	public PhotoDao(Context ctx){
 		super(ctx);
 	}
-	
+
 	@Override
 	public PhotoData extract(Cursor c){
 		byte[] bytes = c.getBlob(0);
 		return new PhotoData(bytes);
 	}
-	
+
 	public PhotoData getByRawContactId(long rawContactId){
 		PhotoData result = readRow(getCursor(rawContactId));
 		if(result == null){
@@ -27,7 +27,7 @@ public class PhotoDao extends DaoBase<PhotoData> {
 		}
 		return result;
 	}
-	
+
 	public Cursor getCursor(long rawContactId){
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
@@ -36,6 +36,6 @@ public class PhotoDao extends DaoBase<PhotoData> {
 				new String[] {
 					String.valueOf(rawContactId),
 					Photo.CONTENT_ITEM_TYPE},
-				null);
+				Photo._ID);
 	}
 }

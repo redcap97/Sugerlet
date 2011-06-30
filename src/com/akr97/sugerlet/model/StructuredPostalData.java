@@ -11,7 +11,7 @@ public class StructuredPostalData {
 	public final String region;
 	public final String postcode;
 	public final String country;
-	
+
 	public StructuredPostalData(String formattedAddress, int type, String label, 
 			String street, String pobox, String neighborhood, String city, 
 			String region, String postcode, String country){
@@ -26,7 +26,7 @@ public class StructuredPostalData {
 		this.postcode = postcode;
 		this.country = country;
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("formattedAddress: %s, type: %d, label: %s, street: %s," +

@@ -15,7 +15,7 @@ public class NoteDao extends DaoBase<NoteData> {
 	public NoteDao(Context context) {
 		super(context);
 	}
-	
+
 	public ArrayList<NoteData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
@@ -30,7 +30,7 @@ public class NoteDao extends DaoBase<NoteData> {
 					Note.CONTENT_ITEM_TYPE},
 				Note._ID);
 	}
-	
+
 	@Override
 	public NoteData extract(Cursor c) {
 		String note = c.getString(0);

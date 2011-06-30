@@ -42,12 +42,12 @@ public class NormalizedNameList implements Iterable<NormalizedName> {
 	public int size(){
 		return names.size();
 	}
-	
+
 	@Override
 	public Iterator<NormalizedName> iterator() {
 		return new NormalizedNameIterator(names);
 	}
-	
+
 	public static NormalizedNameList fromStructuredNames(ArrayList<StructuredNameData> names){
 		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
 		for(StructuredNameData sn : names){
