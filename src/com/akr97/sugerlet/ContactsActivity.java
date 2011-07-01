@@ -39,7 +39,7 @@ public abstract class ContactsActivity extends Activity {
 			if(groupList.size() > 0){
 				items.add(new ListHeaderItem(this, InitialsGroupSelector.getGroupName(group)));
 				for(NormalizedName name : groupList.sort()){
-					items.add(new ContactListContentItem(this, name.getEntity()));
+					items.add(new ContactsContentItem(this, name.getEntity()));
 				}
 			}
 		}

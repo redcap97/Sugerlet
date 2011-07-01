@@ -10,19 +10,21 @@ import com.akr97.sugerlet.listitem.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.ProfileActivity;
 
-public class ContactListContentItem  extends ListItem {
+public class ContactsContentItem  extends ListItem {
 	StructuredNameData structuredName;
+	
+	private static final int KEY = R.string.key_contacts_content_item;
 
-	public ContactListContentItem(Context context, StructuredNameData structuredName) {
+	public ContactsContentItem(Context context, StructuredNameData structuredName) {
 		super(context, Type.CUSTOM);
 		this.structuredName = structuredName;
 	}
 
 	@Override
 	public View getView(View convertView) {
-		ViewHolder holder;
-
-		if(convertView == null || convertView.getTag() == null){
+		ViewHolder holder = (ViewHolder)convertView.getTag(KEY);
+		
+		if(convertView == null || holder == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
 			convertView = inflater.inflate(R.layout.contact_list_item, null);
 
@@ -31,9 +33,7 @@ public class ContactListContentItem  extends ListItem {
 			holder.name = (TextView)convertView.findViewById(R.id.name);
 			holder.phoneticName = (TextView)convertView.findViewById(R.id.phoneticName);
 
-			convertView.setTag(holder);
-		}else{
-			holder = (ViewHolder)convertView.getTag();
+			convertView.setTag(KEY, holder);
 		}
 
 		PhotoDao photoDao = new PhotoDao(context);

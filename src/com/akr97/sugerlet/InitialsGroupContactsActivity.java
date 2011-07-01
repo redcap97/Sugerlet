@@ -42,7 +42,7 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 				items.add(new ListHeaderItem(this,
 						InitialsSubgroupSelector.getGroupName(currentGroup)));
 			}
-			items.add(new ContactListContentItem(this, name.getEntity()));
+			items.add(new ContactsContentItem(this, name.getEntity()));
 		}
 		return items;
 	}

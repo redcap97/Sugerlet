@@ -6,4 +6,5 @@
 	<string name="key_initials_group">InitialsGroup</string>
 	<string name="key_raw_contact_id">RawContactId</string>
 	<string name="key_type">Type</string>
+	<string name="key_contacts_content_item"></string>
 </resources>
