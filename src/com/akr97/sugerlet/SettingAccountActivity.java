@@ -30,7 +30,7 @@ public class SettingAccountActivity extends Activity {
 
 	private void setupSettingAccountList(){
 		listAdapter = new SettingAccountListAdapter(this);
-		listView = (ListView)findViewById(R.id.list);
+		listView = (ListView)findViewById(R.id.listView);
 		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);

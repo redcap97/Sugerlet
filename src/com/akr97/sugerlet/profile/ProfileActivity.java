@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,12 @@ public class ProfileActivity extends Activity {
 	}
 
 	public void setupHeader(long rawContactId){
+		PhotoDao photoDao = new PhotoDao(this);
+		PhotoData photo = photoDao.getByRawContactId(rawContactId);
+
+		ImageView imageView = (ImageView)findViewById(R.id.imageView);
+		imageView.setImageBitmap(photo.getBitmap());
+
 		StructuredNameDao structuredNameDao = new StructuredNameDao(this);
 		StructuredNameData structuredName = structuredNameDao.getByRawContactsId(rawContactId);
 
@@ -51,7 +58,7 @@ public class ProfileActivity extends Activity {
 		items.addAll(getOrganizationList(rawContactId));
 		items.addAll(getNoteList(rawContactId));
 
-		ListView listView = (ListView)findViewById(R.id.list);
+		ListView listView = (ListView)findViewById(R.id.listView);
 		listView.setAdapter(new ListItemAdapter(items));
 		listView.setOnItemClickListener(new ListItemClickListener(items));
 	}

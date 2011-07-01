@@ -49,7 +49,7 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
 		for(AccountState state : manager.getEnabledStates()){
 			results.addAll(getByAccount(state.getAccount()));
-		}	
+		}
 		return results;
 	}
 
