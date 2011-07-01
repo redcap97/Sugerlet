@@ -10,6 +10,8 @@ import android.widget.TextView;
 public class ListHeaderItem extends ListItem {
 	private final String title;
 
+	private static final int KEY = R.string.key_list_header_item;
+
 	public ListHeaderItem(Context context, String title) {
 		super(context, Type.HEADER);
 		this.title = title;
@@ -17,12 +19,30 @@ public class ListHeaderItem extends ListItem {
 
 	@Override
 	public View getView(View convertView) {
-		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.list_header_item, null);
+		ViewHolder holder = getViewHolder(convertView);
 
-		TextView name = (TextView)convertView.findViewById(R.id.title);
-		name.setText(title);
+		if(convertView == null || holder == null){
+			LayoutInflater inflater = LayoutInflater.from(context);
+			convertView = inflater.inflate(R.layout.list_header_item, null);
+
+			holder = new ViewHolder();
+			holder.title = (TextView)convertView.findViewById(R.id.title);
+
+			convertView.setTag(KEY, holder);
+		}
+		holder.title.setText(title);
 
 		return convertView;
+	}
+
+	private ViewHolder getViewHolder(View convertView){
+		if(convertView != null){
+			return (ViewHolder)convertView.getTag(KEY);
+		}
+		return null;
+	}
+
+	static class ViewHolder {
+		TextView title;
 	}
 }

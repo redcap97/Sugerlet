@@ -11,8 +11,8 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.ProfileActivity;
 
 public class ContactsContentItem  extends ListItem {
-	StructuredNameData structuredName;
-	
+	private final StructuredNameData structuredName;
+
 	private static final int KEY = R.string.key_contacts_content_item;
 
 	public ContactsContentItem(Context context, StructuredNameData structuredName) {
@@ -22,8 +22,8 @@ public class ContactsContentItem  extends ListItem {
 
 	@Override
 	public View getView(View convertView) {
-		ViewHolder holder = (ViewHolder)convertView.getTag(KEY);
-		
+		ViewHolder holder = getViewHolder(convertView);
+
 		if(convertView == null || holder == null){
 			LayoutInflater inflater = LayoutInflater.from(this.context);
 			convertView = inflater.inflate(R.layout.contact_list_item, null);
@@ -49,6 +49,13 @@ public class ContactsContentItem  extends ListItem {
 	@Override
 	public void onClick(View view){
 		context.startActivity(ProfileActivity.getIntent(context, structuredName.rawContactId));
+	}
+
+	private ViewHolder getViewHolder(View convertView){
+		if(convertView != null){
+			return (ViewHolder)convertView.getTag(KEY);
+		}
+		return null;
 	}
 
 	static class ViewHolder {

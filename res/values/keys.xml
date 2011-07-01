@@ -7,4 +7,7 @@
 	<string name="key_raw_contact_id">RawContactId</string>
 	<string name="key_type">Type</string>
 	<string name="key_contacts_content_item"></string>
+	<string name="key_list_content_item"></string>
+	<string name="key_list_intent_item"></string>
+	<string name="key_list_header_item"></string>
 </resources>

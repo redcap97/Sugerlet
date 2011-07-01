@@ -9,22 +9,31 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ListIntentItem extends ListItem {
-	private final String title;
+	private final String content;
 	private final Intent intent;
 
-	public ListIntentItem(Context context, String title, Intent intent) {
+	private static final int KEY = R.string.key_list_intent_item;
+
+	public ListIntentItem(Context context, String content, Intent intent) {
 		super(context, Type.INTENT);
-		this.title = title;
+		this.content = content;
 		this.intent = intent;
 	}
 
 	@Override
 	public View getView(View convertView) {
-		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.list_content_item, null);
+		ViewHolder holder = getViewHolder(convertView);
 
-		TextView name = (TextView)convertView.findViewById(R.id.textView);
-		name.setText(title);
+		if(convertView == null || holder == null){
+			LayoutInflater inflater = LayoutInflater.from(context);
+			convertView = inflater.inflate(R.layout.list_content_item, null);
+
+			holder = new ViewHolder();
+			holder.content = (TextView)convertView.findViewById(R.id.textView);
+
+			convertView.setTag(KEY, holder);
+		}
+		holder.content.setText(content);
 
 		return convertView;
 	}
@@ -32,5 +41,16 @@ public class ListIntentItem extends ListItem {
 	@Override
 	public void onClick(View view){
 		context.startActivity(intent);
+	}
+
+	private ViewHolder getViewHolder(View convertView){
+		if(convertView != null){
+			return (ViewHolder)convertView.getTag(KEY);
+		}
+		return null;
+	}
+
+	static class ViewHolder {
+		TextView content;
 	}
 }
