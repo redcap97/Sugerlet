@@ -22,7 +22,7 @@ public abstract class ContactsActivity extends Activity {
 	}
 
 	public void setupContactList(){
-		ListView listView = (ListView)findViewById(R.id.contactList);
+		ListView listView = (ListView)findViewById(R.id.listView);
 
 		ArrayList<ListItem> items = createListItems();
 		listView.setAdapter(new ListItemAdapter(items));

@@ -28,7 +28,7 @@ public class AccountListActivity extends Activity {
 		for(AccountState state : manager.getEnabledStates()){
 			items.add(new AccountListContentItem(this, state.getAccount()));
 		}
-		ListView listView = (ListView)findViewById(R.id.contactList);
+		ListView listView = (ListView)findViewById(R.id.listView);
 		TextView textView = (TextView)findViewById(R.id.emptyView);
 		textView.setText(getString(R.string.message_no_account));
 		listView.setEmptyView(textView);

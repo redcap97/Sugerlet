@@ -31,7 +31,7 @@ public class InitialsGroupListActivity extends Activity {
 					InitialsGroupContactsActivity.getIntent(this, group)));
 		}
 
-		ListView listView = (ListView)findViewById(R.id.contactList);
+		ListView listView = (ListView)findViewById(R.id.listView);
 		TextView textView = (TextView)findViewById(R.id.emptyView);
 		textView.setText(getString(R.string.message_no_group));
 		listView.setEmptyView(textView);

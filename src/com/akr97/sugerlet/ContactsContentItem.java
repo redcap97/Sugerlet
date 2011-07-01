@@ -29,7 +29,7 @@ public class ContactsContentItem  extends ListItem {
 			convertView = inflater.inflate(R.layout.contact_list_item, null);
 
 			holder = new ViewHolder();
-			holder.icon = (ImageView)convertView.findViewById(R.id.imageView1);
+			holder.icon = (ImageView)convertView.findViewById(R.id.imageView);
 			holder.name = (TextView)convertView.findViewById(R.id.name);
 			holder.phoneticName = (TextView)convertView.findViewById(R.id.phoneticName);
 

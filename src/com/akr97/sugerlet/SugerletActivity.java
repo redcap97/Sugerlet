@@ -54,7 +54,7 @@ public class SugerletActivity extends Activity {
 		items.addAll(getContactItems());
 		items.addAll(getOtherItems());
 
-		ListView listView = (ListView)findViewById(R.id.contactList);
+		ListView listView = (ListView)findViewById(R.id.listView);
 		listView.setAdapter(new ListItemAdapter(items));
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
