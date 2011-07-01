@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="key_account_name">AccountName</string>
+	<string name="key_account_type">AccountType</string>
+	<string name="key_group_id">GroupId</string>
+	<string name="key_initials_group">InitialsGroup</string>
+	<string name="key_raw_contact_id">RawContactId</string>
+	<string name="key_type">Type</string>
+</resources>

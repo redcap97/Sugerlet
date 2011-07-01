@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="message_no_account">アカウントが存在しません</string>
+	<string name="message_no_contact">連絡先はありません</string>
+	<string name="message_no_group">グループが存在しません</string>
+	<string name="message_save">保存しました</string>
+</resources>

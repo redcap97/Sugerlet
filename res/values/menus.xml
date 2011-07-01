@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="menu_about">Sugerletについて</string>
+	<string name="menu_account_list">アカウント</string>
+	<string name="menu_all_contacts">すべての連絡先</string>
+	<string name="menu_group_list">グループ</string>
+	<string name="menu_initials_group_list">ふりがな</string>
+	<string name="menu_reset">リセット</string>
+	<string name="menu_save">保存</string>
+	<string name="menu_setting_account">アカウントの設定</string>
+	<string name="menu_starred_contacts">お気に入り</string>
+</resources>
