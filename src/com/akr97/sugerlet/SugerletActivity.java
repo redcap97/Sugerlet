@@ -19,9 +19,7 @@ public class SugerletActivity extends Activity {
 
 	static final String SUGERLET_URL = "http://akr97.com/capsule/";
 	static final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
-
-	final static String TAG = "com.akr97.com.sugerlet.SugerActivity";
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,8 +50,35 @@ public class SugerletActivity extends Activity {
 
 	private void setupLauncherList(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		items.addAll(getCallItems());
+		items.addAll(getContactItems());
+		items.addAll(getOtherItems());
+
+		ListView listView = (ListView)findViewById(R.id.contactList);
+		listView.setAdapter(new ListItemAdapter(items));
+		View emptyView = findViewById(R.id.emptyView);
+		listView.setEmptyView(emptyView);
+		listView.setOnItemClickListener(new ListItemClickListener(items));
+	}
+	
+	private ArrayList<ListItem> getCallItems(){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		
 		items.add(new ListHeaderItem(this,
-				getString(R.string.header_menu)));
+				getString(R.string.header_call)));
+		items.add(new ListIntentItem(this,
+				getString(R.string.menu_telephone),
+				new Intent(Intent.ACTION_DIAL, null)));
+		
+		return items;
+	}
+	
+	private ArrayList<ListItem> getContactItems(){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		
+		items.add(new ListHeaderItem(this,
+				getString(R.string.header_contact)));
+		
 		items.add(new ListIntentItem(this,
 				getString(R.string.menu_all_contacts),
 				AllContactsActivity.getIntent(this)));
@@ -61,29 +86,32 @@ public class SugerletActivity extends Activity {
 				getString(R.string.menu_group_list),
 				GroupListActivity.getIntent(this)));
 		items.add(new ListIntentItem(this,
+				getString(R.string.menu_account_list),
+				AccountListActivity.getIntent(this)));
+		items.add(new ListIntentItem(this,
 				getString(R.string.menu_initials_group_list),
 				InitialsGroupListActivity.getIntent(this)));
 		items.add(new ListIntentItem(this,
 				getString(R.string.menu_starred_contacts),
 				StarredContactsActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
-				getString(R.string.menu_account_list),
-				AccountListActivity.getIntent(this)));
-
+		
+		return items;
+	}
+	
+	private ArrayList<ListItem> getOtherItems(){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+		
 		items.add(new ListHeaderItem(this,
-				getString(R.string.header_setting)));
+				getString(R.string.header_other)));
+		
 		items.add(new ListIntentItem(this,
 				getString(R.string.menu_setting_account),
 				SettingAccountActivity.getIntent(this)));
 		items.add(new ListIntentItem(this,
 				getString(R.string.menu_about),
 				getAboutIntent()));
-
-		ListView listView = (ListView)findViewById(R.id.contactList);
-		listView.setAdapter(new ListItemAdapter(items));
-		View emptyView = findViewById(R.id.emptyView);
-		listView.setEmptyView(emptyView);
-		listView.setOnItemClickListener(new ListItemClickListener(items));
+		
+		return items;
 	}
 
 	private Intent getAboutIntent(){
