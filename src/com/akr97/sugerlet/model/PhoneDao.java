@@ -11,7 +11,7 @@ import android.util.Log;
 public class PhoneDao extends DaoBase<PhoneData> {
 	static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
 
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		Phone._ID,
 		Phone.NUMBER,
 		Phone.TYPE,

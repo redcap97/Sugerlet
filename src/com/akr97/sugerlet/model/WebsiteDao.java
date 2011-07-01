@@ -8,7 +8,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 
 public class WebsiteDao extends DaoBase<WebsiteData> {
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		Website.URL,
 		Website.TYPE,
 		Website.LABEL

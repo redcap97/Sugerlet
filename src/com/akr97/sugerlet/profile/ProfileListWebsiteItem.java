@@ -11,7 +11,7 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.listitem.*;
 
 public class ProfileListWebsiteItem extends ListItem {
-	private WebsiteData website;
+	private final WebsiteData website;
 
 	public ProfileListWebsiteItem(Context context, WebsiteData website) {
 		super(context, Type.CUSTOM);

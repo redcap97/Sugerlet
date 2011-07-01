@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract.Settings;
 
 public class SettingsDao extends DaoBase<SettingsData> {
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		Settings.ACCOUNT_NAME,
 		Settings.ACCOUNT_TYPE,
 		Settings.UNGROUPED_VISIBLE

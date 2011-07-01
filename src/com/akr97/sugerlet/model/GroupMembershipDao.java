@@ -10,7 +10,7 @@ import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 public class GroupMembershipDao extends DaoBase<GroupData> {
 	private GroupDao groupDao;
 
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		GroupMembership.GROUP_ROW_ID
 	};
 

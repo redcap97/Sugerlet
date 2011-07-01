@@ -8,7 +8,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 
 public class NicknameDao extends DaoBase<NicknameData> {
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		Nickname.NAME,
 		Nickname.TYPE,
 		Nickname.LABEL

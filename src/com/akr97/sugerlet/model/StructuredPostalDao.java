@@ -10,7 +10,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 	static final String TAG = "com.akr97.sugerlet.model.PhoneModel";
 
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		StructuredPostal.FORMATTED_ADDRESS,
 		StructuredPostal.TYPE,
 		StructuredPostal.LABEL,

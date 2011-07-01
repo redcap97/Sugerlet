@@ -11,7 +11,7 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.listitem.*;
 
 public class ProfileListEmailItem extends ListItem {
-	private EmailData email;
+	private final EmailData email;
 
 	public ProfileListEmailItem(Context context, EmailData email) {
 		super(context, Type.CUSTOM);

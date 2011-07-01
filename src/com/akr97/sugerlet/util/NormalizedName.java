@@ -26,7 +26,7 @@ public class NormalizedName implements Comparable<NormalizedName>{
 
 		if(name.length() == 0){
 			name = StringUtil.toNonNull(sn.familyName) +
-			StringUtil.toNonNull(sn.givenName);
+				StringUtil.toNonNull(sn.givenName);
 		}
 
 		return JapaneseUtil.toZenkakuHiragana(name.toUpperCase());

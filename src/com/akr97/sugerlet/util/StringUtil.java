@@ -12,8 +12,8 @@ public class StringUtil {
 		}
 
 		return new String[]{
-				target.substring(0, index),
-				target.substring(index+1)
+			target.substring(0, index),
+			target.substring(index+1)
 		};
 	}
 }

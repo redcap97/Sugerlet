@@ -11,7 +11,7 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.listitem.*;
 
 public class ProfileListPhoneItem extends ListItem {
-	private PhoneData phone;
+	private final PhoneData phone;
 
 	public ProfileListPhoneItem(Context context, PhoneData phone) {
 		super(context, Type.CUSTOM);

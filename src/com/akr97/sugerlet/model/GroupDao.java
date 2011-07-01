@@ -9,7 +9,7 @@ import android.provider.ContactsContract.Groups;
 public class GroupDao extends DaoBase<GroupData> {
 	static final String TAG = "com.akr97.sugerlet.GroupModel";
 
-	static final String[] PROJECTION = new String[]{
+	static final String[] PROJECTION = {
 		Groups._ID,
 		Groups.TITLE,
 		Groups.NOTES,
