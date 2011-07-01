@@ -18,6 +18,7 @@ public class InitialsGroupListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_items);
 
+		setTitle(getString(R.string.initials_group));
 		setupInitialsIndex();
 	}
 

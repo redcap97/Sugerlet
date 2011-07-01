@@ -22,6 +22,7 @@ public class ProfileActivity extends Activity {
 		setContentView(R.layout.profile);
 
 		Parameter params = new Parameter();
+		setTitle(getString(R.string.profile));
 		setupHeader(params.rawContactId);
 		setupProfileList(params.rawContactId);
 	}

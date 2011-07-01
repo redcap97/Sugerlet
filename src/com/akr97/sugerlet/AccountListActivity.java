@@ -17,6 +17,7 @@ public class AccountListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_items);
 
+		setTitle(getString(R.string.account));
 		setupAccountList();
 	}
 

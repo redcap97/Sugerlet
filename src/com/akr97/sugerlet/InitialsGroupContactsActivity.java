@@ -22,7 +22,8 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 
 	@Override
 	public String createTitle(){
-		return getString(R.string.initials_group);
+		String groupName = InitialsGroupSelector.getGroupName(params.initialsGroup);
+		return String.format("%s: %s", getString(R.string.initials_group), groupName);
 	}
 
 	@Override
@@ -39,8 +40,9 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 			char subgroup = subgroupSelector.select(name.get());
 			if(currentGroup != subgroup){
 				currentGroup = subgroup;
-				items.add(new ListHeaderItem(this,
-						InitialsSubgroupSelector.getGroupName(currentGroup)));
+
+				String subgroupName = InitialsSubgroupSelector.getGroupName(currentGroup);
+				items.add(new ListHeaderItem(this, subgroupName));
 			}
 			items.add(new ContactsContentItem(this, name.getEntity()));
 		}
