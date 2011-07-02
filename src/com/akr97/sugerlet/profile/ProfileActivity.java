@@ -124,11 +124,11 @@ public class ProfileActivity extends Activity {
 
 	ArrayList<ListItem> getOtherList(long rawContactId){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		items.addAll(getStructuredPostalList(rawContactId));
 		items.addAll(getEventList(rawContactId));
+		items.addAll(getWebsiteList(rawContactId));
+		items.addAll(getStructuredPostalList(rawContactId));
 		items.addAll(getNicknameList(rawContactId));
 		items.addAll(getOrganizationList(rawContactId));
-		items.addAll(getWebsiteList(rawContactId));
 		items.addAll(getNoteList(rawContactId));
 
 		if(!items.isEmpty()){
