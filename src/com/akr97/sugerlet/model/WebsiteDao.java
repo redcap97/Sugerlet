@@ -41,5 +41,4 @@ public class WebsiteDao extends DaoBase<WebsiteData> {
 
 		return new WebsiteData(url, type, label);
 	}
-
 }

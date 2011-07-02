@@ -58,4 +58,9 @@ public class StructuredPostalDao extends DaoBase<StructuredPostalData> {
 		return new StructuredPostalData(formattedAddress, type, label, 
 				street, pobox, neighborhood, city, region, postcode, country);
 	}
+	
+	public String getTypeLabel(StructuredPostalData postal){
+		return StructuredPostal.getTypeLabel(getResources(), 
+				postal.type, postal.label).toString();
+	}
 }

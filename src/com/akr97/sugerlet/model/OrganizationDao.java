@@ -43,4 +43,9 @@ public class OrganizationDao extends DaoBase<OrganizationData> {
 
 		return new OrganizationData(company, type, label, title);
 	}
+	
+	public String getTypeLabel(OrganizationData organization){
+		return Organization.getTypeLabel(getResources(),
+				organization.type, organization.label).toString();
+	}
 }

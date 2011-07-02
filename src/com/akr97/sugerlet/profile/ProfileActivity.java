@@ -40,7 +40,6 @@ public class ProfileActivity extends Activity {
 
 		TextView tvName = (TextView)findViewById(R.id.name);
 		tvName.setText(structuredName.getName());
-
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
 		tvPhoneticName.setText(structuredName.getPhoneticName(getString(R.string.nothing)));
 	}
@@ -49,15 +48,9 @@ public class ProfileActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		items.addAll(getPhoneList(rawContactId));
 		items.addAll(getEmailList(rawContactId));
-		items.addAll(getGroupList(rawContactId));
-		
-		items.addAll(getStructuredPostalList(rawContactId));
-		items.addAll(getEventList(rawContactId));
 		items.addAll(getImList(rawContactId));
-		items.addAll(getNicknameList(rawContactId));
-		items.addAll(getOrganizationList(rawContactId));
-		items.addAll(getWebsiteList(rawContactId));
-		items.addAll(getNoteList(rawContactId));
+		items.addAll(getGroupList(rawContactId));
+		items.addAll(getOtherList(rawContactId));
 
 		ListView listView = (ListView)findViewById(R.id.listView);
 		listView.setAdapter(new ListItemAdapter(items));
@@ -89,40 +82,24 @@ public class ProfileActivity extends Activity {
 
 			for(EmailData email : emails){
 				String label = emailDao.getTypeLabel(email);
-				String address = email.address;
 				Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());
-				items.add(new ProfileListContentItem(this, label, address, intent));
+
+				items.add(new ProfileListContentItem(this, label, email.address, intent));
 			}
 		}
 		return items;
 	}
 
 	ArrayList<ListItem> getImList(long rawContactId){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+
 		ImDao imDao = new ImDao(this);
 		ArrayList<ImData> ims = imDao.get(rawContactId);
-
-		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		if(!ims.isEmpty()){
 			items.add(new ListHeaderItem(this, getString(R.string.header_im)));
-
 			for(ImData im : ims){
-				String content = String.format("(%s) %s", imDao.getProtocolLabel(im), im.data);
-				items.add(new ListContentItem(this, content));
-			}
-		}
-		return items;
-	}
-
-	ArrayList<ListItem> getStructuredPostalList(long rawContactId){
-		StructuredPostalDao structuredPostalDao = new StructuredPostalDao(this);
-		ArrayList<StructuredPostalData> postals = structuredPostalDao.get(rawContactId);
-
-		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!postals.isEmpty()){
-			items.add(new ListHeaderItem(this, getString(R.string.header_postal)));
-
-			for(StructuredPostalData postal : postals){
-				items.add(new ListContentItem(this, postal.formattedAddress));
+				String protocol = imDao.getProtocolLabel(im);
+				items.add(new ProfileListContentItem(this, protocol, im.data));
 			}
 		}
 		return items;
@@ -145,77 +122,94 @@ public class ProfileActivity extends Activity {
 		return items;
 	}
 
-	ArrayList<ListItem> getNicknameList(long rawContactId){
-		NicknameDao nicknameDao = new NicknameDao(this);
-		ArrayList<NicknameData> nicknames = nicknameDao.get(rawContactId);
-
+	ArrayList<ListItem> getOtherList(long rawContactId){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!nicknames.isEmpty()){
-			items.add(new ListHeaderItem(this, getString(R.string.header_nickname)));
+		items.addAll(getStructuredPostalList(rawContactId));
+		items.addAll(getEventList(rawContactId));
+		items.addAll(getNicknameList(rawContactId));
+		items.addAll(getOrganizationList(rawContactId));
+		items.addAll(getWebsiteList(rawContactId));
+		items.addAll(getNoteList(rawContactId));
 
-			for(NicknameData nickname : nicknames){
-				items.add(new ListContentItem(this, nickname.name));
-			}
+		if(!items.isEmpty()){
+			ArrayList<ListItem> results = new ArrayList<ListItem>();
+			results.add(new ListHeaderItem(this, getString(R.string.header_other)));
+			results.addAll(items);
+			return results;
+		}
+		return items;
+	}
+
+	ArrayList<ListItem> getStructuredPostalList(long rawContactId){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+
+		StructuredPostalDao structuredPostalDao = new StructuredPostalDao(this);
+		for(StructuredPostalData postal : structuredPostalDao.get(rawContactId)){
+			String label = structuredPostalDao.getTypeLabel(postal);
+
+			items.add(new ProfileListContentItem(this, label, postal.formattedAddress));
+		}
+		return items;
+	}
+
+	ArrayList<ListItem> getNicknameList(long rawContactId){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+
+		NicknameDao nicknameDao = new NicknameDao(this);
+		for(NicknameData nickname : nicknameDao.get(rawContactId)){
+			String label = getString(R.string.nickname);
+
+			items.add(new ProfileListContentItem(this, label, nickname.name));
 		}
 		return items;
 	}
 
 	ArrayList<ListItem> getWebsiteList(long rawContactId){
 		WebsiteDao websiteDao = new WebsiteDao(this);
-		ArrayList<WebsiteData> websites = websiteDao.get(rawContactId);
 
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!websites.isEmpty()){
-			items.add(new ListHeaderItem(this, getString(R.string.header_website)));
+		for(WebsiteData website : websiteDao.get(rawContactId)){
+			String label = getString(R.string.website);
+			Intent intent = new Intent(Intent.ACTION_VIEW, website.getUri());
 
-			for(WebsiteData website : websites){
-				items.add(new ProfileListWebsiteItem(this, website));
-			}
+			items.add(new ProfileListContentItem(this, label, website.url, intent));
 		}
 		return items;
 	}
 
 	ArrayList<ListItem> getEventList(long rawContactId){
-		EventDao eventDao = new EventDao(this);
-		ArrayList<EventData> events = eventDao.get(rawContactId);
-
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!events.isEmpty()){
-			items.add(new ListHeaderItem(this, "Event"));
 
-			for(EventData event : events){
-				items.add(new ListContentItem(this, event.toString()));
-			}
+		EventDao eventDao = new EventDao(this);
+		for(EventData event : eventDao.get(rawContactId)){
+			String label = eventDao.getTypeLabel(event);
+			
+			items.add(new ProfileListContentItem(this, label, event.startDate));
 		}
 		return items;
 	}
 
 	ArrayList<ListItem> getOrganizationList(long rawContactId){
-		OrganizationDao organizationDao = new OrganizationDao(this);
-		ArrayList<OrganizationData> organizations = organizationDao.get(rawContactId);
-
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!organizations.isEmpty()){
-			items.add(new ListHeaderItem(this, "Organization"));
 
-			for(OrganizationData organization : organizations){
-				items.add(new ListContentItem(this, organization.toString()));
-			}
+		OrganizationDao organizationDao = new OrganizationDao(this);
+		for(OrganizationData organization : organizationDao.get(rawContactId)){
+			String label = organizationDao.getTypeLabel(organization);
+			String content = organization.company + "\n" + organization.title;
+
+			items.add(new ProfileListContentItem(this, label, content));
 		}
 		return items;
 	}
 
 	ArrayList<ListItem> getNoteList(long rawContactId){
-		NoteDao noteDao = new NoteDao(this);
-		ArrayList<NoteData> notes = noteDao.get(rawContactId);
-
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		if(!notes.isEmpty()){
-			items.add(new ListHeaderItem(this, "Note"));
 
-			for(NoteData note : notes){
-				items.add(new ListContentItem(this, note.note));
-			}
+		NoteDao noteDao = new NoteDao(this);
+		for(NoteData note : noteDao.get(rawContactId)){
+			String label = getString(R.string.note);
+
+			items.add(new ProfileListContentItem(this, label, note.note));
 		}
 		return items;
 	}

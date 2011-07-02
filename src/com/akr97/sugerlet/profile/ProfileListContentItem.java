@@ -20,6 +20,13 @@ public class ProfileListContentItem extends ListItem {
 		this.content = content;
 		this.intent = intent;
 	}
+	
+	public ProfileListContentItem(Context context, String label, String content){
+		super(context, Type.CUSTOM);
+		this.label = label;
+		this.content = content;
+		this.intent = null;
+	}
 
 	@Override
 	public View getView(View convertView) {
@@ -36,6 +43,8 @@ public class ProfileListContentItem extends ListItem {
 
 	@Override
 	public void onClick(View view){
-		context.startActivity(intent);
+		if(intent != null){
+			context.startActivity(intent);
+		}
 	}
 }

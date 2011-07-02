@@ -33,14 +33,6 @@ public class ImDao extends DaoBase<ImData> {
 		return new ImData(data, type, label, protocol, customProtocol);
 	}
 
-	public String getTypeLabel(ImData im){
-		return Im.getTypeLabel(getResources(), im.type, im.label).toString();
-	}
-
-	public String getProtocolLabel(ImData im){
-		return Im.getProtocolLabel(getResources(), im.protocol, im.customProtocol).toString();
-	}
-
 	public ArrayList<ImData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}
@@ -54,5 +46,13 @@ public class ImDao extends DaoBase<ImData> {
 					String.valueOf(rawContactId),
 					Im.CONTENT_ITEM_TYPE},
 				Data._ID);
+	}
+	
+	public String getTypeLabel(ImData im){
+		return Im.getTypeLabel(getResources(), im.type, im.label).toString();
+	}
+
+	public String getProtocolLabel(ImData im){
+		return Im.getProtocolLabel(getResources(), im.protocol, im.customProtocol).toString();
 	}
 }

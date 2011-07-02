@@ -41,4 +41,18 @@ public class EventDao extends DaoBase<EventData> {
 
 		return new EventData(startDate, type, label);
 	}
+	
+	public String getTypeLabel(EventData event){
+		if(hasCustomLabel(event)){
+			return event.label;
+		}
+		return getContext().getString(Event.getTypeResource(event.type));
+	}
+	
+	private boolean hasCustomLabel(EventData event){
+		if(event.type == Event.TYPE_CUSTOM && event.label != null){
+			return event.label.trim().length() > 0;
+		}
+		return false;
+	}
 }

@@ -13,4 +13,7 @@
 	<string name="save">保存</string>
 	<string name="starred_contacts">お気に入り</string>
 	<string name="profile">プロフィール</string>
+	<string name="nickname">ニックネーム</string>
+	<string name="website">ウェブサイト</string>
+	<string name="note">メモ</string>
 </resources>
