@@ -49,13 +49,14 @@ public class ProfileActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		items.addAll(getPhoneList(rawContactId));
 		items.addAll(getEmailList(rawContactId));
-		items.addAll(getNicknameList(rawContactId));
-		items.addAll(getStructuredPostalList(rawContactId));
-		items.addAll(getImList(rawContactId));
 		items.addAll(getGroupList(rawContactId));
-		items.addAll(getWebsiteList(rawContactId));
+		
+		items.addAll(getStructuredPostalList(rawContactId));
 		items.addAll(getEventList(rawContactId));
+		items.addAll(getImList(rawContactId));
+		items.addAll(getNicknameList(rawContactId));
 		items.addAll(getOrganizationList(rawContactId));
+		items.addAll(getWebsiteList(rawContactId));
 		items.addAll(getNoteList(rawContactId));
 
 		ListView listView = (ListView)findViewById(R.id.listView);
@@ -87,7 +88,10 @@ public class ProfileActivity extends Activity {
 			items.add(new ListHeaderItem(this, getString(R.string.header_email)));
 
 			for(EmailData email : emails){
-				items.add(new ProfileListEmailItem(this, email));
+				String label = emailDao.getTypeLabel(email);
+				String address = email.address;
+				Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());
+				items.add(new ProfileListContentItem(this, label, address, intent));
 			}
 		}
 		return items;

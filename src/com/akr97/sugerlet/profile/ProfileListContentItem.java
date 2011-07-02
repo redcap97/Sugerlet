@@ -7,15 +7,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
-import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListEmailItem extends ListItem {
-	private final EmailData email;
+public class ProfileListContentItem extends ListItem {
+	private final String label;
+	private final String content;
+	private final Intent intent;
 
-	public ProfileListEmailItem(Context context, EmailData email) {
+	public ProfileListContentItem(Context context, String label, String content, Intent intent) {
 		super(context, Type.CUSTOM);
-		this.email = email;
+		this.label = label;
+		this.content = content;
+		this.intent = intent;
 	}
 
 	@Override
@@ -23,18 +26,16 @@ public class ProfileListEmailItem extends ListItem {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		convertView = inflater.inflate(R.layout.profile_list_content_item, null);
 		
-		EmailDao dao = new EmailDao(context);
 		TextView label = (TextView)convertView.findViewById(R.id.label);
-		label.setText(dao.getTypeLabel(email));
+		label.setText(this.label);
 
 		TextView content = (TextView)convertView.findViewById(R.id.content);
-		content.setText(email.address);
+		content.setText(this.content);
 		return convertView;
 	}
 
 	@Override
 	public void onClick(View view){
-		Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());
 		context.startActivity(intent);
 	}
 }
