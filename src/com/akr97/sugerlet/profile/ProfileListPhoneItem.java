@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
@@ -21,10 +22,24 @@ public class ProfileListPhoneItem extends ListItem {
 	@Override
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.list_content_item, null);
+		convertView = inflater.inflate(R.layout.profile_list_phone_item, null);
+		
+		PhoneDao dao = new PhoneDao(context);
+		TextView label = (TextView)convertView.findViewById(R.id.label);
+		label.setText(dao.getTypeLabel(phone));
 
-		TextView name = (TextView)convertView.findViewById(R.id.textView);
-		name.setText(phone.number);
+		TextView number = (TextView)convertView.findViewById(R.id.number);
+		number.setText(phone.number);
+		
+		Button sms = (Button)convertView.findViewById(R.id.smsButton);
+		sms.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW, phone.getSmsUri());
+				context.startActivity(intent);
+			}
+		});
+		
 		return convertView;
 	}
 

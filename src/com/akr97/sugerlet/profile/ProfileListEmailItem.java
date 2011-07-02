@@ -21,10 +21,14 @@ public class ProfileListEmailItem extends ListItem {
 	@Override
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.list_content_item, null);
+		convertView = inflater.inflate(R.layout.profile_list_content_item, null);
+		
+		EmailDao dao = new EmailDao(context);
+		TextView label = (TextView)convertView.findViewById(R.id.label);
+		label.setText(dao.getTypeLabel(email));
 
-		TextView name = (TextView)convertView.findViewById(R.id.textView);
-		name.setText(email.address);
+		TextView content = (TextView)convertView.findViewById(R.id.content);
+		content.setText(email.address);
 		return convertView;
 	}
 

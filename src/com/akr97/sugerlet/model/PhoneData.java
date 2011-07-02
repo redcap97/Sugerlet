@@ -18,6 +18,10 @@ public class PhoneData {
 	public Uri getTelephoneUri(){
 		return Uri.parse("tel:" + number);
 	}
+	
+	public Uri getSmsUri(){
+		return Uri.parse("smsto:" + number);
+	}
 
 	@Override
 	public String toString(){

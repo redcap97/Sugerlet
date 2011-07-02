@@ -41,4 +41,8 @@ public class EmailDao extends DaoBase<EmailData> {
 
 		return new EmailData(address, type, label);
 	}
+	
+	public String getTypeLabel(EmailData email){
+		return Email.getTypeLabel(getResources(), email.type, email.label).toString();
+	}
 }

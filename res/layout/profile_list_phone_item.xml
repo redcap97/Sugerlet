@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:orientation="horizontal" android:gravity="center_vertical">
+    <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/innerLayout" android:layout_width="wrap_content" android:layout_weight="1" android:layout_marginLeft="6dip">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/label" android:text="label" android:layout_marginTop="8dip" android:textSize="16dip"></TextView>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/number" android:text="number" android:layout_marginBottom="8dip" android:textSize="24dip"></TextView>
+    </LinearLayout>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SMS" android:id="@+id/smsButton" android:focusable="false" android:focusableInTouchMode="false" android:layout_marginRight="8dip" android:layout_gravity="right|center_vertical" android:textStyle="bold"></Button>    
+</LinearLayout>
