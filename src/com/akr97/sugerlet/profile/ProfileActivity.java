@@ -159,7 +159,7 @@ public class ProfileActivity extends Activity {
 		for(NicknameData nickname : nicknameDao.get(rawContactId)){
 			String label = getString(R.string.nickname);
 
-			items.add(new ProfileContentItem(this, label, nickname.name));
+			items.add(new ProfileContentItem(this, label, nickname.data));
 		}
 		return items;
 	}
@@ -209,7 +209,7 @@ public class ProfileActivity extends Activity {
 		for(NoteData note : noteDao.get(rawContactId)){
 			String label = getString(R.string.note);
 
-			items.add(new ProfileContentItem(this, label, note.note));
+			items.add(new ProfileContentItem(this, label, note.data));
 		}
 		return items;
 	}

@@ -1,14 +1,14 @@
 package com.akr97.sugerlet.model;
 
 public class NoteData {
-	public final String note;
+	public final String data;
 
-	public NoteData(String note){
-		this.note = note;
+	public NoteData(String data){
+		this.data = data;
 	}
 
 	@Override
 	public String toString(){
-		return String.format("note: %s", note);
+		return String.format("note: %s", data);
 	}
 }

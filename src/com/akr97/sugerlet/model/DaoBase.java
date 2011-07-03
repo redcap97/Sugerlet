@@ -8,14 +8,10 @@ import android.content.res.Resources;
 import android.database.Cursor;
 
 public abstract class DaoBase<E> {
-	private final Context context;
+	protected final Context context;
 
 	public DaoBase(Context context){
 		this.context = context;
-	}
-
-	public Context getContext(){
-		return context;
 	}
 
 	public ContentResolver getContentResolver(){

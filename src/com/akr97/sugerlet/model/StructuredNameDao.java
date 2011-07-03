@@ -46,7 +46,7 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	public ArrayList<StructuredNameData> getAll(){
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
 
-		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
+		AccountStateManager manager = AccountStateManagerFactory.create(context);
 		for(AccountState state : manager.getEnabledStates()){
 			results.addAll(getByAccount(state.getAccount()));
 		}
@@ -60,7 +60,7 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	public ArrayList<StructuredNameData> getStarred(){
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
 
-		AccountStateManager manager = AccountStateManagerFactory.create(getContext());
+		AccountStateManager manager = AccountStateManagerFactory.create(context);
 		for(AccountState state : manager.getEnabledStates()){
 			results.addAll(getStarred(state.getAccount()));
 		}
@@ -72,13 +72,14 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	}
 
 	public ArrayList<StructuredNameData> getFromGroup(long groupId){
-		GroupDao dao = new GroupDao(getContext());
+		GroupDao dao = new GroupDao(context);
 		GroupData group = dao.getById(groupId);
 
 		Cursor c1 = getCursorBelongToGroup(groupId);
 		Cursor c2 = getCursorBelongToAccount(group.getAccount());
 
-		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(c2, new String[]{ RawContactsEntity._ID },
+		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
+				c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ Data.RAW_CONTACT_ID });
 
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
@@ -99,7 +100,8 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 		Cursor c1 = getCursorBelongToGroup(account);
 		Cursor c2 = getCursorBelongToAccount(account);
 
-		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(c2, new String[]{ RawContactsEntity._ID },
+		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
+				c2, new String[]{ RawContactsEntity._ID },
 				c1, new String[]{ RawContactsEntity._ID });
 
 		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();

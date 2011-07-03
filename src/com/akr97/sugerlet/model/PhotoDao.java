@@ -23,7 +23,7 @@ public class PhotoDao extends DaoBase<PhotoData> {
 	public PhotoData getByRawContactId(long rawContactId){
 		PhotoData result = readRow(getCursor(rawContactId));
 		if(result == null){
-			return new MissingPhotoData(getContext());
+			return new MissingPhotoData(context);
 		}
 		return result;
 	}
