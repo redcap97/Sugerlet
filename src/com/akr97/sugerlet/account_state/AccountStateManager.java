@@ -1,4 +1,4 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.account_state;
 
 import java.util.ArrayList;
 import android.content.Context;

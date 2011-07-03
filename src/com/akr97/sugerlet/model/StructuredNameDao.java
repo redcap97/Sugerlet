@@ -11,7 +11,7 @@ import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.akr97.sugerlet.*;
+import com.akr97.sugerlet.account_state.*;
 import com.akr97.sugerlet.util.*;
 
 public class StructuredNameDao extends DaoBase<StructuredNameData> {

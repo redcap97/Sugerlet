@@ -1,4 +1,4 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.account_state;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class AccountStateStore {
 	}
 
 	public ArrayList<AccountState> get(){
-		ArrayList<AccountState> states = new ArrayList<AccountState>();	
+		ArrayList<AccountState> states = new ArrayList<AccountState>();
 		Map<String, ?> map = pref.getAll();
 
 		for(Entry<String, ?> entry : map.entrySet()){

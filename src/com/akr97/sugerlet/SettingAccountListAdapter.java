@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+import com.akr97.sugerlet.account_state.*;
+
 public class SettingAccountListAdapter extends BaseAdapter {
 	private Context context;
 	private ArrayList<AccountState> states = new ArrayList<AccountState>();
