@@ -72,22 +72,27 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	}
 
 	public ArrayList<StructuredNameData> getFromGroup(long groupId){
+		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
+
 		GroupDao dao = new GroupDao(context);
 		GroupData group = dao.getById(groupId);
 
 		Cursor c1 = getCursorBelongToGroup(groupId);
 		Cursor c2 = getCursorBelongToAccount(group.getAccount());
+		try{
+			CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
+					c2, new String[]{ RawContactsEntity._ID },
+					c1, new String[]{ Data.RAW_CONTACT_ID });
 
-		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
-				c2, new String[]{ RawContactsEntity._ID },
-				c1, new String[]{ Data.RAW_CONTACT_ID });
-
-		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-		for(CursorJoinerWithLongKey.Result r : cursorJoiner){
-			switch(r){
-			case BOTH:
-				results.add(extract(c2));
+			for(CursorJoinerWithLongKey.Result r : cursorJoiner){
+				switch(r){
+				case BOTH:
+					results.add(extract(c2));
+				}
 			}
+		}finally{
+			c1.close();
+			c2.close();
 		}
 		return results;
 	}
@@ -97,19 +102,24 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	}
 
 	public ArrayList<StructuredNameData> getNoGroup(Account account){
+		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
+
 		Cursor c1 = getCursorBelongToGroup(account);
 		Cursor c2 = getCursorBelongToAccount(account);
+		try{
+			CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
+					c2, new String[]{ RawContactsEntity._ID },
+					c1, new String[]{ RawContactsEntity._ID });
 
-		CursorJoinerWithLongKey cursorJoiner = new CursorJoinerWithLongKey(
-				c2, new String[]{ RawContactsEntity._ID },
-				c1, new String[]{ RawContactsEntity._ID });
-
-		ArrayList<StructuredNameData> results = new ArrayList<StructuredNameData>();
-		for(CursorJoinerWithLongKey.Result r : cursorJoiner){
-			switch(r){
-			case LEFT:
-				results.add(extract(c2));
+			for(CursorJoinerWithLongKey.Result r : cursorJoiner){
+				switch(r){
+				case LEFT:
+					results.add(extract(c2));
+				}
 			}
+		}finally{
+			c1.close();
+			c2.close();
 		}
 		return results;
 	}

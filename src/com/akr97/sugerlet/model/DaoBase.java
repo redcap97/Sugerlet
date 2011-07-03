@@ -26,24 +26,27 @@ public abstract class DaoBase<E> {
 
 	public E readRow(Cursor c){
 		E result = null;
-		if(c.moveToFirst()){
-			result = extract(c);
+		try{
+			if(c.moveToFirst()){
+				result = extract(c);
+			}
+		}finally{
+			c.close();
 		}
-		c.close();
-
 		return result;
 	}
 
 	public ArrayList<E> readRows(Cursor c){
 		ArrayList<E> results = new ArrayList<E>();
-
-		if(c.moveToFirst()){
-			do {
-				results.add(extract(c));
-			}while(c.moveToNext());
+		try{
+			if(c.moveToFirst()){
+				do {
+					results.add(extract(c));
+				}while(c.moveToNext());
+			}
+		}finally{
+			c.close();
 		}
-		c.close();
-
 		return results;
 	}
 }
