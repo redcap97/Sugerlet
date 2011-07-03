@@ -1,10 +1,11 @@
-package com.akr97.sugerlet;
+package com.akr97.sugerlet.contacts;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
 
+import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.list_item.*;
 import com.akr97.sugerlet.model.*;
 

@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.akr97.sugerlet"
-      android:versionCode="1"
-      android:versionName="1.0">
-<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
-<uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
-<uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+	package="com.akr97.sugerlet" android:versionCode="1"
+	android:versionName="1.0">
+	<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
+	<uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".SugerletActivity"
-                  android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".profile.ProfileActivity"></activity>
-        <activity android:name=".SettingAccountActivity"></activity>
-        <activity android:name=".GroupListActivity"></activity>
-        <activity android:name=".AccountListActivity"></activity>
-        <activity android:name=".InitialsGroupListActivity"></activity>
-        <activity android:name=".AllContactsActivity"></activity>
-        <activity android:name=".GroupContactsActivity"></activity>
-        <activity android:name=".AccountContactsActivity"></activity>
-        <activity android:name=".StarredContactsActivity"></activity>
-        <activity android:name=".InitialsGroupContactsActivity"></activity>
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:name=".SugerletActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".profile.ProfileActivity"></activity>
+		<activity android:name=".SettingAccountActivity"></activity>
+		<activity android:name=".GroupListActivity"></activity>
+		<activity android:name=".AccountListActivity"></activity>
+		<activity android:name=".InitialsGroupListActivity"></activity>
+		<activity android:name=".contacts.AllContactsActivity"></activity>
+		<activity android:name=".contacts.GroupContactsActivity"></activity>
+		<activity android:name=".contacts.AccountContactsActivity"></activity>
+		<activity android:name=".contacts.StarredContactsActivity"></activity>
+		<activity android:name=".contacts.InitialsGroupContactsActivity"></activity>
 
-    </application>
+	</application>
 </manifest>

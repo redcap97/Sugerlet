@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.akr97.sugerlet.contacts.*;
 import com.akr97.sugerlet.japanese.*;
 import com.akr97.sugerlet.list_item.*;
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.content.Intent;
 
+import com.akr97.sugerlet.contacts.*;
 import com.akr97.sugerlet.list_item.*;
 
 public class SugerletActivity extends Activity {
