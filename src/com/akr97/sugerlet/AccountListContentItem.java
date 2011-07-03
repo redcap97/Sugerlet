@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 
 public class AccountListContentItem extends ListItem {
 	private Account account;

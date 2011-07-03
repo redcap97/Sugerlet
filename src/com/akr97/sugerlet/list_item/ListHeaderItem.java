@@ -1,4 +1,4 @@
-package com.akr97.sugerlet.listitem;
+package com.akr97.sugerlet.list_item;
 
 import com.akr97.sugerlet.R;
 

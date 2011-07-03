@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.ProfileActivity;
 

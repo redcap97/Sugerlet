@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.akr97.sugerlet.japanese.*;
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.util.*;
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 import com.akr97.sugerlet.model.*;
 
 public class AllContactsActivity extends ContactsActivity {

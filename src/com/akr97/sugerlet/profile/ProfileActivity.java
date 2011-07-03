@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 
 public class ProfileActivity extends Activity {
 	static final String TAG = "com.akr97.sugerlet.model.ProfileActivity";

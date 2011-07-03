@@ -1,4 +1,4 @@
-package com.akr97.sugerlet.listitem;
+package com.akr97.sugerlet.list_item;
 
 import android.content.Context;
 import android.view.View;

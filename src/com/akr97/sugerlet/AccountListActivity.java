@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 
 public class AccountListActivity extends Activity {
 	@Override

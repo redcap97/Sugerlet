@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.content.Intent;
 
-import com.akr97.sugerlet.listitem.*;
+import com.akr97.sugerlet.list_item.*;
 
 public class SugerletActivity extends Activity {
 	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
