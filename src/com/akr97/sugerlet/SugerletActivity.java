@@ -66,7 +66,7 @@ public class SugerletActivity extends Activity {
 		
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_call)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_telephone),
 				new Intent(Intent.ACTION_DIAL, null)));
 		
@@ -79,19 +79,19 @@ public class SugerletActivity extends Activity {
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_contact)));
 		
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_all_contacts),
 				AllContactsActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_group_list),
 				GroupListActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_account_list),
 				AccountListActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_initials_group_list),
 				InitialsGroupListActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_starred_contacts),
 				StarredContactsActivity.getIntent(this)));
 		
@@ -104,10 +104,10 @@ public class SugerletActivity extends Activity {
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_other)));
 		
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_setting_account),
 				SettingAccountActivity.getIntent(this)));
-		items.add(new ListIntentItem(this,
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_about),
 				getAboutIntent()));
 		

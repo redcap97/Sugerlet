@@ -26,7 +26,7 @@ public class InitialsGroupListActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
 		for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
-			items.add(new ListIntentItem(this,
+			items.add(new ListContentItem(this,
 					InitialsGroupSelector.getGroupName(group),
 					InitialsGroupContactsActivity.getIntent(this, group)));
 		}

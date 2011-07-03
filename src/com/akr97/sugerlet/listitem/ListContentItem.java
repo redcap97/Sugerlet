@@ -1,6 +1,7 @@
 package com.akr97.sugerlet.listitem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -9,12 +10,20 @@ import com.akr97.sugerlet.*;
 
 public class ListContentItem extends ListItem {
 	private final String content;
+	private final Intent intent;
 
 	private static final int KEY = R.string.key_list_content_item;
 
+	public ListContentItem(Context context, String content, Intent intent){
+		super(context, Type.CONTENT);
+		this.content = content;
+		this.intent = intent;
+	}
+	
 	public ListContentItem(Context context, String content){
 		super(context, Type.CONTENT);
 		this.content = content;
+		this.intent = null;
 	}
 
 	@Override
@@ -37,7 +46,9 @@ public class ListContentItem extends ListItem {
 
 	@Override
 	public void onClick(View view){
-		android.widget.Toast.makeText(context, content, 20).show();
+		if(intent != null){
+			context.startActivity(intent);
+		}
 	}
 
 	private ViewHolder getViewHolder(View convertView){

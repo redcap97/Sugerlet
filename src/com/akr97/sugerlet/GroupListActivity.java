@@ -23,18 +23,18 @@ public class GroupListActivity extends Activity {
 		setupGroupList();
 	}
 
-	private void setupGroupList(){        	
+	private void setupGroupList(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		AccountStateManager manager = AccountStateManagerFactory.create(this);
 		for(AccountState state : manager.getEnabledStates()){
 			items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
-			items.add(new ListIntentItem(this, getString(R.string.no_group),
+			items.add(new ListContentItem(this, getString(R.string.no_group),
 					GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
 
 			GroupDao dao = new GroupDao(this);
 			ArrayList<GroupData> groups = dao.getByAccount(state.getName(), state.getType());
 			for(GroupData group : groups){
-				items.add(new ListIntentItem(this, group.title,
+				items.add(new ListContentItem(this, group.title,
 						GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));
 			}
 		}
