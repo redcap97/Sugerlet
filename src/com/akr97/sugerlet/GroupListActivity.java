@@ -2,6 +2,7 @@ package com.akr97.sugerlet;
 
 import java.util.ArrayList;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,15 +28,13 @@ public class GroupListActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		AccountStateManager manager = AccountStateManagerFactory.create(this);
 		for(AccountState state : manager.getEnabledStates()){
-			items.add(new ListHeaderItem(this, AccountUtil.getHeading(state.getAccount())));
-			items.add(new ListContentItem(this, getString(R.string.no_group),
-					GroupContactsActivity.getIntentNoGroup(this, state.getAccount())));
-
+			items.add(getHeaderItem(state.getAccount()));
+			items.add(getNoGroupItem(state.getAccount()));
+			
 			GroupDao dao = new GroupDao(this);
 			ArrayList<GroupData> groups = dao.getByAccount(state.getName(), state.getType());
 			for(GroupData group : groups){
-				items.add(new ListContentItem(this, group.title,
-						GroupContactsActivity.getIntent(this, state.getAccount(), group.id)));
+				items.add(getGroupItem(state.getAccount(), group));
 			}
 		}
 
@@ -45,6 +44,22 @@ public class GroupListActivity extends Activity {
 		listView.setEmptyView(textView);
 		listView.setAdapter(new ListItemAdapter(items));
 		listView.setOnItemClickListener(new ListItemClickListener(items));
+	}
+	
+	private ListItem getHeaderItem(Account account){
+		String title = AccountUtil.getHeading(account);
+		return new ListHeaderItem(this, title);
+	}
+	
+	private ListItem getNoGroupItem(Account account){
+		String content = getString(R.string.no_group);
+		Intent intent = GroupContactsActivity.getIntentNoGroup(this, account);
+		return new ListContentItem(this, content, intent);
+	}
+	
+	private ListItem getGroupItem(Account account, GroupData group){
+		Intent intent = GroupContactsActivity.getIntent(this, account, group.id);
+		return new ListContentItem(this, group.title, intent);
 	}
 
 	public static Intent getIntent(Context context){
