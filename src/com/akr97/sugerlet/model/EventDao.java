@@ -3,9 +3,11 @@ package com.akr97.sugerlet.model;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.text.TextUtils;
 
 public class EventDao extends DaoBase<EventData> {
 	static final String[] PROJECTION = {
@@ -41,18 +43,18 @@ public class EventDao extends DaoBase<EventData> {
 
 		return new EventData(startDate, type, label);
 	}
-	
+
 	public String getTypeLabel(EventData event){
-		if(hasCustomLabel(event)){
-			return event.label;
-		}
-		return getContext().getString(Event.getTypeResource(event.type));
+		return getTypeLabel(getResources(), event.type, event.label).toString();
 	}
-	
-	private boolean hasCustomLabel(EventData event){
-		if(event.type == Event.TYPE_CUSTOM && event.label != null){
-			return event.label.trim().length() > 0;
+
+	public static final CharSequence getTypeLabel(Resources res, int type,
+			CharSequence label) {
+		if(type == Event.TYPE_CUSTOM && !TextUtils.isEmpty(label)){
+			return label;
+		}else{
+			final int labelRes = Event.getTypeResource(type);
+			return res.getText(labelRes);
 		}
-		return false;
 	}
 }
