@@ -66,7 +66,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ListHeaderItem(this, getString(R.string.header_phone)));
 
 			for(PhoneData phone : phones){
-				items.add(new ProfileListPhoneItem(this, phone));
+				items.add(new ProfilePhoneItem(this, phone));
 			}
 		}
 		return items;
@@ -84,7 +84,7 @@ public class ProfileActivity extends Activity {
 				String label = emailDao.getTypeLabel(email);
 				Intent intent = new Intent(Intent.ACTION_SENDTO, email.getMailtoUri());
 
-				items.add(new ProfileListContentItem(this, label, email.address, intent));
+				items.add(new ProfileContentItem(this, label, email.address, intent));
 			}
 		}
 		return items;
@@ -99,7 +99,7 @@ public class ProfileActivity extends Activity {
 			items.add(new ListHeaderItem(this, getString(R.string.header_im)));
 			for(ImData im : ims){
 				String protocol = imDao.getProtocolLabel(im);
-				items.add(new ProfileListContentItem(this, protocol, im.data));
+				items.add(new ProfileContentItem(this, protocol, im.data));
 			}
 		}
 		return items;
@@ -147,7 +147,7 @@ public class ProfileActivity extends Activity {
 		for(StructuredPostalData postal : structuredPostalDao.get(rawContactId)){
 			String label = structuredPostalDao.getTypeLabel(postal);
 
-			items.add(new ProfileListContentItem(this, label, postal.formattedAddress));
+			items.add(new ProfileContentItem(this, label, postal.formattedAddress));
 		}
 		return items;
 	}
@@ -159,7 +159,7 @@ public class ProfileActivity extends Activity {
 		for(NicknameData nickname : nicknameDao.get(rawContactId)){
 			String label = getString(R.string.nickname);
 
-			items.add(new ProfileListContentItem(this, label, nickname.name));
+			items.add(new ProfileContentItem(this, label, nickname.name));
 		}
 		return items;
 	}
@@ -172,7 +172,7 @@ public class ProfileActivity extends Activity {
 			String label = getString(R.string.website);
 			Intent intent = new Intent(Intent.ACTION_VIEW, website.getUri());
 
-			items.add(new ProfileListContentItem(this, label, website.url, intent));
+			items.add(new ProfileContentItem(this, label, website.url, intent));
 		}
 		return items;
 	}
@@ -184,7 +184,7 @@ public class ProfileActivity extends Activity {
 		for(EventData event : eventDao.get(rawContactId)){
 			String label = eventDao.getTypeLabel(event);
 			
-			items.add(new ProfileListContentItem(this, label, event.startDate));
+			items.add(new ProfileContentItem(this, label, event.startDate));
 		}
 		return items;
 	}
@@ -197,7 +197,7 @@ public class ProfileActivity extends Activity {
 			String label = organizationDao.getTypeLabel(organization);
 			String content = organization.company + "\n" + organization.title;
 
-			items.add(new ProfileListContentItem(this, label, content));
+			items.add(new ProfileContentItem(this, label, content));
 		}
 		return items;
 	}
@@ -209,7 +209,7 @@ public class ProfileActivity extends Activity {
 		for(NoteData note : noteDao.get(rawContactId)){
 			String label = getString(R.string.note);
 
-			items.add(new ProfileListContentItem(this, label, note.note));
+			items.add(new ProfileContentItem(this, label, note.note));
 		}
 		return items;
 	}

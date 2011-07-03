@@ -9,19 +9,19 @@ import android.widget.TextView;
 import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListContentItem extends ListItem {
+public class ProfileContentItem extends ListItem {
 	private final String label;
 	private final String content;
 	private final Intent intent;
 
-	public ProfileListContentItem(Context context, String label, String content, Intent intent) {
+	public ProfileContentItem(Context context, String label, String content, Intent intent) {
 		super(context, Type.CUSTOM);
 		this.label = label;
 		this.content = content;
 		this.intent = intent;
 	}
 	
-	public ProfileListContentItem(Context context, String label, String content){
+	public ProfileContentItem(Context context, String label, String content){
 		super(context, Type.CUSTOM);
 		this.label = label;
 		this.content = content;
@@ -31,7 +31,7 @@ public class ProfileListContentItem extends ListItem {
 	@Override
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.profile_list_content_item, null);
+		convertView = inflater.inflate(R.layout.profile_content_item, null);
 		
 		TextView label = (TextView)convertView.findViewById(R.id.label);
 		label.setText(this.label);

@@ -5,5 +5,5 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/name" android:textSize="24dip" android:text="name" android:layout_marginTop="2dip" android:layout_marginLeft="4dip" android:layout_marginBottom="2dip"></TextView>
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="type" android:id="@+id/type" android:textSize="16dip" android:layout_marginLeft="4dip" android:layout_marginBottom="4dip" android:textColor="#00AA00"></TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="type" android:id="@+id/type" android:textSize="16dip" android:layout_marginLeft="4dip" android:layout_marginBottom="4dip" android:textColor="#66ccff"></TextView>
 </LinearLayout>

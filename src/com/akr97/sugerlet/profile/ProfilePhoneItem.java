@@ -11,10 +11,10 @@ import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.listitem.*;
 
-public class ProfileListPhoneItem extends ListItem {
+public class ProfilePhoneItem extends ListItem {
 	private final PhoneData phone;
 
-	public ProfileListPhoneItem(Context context, PhoneData phone) {
+	public ProfilePhoneItem(Context context, PhoneData phone) {
 		super(context, Type.CUSTOM);
 		this.phone = phone;
 	}
@@ -22,7 +22,7 @@ public class ProfileListPhoneItem extends ListItem {
 	@Override
 	public View getView(View convertView) {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		convertView = inflater.inflate(R.layout.profile_list_phone_item, null);
+		convertView = inflater.inflate(R.layout.profile_phone_item, null);
 		
 		PhoneDao dao = new PhoneDao(context);
 		TextView label = (TextView)convertView.findViewById(R.id.label);

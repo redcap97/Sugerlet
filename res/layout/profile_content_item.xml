@@ -4,7 +4,7 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="label" android:id="@+id/label" android:textSize="16dip" android:layout_marginTop="8dip" android:layout_marginLeft="6dip"></TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="label" android:id="@+id/label" android:textSize="16dip" android:layout_marginTop="8dip" android:layout_marginLeft="6dip" android:textColor="#66ccff"></TextView>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/content" android:text="content" android:textSize="24dip" android:layout_marginLeft="6dip" android:layout_marginBottom="8dip"></TextView>
     
 </LinearLayout>
