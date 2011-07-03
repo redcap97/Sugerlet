@@ -27,7 +27,7 @@ public class AccountListActivity extends Activity {
 		AccountStateManager manager = AccountStateManagerFactory.create(this);
 
 		for(AccountState state : manager.getEnabledStates()){
-			items.add(new AccountListContentItem(this, state.getAccount()));
+			items.add(new AccountListItem(this, state.getAccount()));
 		}
 		ListView listView = (ListView)findViewById(R.id.listView);
 		TextView textView = (TextView)findViewById(R.id.emptyView);
