@@ -1,10 +1,10 @@
 package com.akr97.sugerlet.model;
 
-import com.akr97.sugerlet.R;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.Context;
+
+import com.akr97.sugerlet.*;
 
 public class MissingPhotoData extends PhotoData {
 	private Context ctx;
