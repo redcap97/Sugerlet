@@ -1,7 +1,10 @@
 package com.akr97.sugerlet.contacts;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,7 +43,7 @@ public class ContactsContentItem  extends ListItem {
 
 		holder.icon.setImageBitmap(getImage());
 		holder.name.setText(getName());
-		holder.phoneticName.setText(structuredName.getPhoneticName());
+		holder.phoneticName.setText(getPhoneticName());
 
 		return convertView;
 	}
@@ -55,6 +58,20 @@ public class ContactsContentItem  extends ListItem {
 	public String getName(){
 		String defaultValue = context.getString(R.string.no_name_with_mark);
 		return structuredName.getName(defaultValue);
+	}
+
+	public String getPhoneticName(){
+		if(TextUtils.isEmpty(structuredName.getName())){
+			EmailDao dao = new EmailDao(context);
+			ArrayList<EmailData> emails = dao.get(structuredName.rawContactId);
+
+			if(emails.size() > 0){
+				EmailData firstEmail = emails.get(0);
+				String label = context.getString(R.string.email);
+				return String.format("%s: %s", label, firstEmail.address);
+			}
+		}
+		return structuredName.getPhoneticName();
 	}
 
 	@Override

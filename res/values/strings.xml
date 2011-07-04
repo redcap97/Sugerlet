@@ -17,4 +17,5 @@
 	<string name="website">ウェブサイト</string>
 	<string name="note">メモ</string>
 	<string name="no_name_with_mark">(名前未入力)</string>
+	<string name="email">Eメール</string>
 </resources>
