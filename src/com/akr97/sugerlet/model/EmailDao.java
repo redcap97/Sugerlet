@@ -18,6 +18,10 @@ public class EmailDao extends DaoBase<EmailData> {
 		super(ctx);
 	}
 
+	public EmailData getFirst(long rawContactId){
+		return readRow(getCursor(rawContactId));
+	}
+
 	public ArrayList<EmailData> get(long rawContactId){
 		return readRows(getCursor(rawContactId));
 	}

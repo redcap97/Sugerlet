@@ -1,7 +1,5 @@
 package com.akr97.sugerlet.contacts;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -63,12 +61,11 @@ public class ContactsContentItem  extends ListItem {
 	public String getPhoneticName(){
 		if(TextUtils.isEmpty(structuredName.getName())){
 			EmailDao dao = new EmailDao(context);
-			ArrayList<EmailData> emails = dao.get(structuredName.rawContactId);
+			EmailData firstEmail = dao.getFirst(structuredName.rawContactId);
 
-			if(emails.size() > 0){
-				EmailData firstEmail = emails.get(0);
-				String label = context.getString(R.string.email);
-				return String.format("%s: %s", label, firstEmail.address);
+			if(firstEmail != null){
+				String type = context.getString(R.string.email);
+				return String.format("%s: %s", type, firstEmail.address);
 			}
 		}
 		return structuredName.getPhoneticName();
