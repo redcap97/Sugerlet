@@ -1,5 +1,9 @@
 package com.akr97.sugerlet.model;
 
+import com.akr97.sugerlet.util.StringUtil;
+
+import android.text.TextUtils;
+
 public class OrganizationData {
 	public final String company;
 	public final int type;
@@ -11,6 +15,16 @@ public class OrganizationData {
 		this.type = type;
 		this.label = label;
 		this.title = title;
+	}
+	
+	public String get(){
+		if(TextUtils.isEmpty(title)){
+			return StringUtil.toNonNull(company);
+		}else if(TextUtils.isEmpty(company)){
+			return StringUtil.toNonNull(title);
+		}else{
+			return company + "\n" + title;
+		}
 	}
 
 	@Override
