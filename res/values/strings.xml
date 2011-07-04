@@ -7,7 +7,7 @@
 	<string name="group">グループ</string>
 	<string name="initials_group">ふりがな</string>
 	<string name="no_group">グループなし</string>
-	<string name="nothing">(なし)</string>
+	<string name="nothing_with_mark">(なし)</string>
 	<string name="number">数字</string>
 	<string name="other">その他</string>
 	<string name="save">保存</string>
@@ -16,4 +16,5 @@
 	<string name="nickname">ニックネーム</string>
 	<string name="website">ウェブサイト</string>
 	<string name="note">メモ</string>
+	<string name="no_name_with_mark">(名前未入力)</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.akr97.sugerlet.model;
 
 import com.akr97.sugerlet.japanese.*;
+import com.akr97.sugerlet.util.StringUtil;
 
 public class StructuredNameData {
 	public final long rawContactId;
@@ -28,13 +29,13 @@ public class StructuredNameData {
 		return JapaneseUtil.getName(phoneticFamilyName, phoneticGivenName);
 	}
 
-	public String getPhoneticName(String defaultValue){
-		String phoneticName = getPhoneticName();
+	public String getName(String defaultValue){
+		String name = JapaneseUtil.getName(familyName, givenName);
+		return StringUtil.choiceNonEmpty(name, defaultValue);
+	}
 
-		if(phoneticName.length() != 0){
-			return phoneticName;
-		}else{
-			return defaultValue;
-		}
+	public String getPhoneticName(String defaultValue){
+		String name = JapaneseUtil.getName(phoneticFamilyName, phoneticGivenName);
+		return StringUtil.choiceNonEmpty(name, defaultValue);
 	}
 }

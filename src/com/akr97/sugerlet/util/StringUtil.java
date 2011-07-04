@@ -1,8 +1,19 @@
 package com.akr97.sugerlet.util;
 
+import android.text.TextUtils;
+
 public class StringUtil {
 	public static String toNonNull(String str){
 		return str == null ? "" : str;
+	}
+
+	public static String choiceNonEmpty(String... strings){
+		for(String string : strings){
+			if(!TextUtils.isEmpty(string)){
+				return string;
+			}
+		}
+		return "";
 	}
 
 	public static String[] splitLast(String target, String pattern){

@@ -1,6 +1,7 @@
 package com.akr97.sugerlet.contacts;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,14 +38,23 @@ public class ContactsContentItem  extends ListItem {
 			convertView.setTag(KEY, holder);
 		}
 
-		PhotoDao photoDao = new PhotoDao(context);
-		PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
-
-		holder.icon.setImageBitmap(photo.getBitmap());
-		holder.name.setText(structuredName.getName());
+		holder.icon.setImageBitmap(getImage());
+		holder.name.setText(getName());
 		holder.phoneticName.setText(structuredName.getPhoneticName());
 
 		return convertView;
+	}
+
+	public Bitmap getImage(){
+		PhotoDao photoDao = new PhotoDao(context);
+		PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
+
+		return photo.getBitmap();
+	}
+
+	public String getName(){
+		String defaultValue = context.getString(R.string.no_name_with_mark);
+		return structuredName.getName(defaultValue);
 	}
 
 	@Override

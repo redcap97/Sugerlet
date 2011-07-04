@@ -39,9 +39,10 @@ public class ProfileActivity extends Activity {
 		StructuredNameData structuredName = structuredNameDao.getByRawContactsId(rawContactId);
 
 		TextView tvName = (TextView)findViewById(R.id.name);
-		tvName.setText(structuredName.getName());
+		tvName.setText(structuredName.getName(getString(R.string.no_name_with_mark)));
+
 		TextView tvPhoneticName = (TextView)findViewById(R.id.phoneticName);
-		tvPhoneticName.setText(structuredName.getPhoneticName(getString(R.string.nothing)));
+		tvPhoneticName.setText(structuredName.getPhoneticName(getString(R.string.nothing_with_mark)));
 	}
 
 	public void setupProfileList(long rawContactId){

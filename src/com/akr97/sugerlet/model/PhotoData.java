@@ -10,6 +10,10 @@ public class PhotoData {
 		this.bytes = bytes;
 	}
 
+	public boolean isValid(){
+		return (bytes != null);
+	}
+
 	public Bitmap getBitmap(){
 		return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
 	}
