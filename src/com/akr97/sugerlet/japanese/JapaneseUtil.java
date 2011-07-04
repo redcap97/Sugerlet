@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.japanese;
 
+import android.text.TextUtils;
+
 import com.akr97.sugerlet.util.*;
 
 public class JapaneseUtil {
@@ -9,9 +11,9 @@ public class JapaneseUtil {
 	}
 
 	public static String getName(String familyName, String givenName){
-		if(givenName == null || givenName.length() == 0){
+		if(TextUtils.isEmpty(givenName)){
 			return StringUtil.toNonNull(familyName);
-		}else if(familyName == null || familyName.length() == 0){
+		}else if(TextUtils.isEmpty(familyName)){
 			return StringUtil.toNonNull(givenName);
 		}else{
 			return familyName + " " + givenName;
