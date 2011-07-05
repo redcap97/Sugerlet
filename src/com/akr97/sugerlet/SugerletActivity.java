@@ -18,7 +18,7 @@ public class SugerletActivity extends Activity {
 	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
 	static final int MENU_ABOUT = (Menu.FIRST + 2);
 
-	static final String SUGERLET_URL = "http://akr97.com/capsule/";
+	static final String SUGERLET_URL = "http://akr97.com/capsule/?tag=sugerlet";
 	static final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
 	
 	@Override
