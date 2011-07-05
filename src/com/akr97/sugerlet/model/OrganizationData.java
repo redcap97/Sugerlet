@@ -17,7 +17,7 @@ public class OrganizationData {
 		this.title = title;
 	}
 	
-	public String get(){
+	public String getDisplayName(){
 		if(TextUtils.isEmpty(title)){
 			return StringUtil.toNonNull(company);
 		}else if(TextUtils.isEmpty(company)){

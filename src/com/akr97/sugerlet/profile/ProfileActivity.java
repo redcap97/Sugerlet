@@ -196,7 +196,7 @@ public class ProfileActivity extends Activity {
 		OrganizationDao organizationDao = new OrganizationDao(this);
 		for(OrganizationData organization : organizationDao.get(rawContactId)){
 			String label = organizationDao.getTypeLabel(organization);
-			String content = organization.get();
+			String content = organization.getDisplayName();
 
 			items.add(new ProfileContentItem(this, label, content));
 		}
