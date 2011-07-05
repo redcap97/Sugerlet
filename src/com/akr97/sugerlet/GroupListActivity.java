@@ -61,7 +61,7 @@ public class GroupListActivity extends Activity {
 	
 	private ListItem getGroupItem(Account account, GroupData group){
 		Intent intent = GroupContactsActivity.getIntent(this, account, group.id);
-		return new ListContentItem(this, group.getName(), intent);
+		return new ListContentItem(this, group.getDisplayedName(), intent);
 	}
 
 	public static Intent getIntent(Context context){
