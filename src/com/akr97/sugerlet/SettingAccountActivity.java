@@ -24,6 +24,7 @@ public class SettingAccountActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting_account);
 
+		setTitle(getString(R.string.setting_account));
 		setupSettingAccountList();
 		setupSaveButton();
 	}
