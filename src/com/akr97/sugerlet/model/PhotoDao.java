@@ -22,7 +22,7 @@ public class PhotoDao extends DaoBase<PhotoData> {
 
 	public PhotoData getByRawContactId(long rawContactId){
 		PhotoData result = readRow(getCursor(rawContactId));
-		if(result == null || !result.isValid()){
+		if(result == null){
 			return new MissingPhotoData(context);
 		}
 		return result;
@@ -32,7 +32,8 @@ public class PhotoDao extends DaoBase<PhotoData> {
 		return getContentResolver().query(Data.CONTENT_URI,
 				PROJECTION,
 				Data.RAW_CONTACT_ID + "= ? AND " +
-					Data.MIMETYPE + "=?",
+					Data.MIMETYPE + "=? AND " +
+					Photo.PHOTO + " IS NOT NULL",
 				new String[] {
 					String.valueOf(rawContactId),
 					Photo.CONTENT_ITEM_TYPE},
