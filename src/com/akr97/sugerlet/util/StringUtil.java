@@ -7,7 +7,7 @@ public class StringUtil {
 		return str == null ? "" : str;
 	}
 
-	public static String choiceNonEmpty(String... strings){
+	public static String findNonEmptyElement(String... strings){
 		for(String string : strings){
 			if(!TextUtils.isEmpty(string)){
 				return string;

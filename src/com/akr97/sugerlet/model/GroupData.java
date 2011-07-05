@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.model;
 
+import com.akr97.sugerlet.util.StringUtil;
+
 import android.accounts.Account;
 
 public class GroupData {
@@ -18,6 +20,10 @@ public class GroupData {
 		this.systemId = systemId;
 		this.accountName = accountName;
 		this.accountType = accountType;
+	}
+
+	public String getName(){
+		return StringUtil.findNonEmptyElement(systemId, title);
 	}
 
 	public Account getAccount(){

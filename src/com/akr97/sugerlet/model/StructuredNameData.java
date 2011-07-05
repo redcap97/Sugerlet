@@ -31,11 +31,11 @@ public class StructuredNameData {
 
 	public String getName(String defaultValue){
 		String name = JapaneseUtil.getName(familyName, givenName);
-		return StringUtil.choiceNonEmpty(name, defaultValue);
+		return StringUtil.findNonEmptyElement(name, defaultValue);
 	}
 
 	public String getPhoneticName(String defaultValue){
 		String name = JapaneseUtil.getName(phoneticFamilyName, phoneticGivenName);
-		return StringUtil.choiceNonEmpty(name, defaultValue);
+		return StringUtil.findNonEmptyElement(name, defaultValue);
 	}
 }
