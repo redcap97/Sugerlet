@@ -22,7 +22,7 @@ public class GroupData {
 		this.accountType = accountType;
 	}
 
-	public String getDisplayedName(){
+	public String getDisplayName(){
 		return StringUtil.findNonEmptyElement(systemId, title);
 	}
 
