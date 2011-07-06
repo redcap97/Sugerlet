@@ -30,6 +30,11 @@ public abstract class ContactsActivity extends Activity {
 		setupContactList();
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+		resetContactList();
+	}
+
 	public void setupContactList(){
 		ListView listView = (ListView)findViewById(R.id.listView);
 		listView.setAdapter(listAdapter);
@@ -38,9 +43,11 @@ public abstract class ContactsActivity extends Activity {
 		listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-		reset();
+	private void resetContactList(){
+		ArrayList<ListItem> changedItems = createListItems();
+		items.clear();
+		items.addAll(changedItems);
+		listAdapter.notifyDataSetChanged();
 	}
 
 	protected ArrayList<ListItem> createListItems(ArrayList<StructuredNameData> structuredNames){
@@ -57,13 +64,6 @@ public abstract class ContactsActivity extends Activity {
 			}
 		}
 		return items;
-	}
-
-	private void reset(){
-		ArrayList<ListItem> changedItems = createListItems();
-		items.clear();
-		items.addAll(changedItems);
-		listAdapter.notifyDataSetChanged();
 	}
 
 	public abstract String createTitle();
