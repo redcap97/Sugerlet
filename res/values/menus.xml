@@ -10,4 +10,5 @@
 	<string name="menu_setting_account">アカウントの設定</string>
 	<string name="menu_starred_contacts">お気に入り</string>
 	<string name="menu_telephone">電話</string>
+	<string name="menu_edit_contact">連絡先を編集</string>
 </resources>

@@ -42,7 +42,7 @@ public class ProfileActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add(Menu.NONE, MENU_EDIT_CONTACT, Menu.NONE, "Edit contact");
+		menu.add(Menu.NONE, MENU_EDIT_CONTACT, Menu.NONE, getString(R.string.menu_edit_contact));
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -265,8 +265,8 @@ public class ProfileActivity extends Activity {
 	private void editContact(){
 		Uri uri = Uri.withAppendedPath(ContactsContract.RawContacts.CONTENT_URI,
 				String.valueOf(params.rawContactId));
-
 		Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+
 		startActivityForResult(intent, 0);
 	}
 
