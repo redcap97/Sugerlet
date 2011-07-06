@@ -16,7 +16,7 @@ import com.akr97.sugerlet.util.*;
 
 public abstract class ContactsActivity extends Activity {
 	private ArrayList<ListItem> items;
-	private ListItemAdapter adapter;
+	private ListItemAdapter listAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public abstract class ContactsActivity extends Activity {
 		setContentView(R.layout.list_items);
 
 		items = createListItems();
-		adapter = new ListItemAdapter(items);
+		listAdapter = new ListItemAdapter(items);
 
 		setTitle(createTitle());
 		setupContactList();
@@ -32,7 +32,7 @@ public abstract class ContactsActivity extends Activity {
 
 	public void setupContactList(){
 		ListView listView = (ListView)findViewById(R.id.listView);
-		listView.setAdapter(adapter);
+		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
 		listView.setOnItemClickListener(new ListItemClickListener(items));
@@ -63,7 +63,7 @@ public abstract class ContactsActivity extends Activity {
 		ArrayList<ListItem> changedItems = createListItems();
 		items.clear();
 		items.addAll(changedItems);
-		adapter.notifyDataSetChanged();
+		listAdapter.notifyDataSetChanged();
 	}
 
 	public abstract String createTitle();
