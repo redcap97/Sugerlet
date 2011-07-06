@@ -48,7 +48,7 @@ public class NormalizedNameList implements Iterable<NormalizedName> {
 		return new NormalizedNameIterator(names);
 	}
 
-	public static NormalizedNameList fromStructuredNames(ArrayList<StructuredNameData> names){
+	public static NormalizedNameList from(ArrayList<StructuredNameData> names){
 		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
 		for(StructuredNameData sn : names){
 			results.add(new NormalizedName(sn));

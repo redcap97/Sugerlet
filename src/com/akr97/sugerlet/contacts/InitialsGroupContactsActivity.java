@@ -32,7 +32,7 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
 		StructuredNameDao dao = new StructuredNameDao(this);
-		NormalizedNameList list = NormalizedNameList.fromStructuredNames(dao.getAll())
+		NormalizedNameList list = NormalizedNameList.from(dao.getAll())
 									.filter(params.initialsGroup).sort();
 
 		char currentGroup = '\0';

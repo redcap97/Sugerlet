@@ -44,7 +44,7 @@ public abstract class ContactsActivity extends Activity {
 	}
 
 	protected ArrayList<ListItem> createListItems(ArrayList<StructuredNameData> structuredNames){
-		NormalizedNameList list = NormalizedNameList.fromStructuredNames(structuredNames);
+		NormalizedNameList list = NormalizedNameList.from(structuredNames);
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
 			NormalizedNameList groupList = list.filter(group);
