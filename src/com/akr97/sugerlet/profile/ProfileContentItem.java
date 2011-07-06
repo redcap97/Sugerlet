@@ -10,19 +10,24 @@ import com.akr97.sugerlet.*;
 import com.akr97.sugerlet.list_item.*;
 
 public class ProfileContentItem extends ListItem {
+	private final Context context;
 	private final String label;
 	private final String content;
 	private final Intent intent;
 
 	public ProfileContentItem(Context context, String label, String content, Intent intent) {
-		super(context, Type.CUSTOM);
+		super(Type.CUSTOM);
+		
+		this.context = context;
 		this.label = label;
 		this.content = content;
 		this.intent = intent;
 	}
 	
 	public ProfileContentItem(Context context, String label, String content){
-		super(context, Type.CUSTOM);
+		super(Type.CUSTOM);
+		
+		this.context = context;
 		this.label = label;
 		this.content = content;
 		this.intent = null;

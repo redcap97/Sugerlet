@@ -21,7 +21,7 @@ public class ContactsContentItem  extends ListItem {
 	private static final int KEY = R.string.key_contacts_content_item;
 
 	public ContactsContentItem(Activity activity, StructuredNameData structuredName) {
-		super(activity, Type.CUSTOM);
+		super(Type.CUSTOM);
 
 		this.activity = activity;
 		this.structuredName = structuredName;
@@ -32,7 +32,7 @@ public class ContactsContentItem  extends ListItem {
 		ViewHolder holder = getViewHolder(convertView);
 
 		if(convertView == null || holder == null){
-			LayoutInflater inflater = LayoutInflater.from(this.context);
+			LayoutInflater inflater = LayoutInflater.from(activity);
 			convertView = inflater.inflate(R.layout.contact_list_item, null);
 
 			holder = new ViewHolder();
@@ -51,24 +51,24 @@ public class ContactsContentItem  extends ListItem {
 	}
 
 	public Bitmap getImage(){
-		PhotoDao photoDao = new PhotoDao(context);
+		PhotoDao photoDao = new PhotoDao(activity);
 		PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
 
 		return photo.getBitmap();
 	}
 
 	public String getName(){
-		String defaultValue = context.getString(R.string.no_name_with_mark);
+		String defaultValue = activity.getString(R.string.no_name_with_mark);
 		return structuredName.getName(defaultValue);
 	}
 
 	public String getPhoneticName(){
 		if(TextUtils.isEmpty(structuredName.getName())){
-			EmailDao dao = new EmailDao(context);
+			EmailDao dao = new EmailDao(activity);
 			EmailData firstEmail = dao.getFirst(structuredName.rawContactId);
 
 			if(firstEmail != null){
-				String type = context.getString(R.string.email);
+				String type = activity.getString(R.string.email);
 				return String.format("%s: %s", type, firstEmail.address);
 			}
 		}
@@ -77,7 +77,7 @@ public class ContactsContentItem  extends ListItem {
 
 	@Override
 	public void onClick(View view){
-		Intent intent = ProfileActivity.getIntent(context, structuredName.rawContactId);
+		Intent intent = ProfileActivity.getIntent(activity, structuredName.rawContactId);
 		activity.startActivityForResult(intent, 0);
 	}
 

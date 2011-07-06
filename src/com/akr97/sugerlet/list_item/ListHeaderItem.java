@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ListHeaderItem extends ListItem {
+	private final Context context;
 	private final String title;
 
 	private static final int KEY = R.string.key_list_header_item;
 
 	public ListHeaderItem(Context context, String title) {
-		super(context, Type.HEADER);
+		super(Type.HEADER);
+		
+		this.context = context;
 		this.title = title;
 	}
 

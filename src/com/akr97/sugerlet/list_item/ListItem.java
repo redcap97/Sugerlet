@@ -1,10 +1,8 @@
 package com.akr97.sugerlet.list_item;
 
-import android.content.Context;
 import android.view.View;
 
 public abstract class ListItem {
-	protected final Context context;
 	protected final Type type;
 
 	public enum Type {
@@ -13,8 +11,7 @@ public abstract class ListItem {
 		CUSTOM
 	}
 
-	public ListItem(Context context, Type type){
-		this.context = context;
+	public ListItem(Type type){
 		this.type = type;
 	}
 
@@ -23,7 +20,7 @@ public abstract class ListItem {
 	}
 
 	public boolean isHeader(){
-		return type == Type.HEADER;
+		return (type == Type.HEADER);
 	}
 
 	public void onClick(View view){

@@ -10,10 +10,13 @@ import com.akr97.sugerlet.contacts.*;
 import com.akr97.sugerlet.list_item.*;
 
 public class AccountListItem extends ListItem {
-	private Account account;
+	private final Context context;
+	private final Account account;
 
 	public AccountListItem(Context context, Account account){
-		super(context, Type.CUSTOM);
+		super(Type.CUSTOM);
+		
+		this.context = context;
 		this.account = account;
 	}
 

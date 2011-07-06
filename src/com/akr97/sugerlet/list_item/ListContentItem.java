@@ -9,19 +9,24 @@ import android.widget.TextView;
 import com.akr97.sugerlet.*;
 
 public class ListContentItem extends ListItem {
+	private final Context context;
 	private final String content;
 	private final Intent intent;
 
 	private static final int KEY = R.string.key_list_content_item;
 
 	public ListContentItem(Context context, String content, Intent intent){
-		super(context, Type.CONTENT);
+		super(Type.CONTENT);
+		
+		this.context = context;
 		this.content = content;
 		this.intent = intent;
 	}
 	
 	public ListContentItem(Context context, String content){
-		super(context, Type.CONTENT);
+		super(Type.CONTENT);
+		
+		this.context = context;
 		this.content = content;
 		this.intent = null;
 	}
