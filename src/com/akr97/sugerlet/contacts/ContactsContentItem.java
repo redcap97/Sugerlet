@@ -1,6 +1,7 @@
 package com.akr97.sugerlet.contacts;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,12 +15,15 @@ import com.akr97.sugerlet.model.*;
 import com.akr97.sugerlet.profile.*;
 
 public class ContactsContentItem  extends ListItem {
+	private final Activity activity;
 	private final StructuredNameData structuredName;
 
 	private static final int KEY = R.string.key_contacts_content_item;
 
-	public ContactsContentItem(Context context, StructuredNameData structuredName) {
-		super(context, Type.CUSTOM);
+	public ContactsContentItem(Activity activity, StructuredNameData structuredName) {
+		super(activity, Type.CUSTOM);
+
+		this.activity = activity;
 		this.structuredName = structuredName;
 	}
 
@@ -73,7 +77,8 @@ public class ContactsContentItem  extends ListItem {
 
 	@Override
 	public void onClick(View view){
-		context.startActivity(ProfileActivity.getIntent(context, structuredName.rawContactId));
+		Intent intent = ProfileActivity.getIntent(context, structuredName.rawContactId);
+		activity.startActivityForResult(intent, 0);
 	}
 
 	private ViewHolder getViewHolder(View convertView){
