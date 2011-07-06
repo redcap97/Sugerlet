@@ -1,5 +1,7 @@
 package com.akr97.sugerlet.contacts;
 
+import java.util.WeakHashMap;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +19,8 @@ import com.akr97.sugerlet.profile.*;
 public class ContactsContentItem  extends ListItem {
 	private final Activity activity;
 	private final StructuredNameData structuredName;
+
+	private static WeakHashMap<Long, Bitmap> photosCache = new WeakHashMap<Long, Bitmap>();
 
 	private static final int KEY = R.string.key_contacts_content_item;
 
@@ -51,10 +55,16 @@ public class ContactsContentItem  extends ListItem {
 	}
 
 	public Bitmap getImage(){
-		PhotoDao photoDao = new PhotoDao(activity);
-		PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
+		Bitmap bitmap = photosCache.get(structuredName.rawContactId);
 
-		return photo.getBitmap();
+		if(bitmap == null){
+			PhotoDao photoDao = new PhotoDao(activity);
+			PhotoData photo = photoDao.getByRawContactId(structuredName.rawContactId);
+			bitmap = photo.getBitmap();
+
+			photosCache.put(structuredName.rawContactId, bitmap);
+		}
+		return bitmap;
 	}
 
 	public String getName(){
