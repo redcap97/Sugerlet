@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -17,6 +21,8 @@ import com.akr97.sugerlet.util.*;
 public abstract class ContactsActivity extends Activity {
 	private ArrayList<ListItem> items;
 	private ListItemAdapter listAdapter;
+
+	static final int MENU_ADD_CONTACT = (Menu.FIRST + 1);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,22 @@ public abstract class ContactsActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 		resetContactList();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		menu.add(Menu.NONE, MENU_ADD_CONTACT, Menu.NONE, getString(R.string.menu_add_contact));
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case MENU_ADD_CONTACT:
+			addContact();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void setupContactList(){
@@ -64,6 +86,12 @@ public abstract class ContactsActivity extends Activity {
 			}
 		}
 		return items;
+	}
+
+	private void addContact(){
+		Uri uri = ContactsContract.RawContacts.CONTENT_URI;
+		Intent intent = new Intent(Intent.ACTION_INSERT, uri);
+		startActivityForResult(intent, 0);
 	}
 
 	public abstract String createTitle();

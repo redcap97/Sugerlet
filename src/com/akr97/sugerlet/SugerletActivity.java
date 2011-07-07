@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +17,11 @@ import com.akr97.sugerlet.list_item.*;
 
 public class SugerletActivity extends Activity {
 	static final int MENU_SETTING_ACCOUNT = (Menu.FIRST + 1);
-	static final int MENU_ABOUT = (Menu.FIRST + 2);
+	static final int MENU_ADD_CONTACT = (Menu.FIRST + 2);
 
 	static final String SUGERLET_URL = "http://akr97.com/capsule/?tag=sugerlet";
 	static final Uri SUGERLET_URI = Uri.parse(SUGERLET_URL);
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class SugerletActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, MENU_SETTING_ACCOUNT, Menu.NONE, getString(R.string.menu_setting_account));
-		menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.menu_about));
+		menu.add(Menu.NONE, MENU_ADD_CONTACT, Menu.NONE, getString(R.string.menu_add_contact));
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -42,8 +43,8 @@ public class SugerletActivity extends Activity {
 		case MENU_SETTING_ACCOUNT:
 			launchSettingAccount();
 			return true;
-		case MENU_ABOUT:
-			launchAbout();
+		case MENU_ADD_CONTACT:
+			addContact();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -61,25 +62,25 @@ public class SugerletActivity extends Activity {
 		listView.setEmptyView(emptyView);
 		listView.setOnItemClickListener(new ListItemClickListener(items));
 	}
-	
+
 	private ArrayList<ListItem> getCallItems(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		
+
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_call)));
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_telephone),
 				new Intent(Intent.ACTION_DIAL, null)));
-		
+
 		return items;
 	}
-	
+
 	private ArrayList<ListItem> getContactItems(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		
+
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_contact)));
-		
+
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_all_contacts),
 				AllContactsActivity.getIntent(this)));
@@ -95,23 +96,23 @@ public class SugerletActivity extends Activity {
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_starred_contacts),
 				StarredContactsActivity.getIntent(this)));
-		
+
 		return items;
 	}
-	
+
 	private ArrayList<ListItem> getOtherItems(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		
+
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_other)));
-		
+
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_setting_account),
 				SettingAccountActivity.getIntent(this)));
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_about),
 				getAboutIntent()));
-		
+
 		return items;
 	}
 
@@ -119,11 +120,13 @@ public class SugerletActivity extends Activity {
 		return new Intent(Intent.ACTION_VIEW, SUGERLET_URI);
 	}
 
-	private void launchAbout(){
-		startActivity(getAboutIntent());
-	}
-
 	private void launchSettingAccount(){
 		startActivity(SettingAccountActivity.getIntent(this));
+	}
+
+	private void addContact(){
+		Uri uri = ContactsContract.RawContacts.CONTENT_URI;
+		Intent intent = new Intent(Intent.ACTION_INSERT, uri);
+		startActivityForResult(intent, 0);
 	}
 }
