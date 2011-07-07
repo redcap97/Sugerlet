@@ -26,7 +26,7 @@ public class SettingAccountActivity extends Activity {
 
 		setTitle(getString(R.string.setting_account));
 		setupSettingAccountList();
-		setupSaveButton();
+		setupButtons();
 	}
 
 	private void setupSettingAccountList(){
@@ -45,12 +45,20 @@ public class SettingAccountActivity extends Activity {
 		});
 	}
 
-	private void setupSaveButton(){
+	private void setupButtons(){
 		View saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				saveChanges();
+			}
+		});
+
+		View cancelButton = findViewById(R.id.cancelButton);
+		cancelButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				cancel();
 			}
 		});
 	}
@@ -85,6 +93,10 @@ public class SettingAccountActivity extends Activity {
 		listAdapter.reset();
 		listAdapter.notifyDataSetChanged();
 		listView.invalidateViews();
+	}
+
+	public void cancel(){
+		finish();
 	}
 
 	public static Intent getIntent(Context context){
