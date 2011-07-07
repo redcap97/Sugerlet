@@ -15,7 +15,9 @@ public class GroupDao extends DaoBase<GroupData> {
 		Groups.NOTES,
 		Groups.SYSTEM_ID,
 		Groups.ACCOUNT_NAME,
-		Groups.ACCOUNT_TYPE
+		Groups.ACCOUNT_TYPE,
+		Groups.GROUP_VISIBLE,
+		Groups.DELETED
 	};
 
 	public GroupDao(Context ctx){
@@ -30,8 +32,11 @@ public class GroupDao extends DaoBase<GroupData> {
 		String systemId = c.getString(3);
 		String accountName = c.getString(4);
 		String accountType = c.getString(5);
+		int groupVisible = c.getInt(6);
+		int deleted = c.getInt(7);
 
-		return new GroupData(id, title, notes, systemId, accountName, accountType);
+		return new GroupData(id, title, notes, systemId, accountName, accountType,
+				groupVisible != 0, deleted != 0);
 	}
 
 	public ArrayList<GroupData> getAll(){
@@ -52,8 +57,15 @@ public class GroupDao extends DaoBase<GroupData> {
 
 	public Cursor getCursor(String accountName, String accountType){
 		return getContentResolver().query(Groups.CONTENT_URI,
-				PROJECTION, Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?", 
-				new String[]{ accountName, accountType }, Groups._ID);
+				PROJECTION,
+				Groups.ACCOUNT_NAME + "=? AND " +
+					Groups.ACCOUNT_TYPE + "=? AND " +
+					Groups.DELETED + "=?",
+				new String[]{
+					accountName,
+					accountType,
+					String.valueOf(0)},
+				Groups._ID);
 	}
 
 	public Cursor getCursor(long groupId){

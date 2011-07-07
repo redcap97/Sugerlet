@@ -11,15 +11,19 @@ public class GroupData {
 	public final String systemId;
 	public final String accountName;
 	public final String accountType;
+	public final boolean groupVisible;
+	public final boolean deleted;
 
 	public GroupData(long id, String title, String notes, String systemId, 
-			String accountName, String accountType){
+			String accountName, String accountType, boolean groupVisible, boolean deleted){
 		this.id = id;
 		this.title = title;
 		this.notes = notes;
 		this.systemId = systemId;
 		this.accountName = accountName;
 		this.accountType = accountType;
+		this.groupVisible = groupVisible;
+		this.deleted = deleted;
 	}
 
 	public String getDisplayName(){
@@ -33,8 +37,10 @@ public class GroupData {
 	@Override
 	public String toString(){
 		return String.format("id: %d, title: %s, notes: %s, systemId: %s,"
-					+ " accountName: %s, accountType: %s", 
+					+ " accountName: %s, accountType: %s,"
+					+ " groupVisible: %b, deleted: %b",
 				this.id, this.title, this.notes, this.systemId,
-				this.accountName, this.accountType);
+				this.accountName, this.accountType,
+				this.groupVisible, this.deleted);
 	}
 }
