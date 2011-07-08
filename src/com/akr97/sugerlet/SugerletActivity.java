@@ -85,6 +85,9 @@ public class SugerletActivity extends Activity {
 				getString(R.string.menu_all_contacts),
 				AllContactsActivity.getIntent(this)));
 		items.add(new ListContentItem(this,
+				getString(R.string.menu_search_contacts),
+				SearchContactsActivity.getIntent(this)));
+		items.add(new ListContentItem(this,
 				getString(R.string.menu_group_list),
 				GroupListActivity.getIntent(this)));
 		items.add(new ListContentItem(this,

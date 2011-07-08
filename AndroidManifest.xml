@@ -24,6 +24,7 @@
 		<activity android:name=".contacts.AccountContactsActivity"></activity>
 		<activity android:name=".contacts.StarredContactsActivity"></activity>
 		<activity android:name=".contacts.InitialsGroupContactsActivity"></activity>
+		<activity android:name=".contacts.SearchContactsActivity"></activity>
 
 	</application>
 </manifest>

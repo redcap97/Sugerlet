@@ -19,4 +19,8 @@ public class JapaneseUtil {
 			return familyName + " " + givenName;
 		}
 	}
+
+	public static String normalize(String s){
+		return JapaneseUtil.toZenkakuHiragana(s.toUpperCase());
+	}
 }

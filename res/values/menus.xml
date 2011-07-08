@@ -12,4 +12,5 @@
 	<string name="menu_telephone">電話</string>
 	<string name="menu_edit_contact">連絡先を編集</string>
 	<string name="menu_add_contact">連絡先を追加</string>
+	<string name="menu_search_contacts">文字入力</string>
 </resources>

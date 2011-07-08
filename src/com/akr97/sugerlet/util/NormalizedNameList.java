@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import android.text.TextUtils;
+
 import com.akr97.sugerlet.japanese.*;
 import com.akr97.sugerlet.model.*;
 
@@ -19,6 +21,21 @@ public class NormalizedNameList implements Iterable<NormalizedName> {
 		InitialsGroupSelector selector = new InitialsGroupSelector();
 		for(NormalizedName name : names){
 			if(selector.select(name.get()) == initialsGroup){
+				results.add(name);
+			}
+		}
+		return new NormalizedNameList(results);
+	}
+
+	public NormalizedNameList filter(String pattern){
+		if(TextUtils.isEmpty(pattern)){
+			return new NormalizedNameList(names);
+		}
+
+		ArrayList<NormalizedName> results = new ArrayList<NormalizedName>();
+		String normalizedPattern = JapaneseUtil.normalize(pattern);
+		for(NormalizedName name : names){
+			if(name.get().indexOf(normalizedPattern) != -1){
 				results.add(name);
 			}
 		}

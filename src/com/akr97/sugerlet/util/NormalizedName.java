@@ -29,7 +29,7 @@ public class NormalizedName implements Comparable<NormalizedName>{
 				StringUtil.toNonNull(sn.givenName);
 		}
 
-		return JapaneseUtil.toZenkakuHiragana(name.toUpperCase());
+		return JapaneseUtil.normalize(name);
 	}
 
 	@Override

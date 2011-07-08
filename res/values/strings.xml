@@ -20,4 +20,6 @@
 	<string name="email">Eメール</string>
 	<string name="setting_account">アカウントの設定</string>
 	<string name="cancel">キャンセル</string>
+	<string name="search">検索:</string>
+	<string name="search_contacts">文字入力検索</string>
 </resources>
