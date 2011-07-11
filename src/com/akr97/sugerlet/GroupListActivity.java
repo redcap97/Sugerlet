@@ -28,7 +28,7 @@ public class GroupListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_items);
 
-		setTitle(getString(R.string.group));
+		setTitle(getString(R.string.group_search));
 		setupGroupList();
 	}
 
@@ -76,7 +76,7 @@ public class GroupListActivity extends Activity {
 	}
 
 	private ListItem getNoGroupItem(Account account){
-		String content = getString(R.string.no_group);
+		String content = getString(R.string.no_group_with_mark);
 		Intent intent = GroupContactsActivity.getIntentNoGroup(this, account);
 		return new ListContentItem(this, content, intent);
 	}

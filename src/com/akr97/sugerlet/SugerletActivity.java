@@ -54,6 +54,7 @@ public class SugerletActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 		items.addAll(getCallItems());
 		items.addAll(getContactItems());
+		items.addAll(getSearchItems());
 		items.addAll(getOtherItems());
 
 		ListView listView = (ListView)findViewById(R.id.listView);
@@ -68,6 +69,7 @@ public class SugerletActivity extends Activity {
 
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_call)));
+
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_telephone),
 				new Intent(Intent.ACTION_DIAL, null)));
@@ -85,20 +87,30 @@ public class SugerletActivity extends Activity {
 				getString(R.string.menu_all_contacts),
 				AllContactsActivity.getIntent(this)));
 		items.add(new ListContentItem(this,
-				getString(R.string.menu_search_contacts),
-				SearchContactsActivity.getIntent(this)));
-		items.add(new ListContentItem(this,
-				getString(R.string.menu_group_list),
-				GroupListActivity.getIntent(this)));
-		items.add(new ListContentItem(this,
-				getString(R.string.menu_account_list),
-				AccountListActivity.getIntent(this)));
-		items.add(new ListContentItem(this,
-				getString(R.string.menu_initials_group_list),
-				InitialsGroupListActivity.getIntent(this)));
-		items.add(new ListContentItem(this,
 				getString(R.string.menu_starred_contacts),
 				StarredContactsActivity.getIntent(this)));
+
+		return items;
+	}
+
+	private ArrayList<ListItem> getSearchItems(){
+		ArrayList<ListItem> items = new ArrayList<ListItem>();
+
+		items.add(new ListHeaderItem(this,
+				getString(R.string.header_search)));
+
+		items.add(new ListContentItem(this,
+				getString(R.string.menu_group_search),
+				GroupListActivity.getIntent(this)));
+		items.add(new ListContentItem(this,
+				getString(R.string.menu_keyword_search),
+				SearchContactsActivity.getIntent(this)));
+		items.add(new ListContentItem(this,
+				getString(R.string.menu_initials_group_search),
+				InitialsGroupListActivity.getIntent(this)));
+		items.add(new ListContentItem(this,
+				getString(R.string.menu_account_search),
+				AccountListActivity.getIntent(this)));
 
 		return items;
 	}

@@ -25,7 +25,7 @@ public class GroupContactsActivity extends ContactsActivity {
 	@Override
 	public String createTitle() {
 		return String.format("%s: %s",
-				getString(R.string.group),
+				getString(R.string.group_search),
 				getGroupName(params.groupId));
 	}
 

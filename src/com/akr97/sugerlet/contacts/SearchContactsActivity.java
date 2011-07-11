@@ -35,7 +35,7 @@ public class SearchContactsActivity extends Activity {
 		this.items = createListItems();
 		this.listAdapter = new ListItemAdapter(items);
 
-		setTitle(getString(R.string.search_contacts));
+		setTitle(getString(R.string.keyword_search));
 		setupHeader();
 		setupContactList();
 	}
@@ -48,8 +48,9 @@ public class SearchContactsActivity extends Activity {
 	private void setupHeader(){
 		EditText editText = (EditText)findViewById(R.id.editor);
 
+		int lengthImage = convertDipIntoPx(SEARCH_IMAGE_DIP);
 		Drawable searchImage = getResources().getDrawable(SEARCH_IMAGE_RES_ID);
-		int lengthImage = dipToPx(SEARCH_IMAGE_DIP);
+
 		searchImage.setBounds(0, 0, lengthImage, lengthImage);
 		editText.setCompoundDrawables(null, null, searchImage, null);
 
@@ -82,7 +83,7 @@ public class SearchContactsActivity extends Activity {
 		return items;
 	}
 
-	private int dipToPx(int dip){
+	private int convertDipIntoPx(int dip){
 		float scale = getResources().getDisplayMetrics().density;
 		return (int)(dip * scale + 0.5f);
 	}

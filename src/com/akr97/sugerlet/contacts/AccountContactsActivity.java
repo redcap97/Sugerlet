@@ -24,7 +24,7 @@ public class AccountContactsActivity extends ContactsActivity {
 	@Override
 	public String createTitle(){
 		return String.format("%s: %s",
-				getString(R.string.account),
+				getString(R.string.account_search),
 				AccountUtil.getHeading(params.account));
 	}
 

@@ -24,7 +24,7 @@ public class InitialsGroupContactsActivity extends ContactsActivity {
 	@Override
 	public String createTitle(){
 		String groupName = InitialsGroupSelector.getGroupName(params.initialsGroup);
-		return String.format("%s: %s", getString(R.string.initials_group), groupName);
+		return String.format("%s: %s", getString(R.string.initials_group_search), groupName);
 	}
 
 	@Override

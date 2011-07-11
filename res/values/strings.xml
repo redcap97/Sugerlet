@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="account">アカウント</string>
+	<string name="account_search">アカウント検索</string>
 	<string name="all_contacts">すべての連絡先</string>
-	<string name="alphabet">英字</string>
 	<string name="app_name">Sugerlet</string>
-	<string name="group">グループ</string>
-	<string name="initials_group">ふりがな</string>
+	<string name="group_search">グループ検索</string>
+	<string name="initials_group_search">五十音検索</string>
 	<string name="no_group">グループなし</string>
 	<string name="nothing_with_mark">(なし)</string>
 	<string name="number">数字</string>
-	<string name="other">その他</string>
 	<string name="save">保存</string>
 	<string name="starred_contacts">お気に入り</string>
 	<string name="profile">プロフィール</string>
@@ -20,6 +18,6 @@
 	<string name="email">Eメール</string>
 	<string name="setting_account">アカウントの設定</string>
 	<string name="cancel">キャンセル</string>
-	<string name="search">検索:</string>
-	<string name="search_contacts">文字入力検索</string>
+	<string name="keyword_search">キーワード検索</string>
+	<string name="no_group_with_mark">(グループなし)</string>
 </resources>

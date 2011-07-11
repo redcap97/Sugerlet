@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="menu_about">Sugerletについて</string>
-	<string name="menu_account_list">アカウント</string>
+	<string name="menu_account_search">アカウント検索</string>
 	<string name="menu_all_contacts">すべて</string>
-	<string name="menu_group_list">グループ</string>
-	<string name="menu_initials_group_list">ふりがな</string>
+	<string name="menu_group_search">グループ検索</string>
+	<string name="menu_initials_group_search">五十音検索</string>
 	<string name="menu_reset">リセット</string>
 	<string name="menu_save">保存</string>
 	<string name="menu_setting_account">アカウントの設定</string>
@@ -12,5 +12,5 @@
 	<string name="menu_telephone">電話</string>
 	<string name="menu_edit_contact">連絡先を編集</string>
 	<string name="menu_add_contact">連絡先を追加</string>
-	<string name="menu_search_contacts">文字入力</string>
+	<string name="menu_keyword_search">キーワード検索</string>
 </resources>
