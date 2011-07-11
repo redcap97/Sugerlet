@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +23,9 @@ public class SearchContactsActivity extends Activity {
 
 	private ArrayList<ListItem> items;
 	private ListItemAdapter listAdapter;
+
+	private static final int SEARCH_IMAGE_DIP = 30;
+	private static final int SEARCH_IMAGE_RES_ID = android.R.drawable.ic_search_category_default;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,18 @@ public class SearchContactsActivity extends Activity {
 		resetContactList();
 	}
 
-	public void setupHeader(){
+	private void setupHeader(){
 		EditText editText = (EditText)findViewById(R.id.editor);
+
+		Drawable searchImage = getResources().getDrawable(SEARCH_IMAGE_RES_ID);
+		int lengthImage = dipToPx(SEARCH_IMAGE_DIP);
+		searchImage.setBounds(0, 0, lengthImage, lengthImage);
+		editText.setCompoundDrawables(null, null, searchImage, null);
+
 		editText.addTextChangedListener(new TextChangedListener());
 	}
 
-	public void setupContactList(){
+	private void setupContactList(){
 		ListView listView = (ListView)findViewById(R.id.list);
 		listView.setAdapter(listAdapter);
 		View emptyView = findViewById(R.id.emptyView);
@@ -61,7 +71,7 @@ public class SearchContactsActivity extends Activity {
 		listAdapter.notifyDataSetChanged();
 	}
 
-	public ArrayList<ListItem> createListItems(){
+	private ArrayList<ListItem> createListItems(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
 		StructuredNameDao dao = new StructuredNameDao(this);
@@ -70,6 +80,11 @@ public class SearchContactsActivity extends Activity {
 			items.add(new ContactsContentItem(this, name.getEntity()));
 		}
 		return items;
+	}
+
+	private int dipToPx(int dip){
+		float scale = getResources().getDisplayMetrics().density;
+		return (int)(dip * scale + 0.5f);
 	}
 
 	public static Intent getIntent(Context context){

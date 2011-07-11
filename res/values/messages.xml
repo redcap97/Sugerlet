@@ -4,4 +4,5 @@
 	<string name="message_no_contact">連絡先はありません</string>
 	<string name="message_no_group">グループが存在しません</string>
 	<string name="message_save">保存しました</string>
+	<string name="message_search_contacts">連絡先の検索</string>
 </resources>
