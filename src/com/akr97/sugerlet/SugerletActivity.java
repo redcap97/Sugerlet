@@ -52,7 +52,6 @@ public class SugerletActivity extends Activity {
 
 	private void setupLauncherList(){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
-		items.addAll(getCallItems());
 		items.addAll(getContactItems());
 		items.addAll(getSearchItems());
 		items.addAll(getOtherItems());
@@ -62,19 +61,6 @@ public class SugerletActivity extends Activity {
 		View emptyView = findViewById(R.id.emptyView);
 		listView.setEmptyView(emptyView);
 		listView.setOnItemClickListener(new ListItemClickListener(items));
-	}
-
-	private ArrayList<ListItem> getCallItems(){
-		ArrayList<ListItem> items = new ArrayList<ListItem>();
-
-		items.add(new ListHeaderItem(this,
-				getString(R.string.header_call)));
-
-		items.add(new ListContentItem(this,
-				getString(R.string.menu_telephone),
-				new Intent(Intent.ACTION_DIAL, null)));
-
-		return items;
 	}
 
 	private ArrayList<ListItem> getContactItems(){
@@ -121,6 +107,9 @@ public class SugerletActivity extends Activity {
 		items.add(new ListHeaderItem(this,
 				getString(R.string.header_other)));
 
+		items.add(new ListContentItem(this,
+				getString(R.string.menu_telephone),
+				new Intent(Intent.ACTION_DIAL, null)));
 		items.add(new ListContentItem(this,
 				getString(R.string.menu_setting_account),
 				SettingAccountActivity.getIntent(this)));

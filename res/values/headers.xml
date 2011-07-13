@@ -6,6 +6,5 @@
 	<string name="header_phone">電話番号</string>
 	<string name="header_other">その他</string>
 	<string name="header_contact">連絡先</string>
-	<string name="header_call">通話</string>
 	<string name="header_search">検索</string>
 </resources>
