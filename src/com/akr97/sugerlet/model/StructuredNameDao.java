@@ -133,11 +133,12 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + "=? AND " +
-					RawContacts.ACCOUNT_TYPE + "=?",
+					RawContacts.ACCOUNT_TYPE + "=? AND " +
+					RawContacts.DELETED + "=?",
 				new String[]{
 					StructuredName.CONTENT_ITEM_TYPE,
-					account.name,
-					account.type},
+					account.name, account.type,
+					String.valueOf(0)},
 				RawContactsEntity._ID);
 	}
 
@@ -146,8 +147,12 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 				PROJECTION,
 				RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + " IS NULL AND " +
-					RawContacts.ACCOUNT_TYPE + " IS NULL",	
-				new String[]{ StructuredName.CONTENT_ITEM_TYPE }, 
+					RawContacts.ACCOUNT_TYPE + " IS NULL AND " +
+					RawContacts.DELETED + "=?",
+				new String[]{
+					StructuredName.CONTENT_ITEM_TYPE,
+					String.valueOf(0)
+				},
 				RawContacts._ID);
 	}
 
@@ -156,11 +161,12 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 				new String[]{ RawContactsEntity._ID },
 				RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + "=? AND " +
-					RawContacts.ACCOUNT_TYPE + "=?",
+					RawContacts.ACCOUNT_TYPE + "=? AND " +
+					RawContacts.DELETED + "=?",
 				new String[]{
 					GroupMembership.CONTENT_ITEM_TYPE,
-					account.name,
-					account.type},
+					account.name, account.type,
+					String.valueOf(0)},
 				RawContactsEntity._ID);
 	}
 
@@ -178,8 +184,8 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 	private Cursor getCursorByRawContactId(long rawContactId){
 		return getContentResolver().query(RawContactsEntity.CONTENT_URI,
 				PROJECTION,
-				RawContactsEntity.MIMETYPE + "=? AND "
-					+ RawContactsEntity._ID + "=?",
+				RawContactsEntity.MIMETYPE + "=? AND " +
+					RawContactsEntity._ID + "=?",
 				new String[]{
 					StructuredName.CONTENT_ITEM_TYPE,
 					String.valueOf(rawContactId)},
@@ -192,11 +198,13 @@ public class StructuredNameDao extends DaoBase<StructuredNameData> {
 				RawContacts.STARRED + "=? AND " +
 					RawContactsEntity.MIMETYPE + "=? AND " +
 					RawContacts.ACCOUNT_NAME + "=? AND " +
-					RawContacts.ACCOUNT_TYPE + "=?",
+					RawContacts.ACCOUNT_TYPE + "=? AND " +
+					RawContacts.DELETED + "=?",
 				new String[]{
 					String.valueOf(1),
 					StructuredName.CONTENT_ITEM_TYPE,
-					account.name, account.type },
+					account.name, account.type,
+					String.valueOf(0)},
 				RawContacts._ID);
 	}
 }
