@@ -75,7 +75,7 @@ public abstract class ContactsActivity extends Activity {
 	protected ArrayList<ListItem> createListItems(ArrayList<StructuredNameData> structuredNames){
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
-		NormalizedNameList list = NormalizedNameList.from(structuredNames);
+		NormalizedNameList list = NormalizedNameList.fromPhoneticNames(structuredNames);
 		for(char group : InitialsGroupSelector.INITIALS_GROUP_NAMES){
 			NormalizedNameList groupList = list.filter(group);
 			if(groupList.size() > 0){

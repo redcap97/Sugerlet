@@ -76,7 +76,7 @@ public class SearchContactsActivity extends Activity {
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 
 		StructuredNameDao dao = new StructuredNameDao(this);
-		NormalizedNameList list = NormalizedNameList.from(dao.getAll());
+		NormalizedNameList list = NormalizedNameList.fromPhoneticNames(dao.getAll());
 		for(NormalizedName name : list.filter(pattern).sort()){
 			items.add(new ContactsContentItem(this, name.getEntity()));
 		}
