@@ -20,7 +20,7 @@ public class NormalizedName implements Comparable<NormalizedName>{
 		return entity;
 	}
 
-	private String normalize(StructuredNameData sn){
+	protected String normalize(StructuredNameData sn){
 		String name = (StringUtil.toNonNull(sn.phoneticFamilyName) +
 				StringUtil.toNonNull(sn.phoneticGivenName)).trim();
 
