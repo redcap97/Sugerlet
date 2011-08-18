@@ -5,7 +5,7 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/innerLayout" android:orientation="horizontal" android:background="#111111">
-        <EditText android:layout_width="fill_parent" android:id="@+id/editor" android:layout_marginTop="10dip" android:layout_marginLeft="6dip" android:layout_marginRight="6dip" android:layout_marginBottom="8dip" android:hint="@string/message_search_contacts" android:layout_height="wrap_content"></EditText>
+        <EditText android:layout_width="fill_parent" android:id="@+id/editor" android:layout_marginTop="10dip" android:layout_marginLeft="6dip" android:layout_marginRight="6dip" android:layout_marginBottom="8dip" android:hint="@string/message_search_contacts" android:layout_height="wrap_content" android:inputType="text"></EditText>
     </LinearLayout>
     <ListView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/list" android:fastScrollEnabled="true"></ListView>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/emptyView" android:text="@string/message_no_contact" android:textSize="24dip"></TextView>
